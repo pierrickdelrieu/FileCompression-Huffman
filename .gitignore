@@ -53,3 +53,10 @@ dkms.conf
 /CMakeLists.txt
 cmake-build-debug
 .idea
+
+
+# Pierrick's files
+documentation
+.vscode
+huffman.code-workspace
+.DS_Store
