@@ -69,7 +69,7 @@ objets/FileManagment.o : include/FileManagment.h  \
 
 
 
-clean :
+clean:
 	rm $(OBJS)
 	rm -rf $(OUTPUT)/$(EXEC)
 

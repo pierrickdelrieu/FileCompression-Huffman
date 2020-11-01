@@ -7,7 +7,7 @@
 
 
 
-int main() {
+int main(void) {
 
     create_binary_file_of_FileToCompress();
 

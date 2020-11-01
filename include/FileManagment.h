@@ -2,7 +2,7 @@
 #define FILE_MANAGMENT
 
 
-///@brief Digit number of a binary number
+///@brief Number of digits of a classic binary number
 #define SIZE_BINARY 8 
 
 ///@brief character (0) -> decimal (48) according to the ascii table
@@ -10,7 +10,7 @@
 
 
 
-/// @brief Array of 8 integers to represent a number in binary
+/// @brief Array of integers to represent a number in binary
 typedef struct Binary {
     int* nb;
 } Binary;

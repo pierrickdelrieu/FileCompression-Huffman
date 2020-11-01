@@ -23,7 +23,7 @@
  * 
  * @return Binary* Pointer to allocated structure
  */
-Binary* create_binary_number() {
+Binary* create_binary_number(void) {
     Binary* x = NULL;
 
     x = (Binary*) malloc(sizeof(Binary));
@@ -67,7 +67,7 @@ Binary* convert_int_to_binary(int value) {
  * 'binaryFile' is open read and write
  * 
  */
-void create_binary_file_of_FileToCompress() {
+void create_binary_file_of_FileToCompress(void) {
     FILE* fileToCompress = NULL;
     FILE* binaryFile = NULL;
 

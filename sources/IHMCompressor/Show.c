@@ -18,9 +18,8 @@
 
 /**
  * @brief Display of an error message and forced exit from the program when there is a problem opening a file
- * 
  */
-void displayErrorMessageOpenFile() {
+void displayErrorMessageOpenFile(void) {
     printf("FILE OPENING ERROR\n");
     exit(EXIT_FAILURE); // Forced program exit with failure
 }
@@ -29,8 +28,7 @@ void displayErrorMessageOpenFile() {
 
 /**
  * @brief Cleaning of terminal elements for linux, windows and mac operating systems
- * 
  */
-void cleanTerminal() {
+void cleanTerminal(void) {
     system(strcmp(OPERATING_SYSTEM, "win") == 0 ? "cls" : "clear");
 }
