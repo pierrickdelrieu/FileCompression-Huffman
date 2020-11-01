@@ -3,12 +3,8 @@
 
 
 
-void displayErrorMessageOpenFile();
-
-void cleanTerminal();
-
-
-
+void displayErrorMessageOpenFile    (void);
+void cleanTerminal                  (void);
 
 
 

@@ -1,3 +1,15 @@
+/**
+ * @file FileManagment.c
+ * @author Pierrick Delrieu
+ * @brief Converting a Text File to Binary Text and Counting Items in a File
+ * @details Part 1 of project
+ * @version 0.1
+ * @date 01-11-2020
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/FileManagment.h"
@@ -6,23 +18,38 @@
 
 
 
-
+/**
+ * @brief Memory allocation of the Binary structure and of the 1D array representing the bytes
+ * 
+ * @return Binary* Pointer to allocated structure
+ */
 Binary* create_binary_number() {
     Binary* x = NULL;
 
     x = (Binary*) malloc(sizeof(Binary));
-    x->nb = (int*) calloc(SIZE_BINARY, sizeof(int));
+
+    // Allocation of an array of 8 integers
+    x->nb = (int*) calloc(SIZE_BINARY, sizeof(int)); // Use calloc to reset boxes to 0
 
     return x;
 }
 
 
+
+/**
+ * @brief Converting integer to binary number (0 and 1)
+ * @details In the table the 0 and 1 are represented in decimal form either according to the ascii table 
+ * charactere(0) -> decimal(48) and charactere(1) -> decimal(49)
+ * 
+ * @param value Integer to convert
+ * @return Binary* 1D array of size 8. Each box represents one byte.
+ */
 Binary* convert_int_to_binary(int value) {
     Binary* x = create_binary_number();
 
-    int i = SIZE_BINARY-1; // size of array binary number
+    int i = SIZE_BINARY-1; // Size of array binary number
 
-    // conversion avec la méthode de la division
+    // Conversion with the Euclidean division method
     while(i >= 0) {
         x->nb[i] = (value%2) + ASCII_INIT_NUMBER;
         value = value/2;
@@ -34,6 +61,12 @@ Binary* convert_int_to_binary(int value) {
 
 
 
+/**
+ * @brief Creation of a binary number file 'BinaryFile.txt' containing the equivalent of the character file 'FileToCompress'
+ * @details 'fileToCompress' is open in read-only mode because we don't need to modify it
+ * 'binaryFile' is open read and write
+ * 
+ */
 void create_binary_file_of_FileToCompress() {
     FILE* fileToCompress = NULL;
     FILE* binaryFile = NULL;
@@ -41,13 +74,13 @@ void create_binary_file_of_FileToCompress() {
     fileToCompress = fopen("TextFiles/FileToCompress.txt","r"); // Open read-only
     binaryFile = fopen("TextFiles/BinaryFile.txt","w"); // Open read and write
 
-    // If the file is opened correctly
+    // If the files are opened correctly
     if((fileToCompress != NULL) && (binaryFile != NULL)) {
-        int chara = fgetc(fileToCompress);
-        int i;
-        Binary* bin = NULL;
+        int chara = fgetc(fileToCompress); // Contains the item currently playing
+        int i; // Counter
+        Binary* bin = NULL; // Array containing the content of the variable chara in binary form (0 and 1)
 
-
+        // While the cursor is not at the end of the file
         while(chara != EOF) {
             bin = convert_int_to_binary(chara);
             for(i=0; i<SIZE_BINARY; i++) {
@@ -60,29 +93,30 @@ void create_binary_file_of_FileToCompress() {
         fclose(fileToCompress);
         fclose(binaryFile);
     }
-    // If the file is not opened correctly
+    // If the files are not opened correctly
     else {
         displayErrorMessageOpenFile();
     }
-
-
 }
 
 
-
+/**
+ * @brief Counting the number of characters in a file
+ * 
+ * @param filePath Character string containing the path (from the main folder) to the file to be processed
+ * @return int Number of characters in the file
+ */
 int number_char_in_file(char* filePath) {
     FILE* file = NULL;
 
     file = fopen(filePath,"r"); // Open read-only
-
     // If the file is opened correctly
     if(file != NULL) {
-        int nbChara = 0;
-        char cara = fgetc(file);
+        int nbChara = 0; // Initialization of the number of characters
 
-        while(cara != EOF) {
+        // While the cursor is not at the end of the file
+        while(fgetc(file) != EOF) {
             nbChara = nbChara + 1;
-            cara = fgetc(file);
         }
 
         fclose(file);
