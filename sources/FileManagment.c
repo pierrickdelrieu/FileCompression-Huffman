@@ -111,6 +111,7 @@ int numberCharInFile(char* filePath) {
     FILE* file = NULL;
 
     file = fopen(filePath,"r"); // Open read-only
+    
     // If the file is opened correctly
     if(file != NULL) {
         int nbChara = 0; // Initialization of the number of characters
