@@ -23,7 +23,7 @@
  * 
  * @return Binary* Pointer to allocated structure
  */
-Binary* create_binary_number(void) {
+Binary* createBinaryNumber(void) {
     Binary* x = NULL;
 
     x = (Binary*) malloc(sizeof(Binary));
@@ -44,8 +44,8 @@ Binary* create_binary_number(void) {
  * @param value Integer to convert
  * @return Binary* 1D array of size 8. Each box represents one byte.
  */
-Binary* convert_int_to_binary(int value) {
-    Binary* x = create_binary_number();
+Binary* convertIntToBinary(int value) {
+    Binary* x = createBinaryNumber();
 
     int i = SIZE_BINARY-1; // Size of array binary number
 
@@ -67,7 +67,7 @@ Binary* convert_int_to_binary(int value) {
  * 'binaryFile' is open read and write
  * 
  */
-void create_binary_file_of_FileToCompress(void) {
+void createBinaryFileOfFileToCompress(void) {
     FILE* fileToCompress = NULL;
     FILE* binaryFile = NULL;
 
@@ -82,7 +82,7 @@ void create_binary_file_of_FileToCompress(void) {
 
         // While the cursor is not at the end of the file
         while(chara != EOF) {
-            bin = convert_int_to_binary(chara);
+            bin = convertIntToBinary(chara);
             for(i=0; i<SIZE_BINARY; i++) {
                 fputc(bin->nb[i], binaryFile);
             }
@@ -100,13 +100,14 @@ void create_binary_file_of_FileToCompress(void) {
 }
 
 
+
 /**
  * @brief Counting the number of characters in a file
  * 
  * @param filePath Character string containing the path (from the main folder) to the file to be processed
  * @return int Number of characters in the file
  */
-int number_char_in_file(char* filePath) {
+int numberCharInFile(char* filePath) {
     FILE* file = NULL;
 
     file = fopen(filePath,"r"); // Open read-only
