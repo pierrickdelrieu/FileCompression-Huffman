@@ -9,10 +9,10 @@
 
 int main(void) {
 
-    create_binary_file_of_FileToCompress();
+    createBinaryFileOfFileToCompress();
 
-    printf("nb 1 : %d\n", number_char_in_file("TextFiles/FileToCompress.txt"));
-    printf("nb 2 : %d\n", number_char_in_file("TextFiles/BinaryFile.txt"));
+    printf("nb 1 : %d\n", numberCharInFile("TextFiles/FileToCompress.txt"));
+    printf("nb 2 : %d\n", numberCharInFile("TextFiles/BinaryFile.txt"));
 
 
     return EXIT_SUCCESS;

@@ -18,12 +18,12 @@ typedef struct Binary {
 
 
 
-Binary* create_binary_number    (void);
-Binary* convert_int_to_binary   (int value);
+Binary* createBinaryNumber  (void);
+Binary* convertIntToBinary  (int value);
 
 
-void    create_binary_file_of_FileToCompress    (void);
-int     number_char_in_file                     (char* filePath);
+void    createBinaryFileOfFileToCompress    (void);
+int     numberCharInFile                    (char* filePath);
 
 
 
