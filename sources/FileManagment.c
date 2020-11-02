@@ -19,15 +19,16 @@
 /**
  * @brief Memory allocation of the Binary structure and of the 1D array representing the bytes
  * 
+ * @param size Array size, number of bits used to represent the number
  * @return Binary* Pointer to allocated structure
  */
-Binary* createBinaryNumber(void) {
+Binary* createBinaryNumber(int size) {
     Binary* x = NULL;
 
     x = (Binary*) malloc(sizeof(Binary));
 
     // Allocation of an array of 8 integers
-    x->nb = (int*) calloc(SIZE_BINARY, sizeof(int)); // Use calloc to reset boxes to 0
+    x->nb = (int*) calloc(size, sizeof(int)); // Use calloc to reset boxes to 0
 
     return x;
 }
@@ -43,12 +44,12 @@ Binary* createBinaryNumber(void) {
  * @return Binary* 1D array of size 8. Each box represents one byte.
  */
 Binary* convertIntToBinary(int value) {
-    Binary* x = createBinaryNumber();
+    Binary* x = createBinaryNumber(SIZE_BINARY);
 
     int i = SIZE_BINARY-1; // Size of array binary number
 
     // Conversion with the Euclidean division method
-    while(i >= 0) {
+    while(value > 0) {
         x->nb[i] = (value%2) + ASCII_INIT_NUMBER;
         value = value/2;
         i--;

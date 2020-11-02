@@ -18,7 +18,7 @@ typedef struct Binary {
 
 
 
-Binary* createBinaryNumber  (void);
+Binary* createBinaryNumber  (int size);
 Binary* convertIntToBinary  (int value);
 
 
