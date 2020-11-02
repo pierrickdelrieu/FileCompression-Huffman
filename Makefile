@@ -20,6 +20,7 @@ compressor: $(OBJS)
 
 
 $(OBJECTS)main.o : $(INCLUDE)FileManagment.h \
+					tests/tests.h \
 				$(SOURCES)main.c
 	$(COMPILER) -c -g -Wall $(SOURCES)main.c -o $(OBJECTS)main.o
 	
