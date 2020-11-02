@@ -5,7 +5,7 @@
 
 void displayErrorMessageOpenFile    (void);
 void cleanTerminal                  (void);
-
+void displayErrorMemoryAllocation   (void);
 
 
 //...................OPERATING SYSTEM....................

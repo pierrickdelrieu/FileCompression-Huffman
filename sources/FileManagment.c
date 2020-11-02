@@ -16,8 +16,6 @@
 #include "../include/IHMCompressor/Show.h"
 
 
-
-
 /**
  * @brief Memory allocation of the Binary structure and of the 1D array representing the bytes
  * 

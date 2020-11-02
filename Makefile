@@ -55,6 +55,7 @@ objets/Huffman/Dictionary.o : include/Huffman/Dictionary.h  \
 	$(COMPILER) -c -g -Wall sources/Huffman/Dictionary.c -o objets/Huffman/Dictionary.o
 
 objets/Huffman/HuffmanTree.o : include/Huffman/HuffmanTree.h  \
+								include/IHMCompressor/Show.h  \
 								sources/Huffman/HuffmanTree.c
 	$(COMPILER) -c -g -Wall sources/Huffman/HuffmanTree.c -o objets/Huffman/HuffmanTree.o
 
