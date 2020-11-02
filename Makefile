@@ -1,71 +1,74 @@
 OUTPUT=binaires/
+OBJECTS= objects/
+SOURCES= sources/
+INCLUDE= include/
 COMPILER=gcc
 EXEC= compressor
 
 
-IHMCOMPRESSOR = objets/IHMCompressor/Menu.o objets/IHMCompressor/Scan.o objets/IHMCompressor/Show.o
+IHMCOMPRESSOR = $(OBJECTS)IHMCompressor/Menu.o $(OBJECTS)IHMCompressor/Scan.o $(OBJECTS)IHMCompressor/Show.o
 
-HUFFMAN = objets/Huffman/Encoding.o objets/Huffman/Decoding.o objets/Huffman/Dictionary.o objets/Huffman/HuffmanTree.o
+HUFFMAN = $(OBJECTS)Huffman/Encoding.o $(OBJECTS)Huffman/Decoding.o $(OBJECTS)Huffman/Dictionary.o $(OBJECTS)Huffman/HuffmanTree.o
 
-FILE_MANAGMENT = objets/FileManagment.o
+FILE_MANAGMENT = $(OBJECTS)FileManagment.o
 
-OBJS = objets/main.o $(IHMCOMPRESSOR) $(HUFFMAN) $(FILE_MANAGMENT)
+OBJS = $(OBJECTS)main.o $(IHMCOMPRESSOR) $(HUFFMAN) $(FILE_MANAGMENT)
 
 
 compressor: $(OBJS)
 	$(COMPILER) $(OBJS) -o $(OUTPUT)/$(EXEC)
 
 
-objets/main.o : include/FileManagment.h \
-				sources/main.c
-	$(COMPILER) -c -g -Wall sources/main.c -o objets/main.o
+$(OBJECTS)main.o : $(INCLUDE)FileManagment.h \
+				$(SOURCES)main.c
+	$(COMPILER) -c -g -Wall $(SOURCES)main.c -o $(OBJECTS)main.o
 	
 
 #IHMCOMPRESSOR
-objets/IHMCompressor/Menu.o : include/IHMCompressor/Menu.h \
-								sources/IHMCompressor/Menu.c
-	$(COMPILER) -c -g -Wall sources/IHMCompressor/Menu.c -o objets/IHMCompressor/Menu.o
+$(OBJECTS)IHMCompressor/Menu.o : $(INCLUDE)IHMCompressor/Menu.h \
+								$(SOURCES)IHMCompressor/Menu.c
+	$(COMPILER) -c -g -Wall $(SOURCES)IHMCompressor/Menu.c -o $(OBJECTS)IHMCompressor/Menu.o
 
-objets/IHMCompressor/Scan.o : include/IHMCompressor/Scan.h \
-								sources/IHMCompressor/Scan.c
-	$(COMPILER) -c -g -Wall sources/IHMCompressor/Scan.c -o objets/IHMCompressor/Scan.o
+$(OBJECTS)IHMCompressor/Scan.o : $(INCLUDE)IHMCompressor/Scan.h \
+								$(SOURCES)IHMCompressor/Scan.c
+	$(COMPILER) -c -g -Wall $(SOURCES)IHMCompressor/Scan.c -o $(OBJECTS)IHMCompressor/Scan.o
 
-objets/IHMCompressor/Show.o : include/IHMCompressor/Show.h \
-								sources/IHMCompressor/Show.c
-	$(COMPILER) -c -g -Wall sources/IHMCompressor/Show.c -o objets/IHMCompressor/Show.o
+$(OBJECTS)IHMCompressor/Show.o : $(INCLUDE)IHMCompressor/Show.h \
+								$(SOURCES)IHMCompressor/Show.c
+	$(COMPILER) -c -g -Wall $(SOURCES)IHMCompressor/Show.c -o $(OBJECTS)IHMCompressor/Show.o
 
 
 
 #HUFFMAN
-objets/Huffman/Decoding.o : include/Huffman/Decoding.h  \
-								include/IHMCompressor/Show.h  \
-								include/Huffman/Dictionary.h  \
-								sources/Huffman/Decoding.c
-	$(COMPILER) -c -g -Wall sources/Huffman/Decoding.c -o objets/Huffman/Decoding.o
+$(OBJECTS)Huffman/Decoding.o : $(INCLUDE)Huffman/Decoding.h  \
+								$(INCLUDE)IHMCompressor/Show.h  \
+								$(INCLUDE)Huffman/Dictionary.h  \
+								$(SOURCES)Huffman/Decoding.c
+	$(COMPILER) -c -g -Wall $(SOURCES)Huffman/Decoding.c -o $(OBJECTS)Huffman/Decoding.o
 
-objets/Huffman/Encoding.o : include/Huffman/Encoding.h  \
-								include/IHMCompressor/Show.h  \
-								include/Huffman/Dictionary.h  \
-								sources/Huffman/Encoding.c
-	$(COMPILER) -c -g -Wall sources/Huffman/Encoding.c -o objets/Huffman/Encoding.o
+$(OBJECTS)Huffman/Encoding.o : $(INCLUDE)Huffman/Encoding.h  \
+								$(INCLUDE)IHMCompressor/Show.h  \
+								$(INCLUDE)Huffman/Dictionary.h  \
+								$(SOURCES)Huffman/Encoding.c
+	$(COMPILER) -c -g -Wall $(SOURCES)Huffman/Encoding.c -o $(OBJECTS)Huffman/Encoding.o
 
-objets/Huffman/Dictionary.o : include/Huffman/Dictionary.h  \
-								include/IHMCompressor/Show.h  \
-								sources/Huffman/Dictionary.c
-	$(COMPILER) -c -g -Wall sources/Huffman/Dictionary.c -o objets/Huffman/Dictionary.o
+$(OBJECTS)Huffman/Dictionary.o : $(INCLUDE)Huffman/Dictionary.h  \
+								$(INCLUDE)IHMCompressor/Show.h  \
+								$(SOURCES)Huffman/Dictionary.c
+	$(COMPILER) -c -g -Wall $(SOURCES)Huffman/Dictionary.c -o $(OBJECTS)Huffman/Dictionary.o
 
-objets/Huffman/HuffmanTree.o : include/Huffman/HuffmanTree.h  \
-								include/IHMCompressor/Show.h  \
-								sources/Huffman/HuffmanTree.c
-	$(COMPILER) -c -g -Wall sources/Huffman/HuffmanTree.c -o objets/Huffman/HuffmanTree.o
+$(OBJECTS)Huffman/HuffmanTree.o : $(INCLUDE)Huffman/HuffmanTree.h  \
+								$(INCLUDE)IHMCompressor/Show.h  \
+								$(SOURCES)Huffman/HuffmanTree.c
+	$(COMPILER) -c -g -Wall $(SOURCES)Huffman/HuffmanTree.c -o $(OBJECTS)Huffman/HuffmanTree.o
 
 
 
 #FILE_MANAGMENT
-objets/FileManagment.o : include/FileManagment.h  \
-								include/IHMCompressor/Show.h \
-								sources/FileManagment.c
-	$(COMPILER) -c -g -Wall sources/FileManagment.c -o objets/FileManagment.o
+$(OBJECTS)FileManagment.o : $(INCLUDE)FileManagment.h  \
+								$(INCLUDE)IHMCompressor/Show.h \
+								$(SOURCES)FileManagment.c
+	$(COMPILER) -c -g -Wall $(SOURCES)FileManagment.c -o $(OBJECTS)FileManagment.o
 
 
 
