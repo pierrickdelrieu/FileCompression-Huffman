@@ -1,4 +1,5 @@
 # Work List 
+- Part1 : Pierrick 
 - Huffman Tree : Pierrick et Benjamin
 - Occurence : Harold
 - Dictionary : Faustin
