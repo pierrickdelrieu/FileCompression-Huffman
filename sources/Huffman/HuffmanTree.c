@@ -3,23 +3,54 @@
 #include "../../include/Huffman/HuffmanTree.h"
 #include "../../include/IHMCompressor/Show.h"
 
-static HuffmanTree createLeaf(int letter) {
 
-    HuffmanTree tree = (HuffmanTree*) malloc(sizeof(HuffmanTree));
+Leaf* createLeaf(int letter, int occ) {
+    Leaf* x = NULL;
 
-    if (tree != NULL) {
-        tree->letter = letter;
-        tree->occ = occ;
+    x->letter = letter;
+    x->occ = occ;
+    x->left = NULL;
+    x->right = NULL;
 
-        return tree;
-    }
-
-    else {
-        displayErrorMemoryAllocation();
-    }
+    return x;
 }
 
 
-HuffmanTree createHuffmanTreeFromOccList(LinkedList occList) {
+void deletingLeaf(LeafsList* leafslist, Leaf* elem) {
 
+}
+
+
+
+
+HuffmanTree createHuffmanTree(LeafsList* leafslist) {
+    if(leafslist == NULL) {
+        return NULL;
+    }
+    else {
+        HuffmanTree tree = NULL;
+        Leaf* elem1 = NULL;
+        Leaf* elem2 = NULL;
+
+        while(*leafslist != NULL) {
+
+            // Récupération des deux éléments ayant la plus petite occurrence
+            elem1 = ElementWithSmallestOccurrence(*leafslist);
+            deletingLeaf(leafslist, elem1);
+
+            elem2 = ElementWithSmallestOccurrence(*leafslist);
+            deletingLeaf(leafslist, elem2);
+
+
+            // création du noeud
+            tree = createLeaf(-1, elem1->occ + elem2->occ);
+            tree->left = elem1;
+            tree->right = elem2;
+
+
+            // ajout de l'element a liste feuille
+            addLeafToTheEndOfLeafsList(*leafslist, tree);
+
+        }
+    }
 }

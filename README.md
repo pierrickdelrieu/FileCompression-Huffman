@@ -1,5 +1,5 @@
 # FileCompression-Huffman
-Data Structures Project (Efrei - S1 L2 - 2020)  
+Data structures and software engineering Project (Efrei - S1 L2 - 2020)  
 Pierrick Delrieu - Benjamin Lesieux - Harold Molter - Raphaël Cadillat - Fausitin Dewas
 ___
 

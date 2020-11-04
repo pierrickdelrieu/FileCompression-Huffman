@@ -1,31 +1,24 @@
 #ifndef HUFFMAN_TREE
 #define HUFFMAN_TREE
 
-typedef struct Node {
-    int letter;
-    int occ;
-    struct Node *next;
-} Node;
-
-typedef *Node LinkedList;
-
-
-
-
-
-
-
-
 
 typedef struct Leaf {
     int letter;
-    struct Leaf left;
-    struct Leaf right;
+    int occ;
+    struct Leaf* left;
+    struct Leaf* right;
 } Leaf;
 
-typedef *Lead HuffmanTree;
+typedef Leaf* LeafsList;
+typedef Leaf* HuffmanTree;
 
-HuffmanTree           createHuffmanTreeFromOccList  (LinkedList occList);
-static HuffmanTree    createLeaf                    (int letter);
+Leaf* createLeaf(int letter, int occ);
+void deletingLeaf(LeafsList* leafslist, Leaf* elem);
+Leaf* elementWithSmallestOccurrence(LeafsList leafslist);
+void addLeafToTheEndOfLeafsList(LeafsList leafslist, Leaf* elem);
+
+
+HuffmanTree createHuffmanTree(LeafsList* leafslist);
+
 
 #endif // !HUFFMAN_TREE
