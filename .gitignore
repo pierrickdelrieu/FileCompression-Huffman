@@ -57,6 +57,5 @@ cmake-build-debug
 
 
 # Pierrick's files
-documentation
 huffman.code-workspace
 .DS_Store

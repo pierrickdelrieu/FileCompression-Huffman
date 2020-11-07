@@ -3,6 +3,7 @@
 #include "../include/FileManagment.h"
 #include "../include//Huffman/Encoding.h"
 #include "../include//Huffman/Decoding.h"
+#include "../tests/tests.h"
 
 
 
