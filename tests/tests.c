@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include "tests.h"
 #include "../include/FileManagment.h"
+#include "../include/DataStructures/LinkedList.h"
 
 
 /**
@@ -48,4 +49,34 @@ int test_FileManagment() {
     else {
         return 0;
     }
+}
+
+int test_LinkedList() {
+    LinkedList list = createNode((int) 'c', 3);
+    Node* b = createNode((int) 'b', 2);
+    Node* d = createNode((int) 'd', 1);
+
+    addNode(&list, b); printf("\nAdded 'b' to the list");
+    addNode(&list, d); printf("\nAdded 'd' to the list");
+
+    printList(list);
+
+    printf("\nResearching letter 'f'");
+    if (find(list, (int) 'f') == NULL) printf("\nLetter 'f' not found as expected");
+    else printf("\nThere might be an error :(");
+
+    printf("\nResearching letter 'c'");
+    if (find(list, (int) 'c') != NULL) printf("\nLetter 'c' was found as expected");
+    else printf("\nThere might be an error :(");
+
+    printf("\nList has 3 elements, getSize returns %d", getSize(list));
+
+    removeNode(&list, (int) 'c');
+    removeNode(&list, (int) 'd');
+    addNode(&list, createNode((int) 'c', 2));
+
+    printList(list);
+    printf("\nList has 2 elements, getSize returns %d", getSize(list));
+
+    return 0;
 }
