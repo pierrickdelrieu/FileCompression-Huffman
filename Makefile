@@ -80,10 +80,11 @@ $(OBJECTS)FileManagment.o : $(INCLUDE)FileManagment.h  \
 
 #DATA_STRUCTURES
 $(OBJECTS)DataStructures/LinkedList.o : $(INCLUDE)DataStructures/LinkedList.h  \
+								$(INCLUDE)IHMCompressor/Show.h \
 								$(SOURCES)DataStructures/LinkedList.c
 	$(COMPILER) -c -g -Wall $(SOURCES)DataStructures/LinkedList.c -o $(OBJECTS)DataStructures/LinkedList.o
 
-$(OBJECTS)DataStructures/LinkedList.o : $(INCLUDE)DataStructures/File.h  \
+$(OBJECTS)DataStructures/File.o : $(INCLUDE)DataStructures/File.h  \
 								$(INCLUDE)DataStructures/LinkedList.h  \
 								$(SOURCES)DataStructures/File.c
 	$(COMPILER) -c -g -Wall $(SOURCES)DataStructures/File.c -o $(OBJECTS)DataStructures/File.o
