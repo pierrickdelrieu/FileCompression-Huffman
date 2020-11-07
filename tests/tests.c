@@ -24,6 +24,7 @@ int test_FileManagment() {
 
     // Text to be introduced in the file to compress
     char* txt = "Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do";
+    int nbCaraFileToCompress = 103;
 
     FILE* file = NULL;
     file = fopen("TextFiles/FileToCompress.txt","w");
@@ -41,7 +42,7 @@ int test_FileManagment() {
 
     createBinaryFileOfFileToCompress();
 
-    if((numberCharInFile("TextFiles/FileToCompress.txt") == 103) || (numberCharInFile("TextFiles/BinaryFile.txt") == 824)) {
+    if((numberCharInFile("TextFiles/FileToCompress.txt") == nbCaraFileToCompress) || (numberCharInFile("TextFiles/BinaryFile.txt") == nbCaraFileToCompress * SIZE_BINARY)) {
         return 1;
     }
     else {
