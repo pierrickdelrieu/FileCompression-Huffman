@@ -10,10 +10,8 @@
 
 int main(void) {
 
-    createBinaryFileOfFileToCompress();
-
-    printf("nb 1 : %d\n", numberCharInFile("TextFiles/FileToCompress.txt"));
-    printf("nb 2 : %d\n", numberCharInFile("TextFiles/BinaryFile.txt"));
+    // FileManagement function test (part 1 of project)
+    printf("test : %d\n", test_FileManagment());
 
 
     return EXIT_SUCCESS;

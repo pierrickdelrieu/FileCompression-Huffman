@@ -34,7 +34,7 @@ void cleanTerminal(void) {
 }
 
 /**
- * @brief Display of an error message and forced exit from the program when there is a problem opening a file
+ * @brief Display of an error message and forced exit from the program when there is a memory allocation problem
  */
 void displayErrorMemoryAllocation(void) {
     printf("MEMORY ALLOCATION ERROR\n");
