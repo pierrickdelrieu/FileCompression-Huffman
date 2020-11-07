@@ -17,15 +17,12 @@
 
 
 /**
- * @brief FileManagement function test (part 1 of project)
+ * @brief Initialization of the contents of the file to compress in order to know the noramlement results obtained
  * 
- * @return int 1 if test ok and 0 else
  */
-int test_FileManagment() {
-
+static void initFileToCompress(void) {
     // Text to be introduced in the file to compress
     char* txt = "Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do";
-    int nbCaraFileToCompress = 103;
 
     FILE* file = NULL;
     file = fopen("TextFiles/FileToCompress.txt","w");
@@ -40,6 +37,19 @@ int test_FileManagment() {
         printf("TEST : FILE OPENING ERROR\n");
         exit(EXIT_FAILURE); // Forced program exit with failure
     }
+}
+
+
+
+/**
+ * @brief FileManagement function test (part 1 of project)
+ * 
+ * @return int 1 if test ok and 0 else
+ */
+int test_FileManagment() {
+    int nbCaraFileToCompress = 103;
+
+    initFileToCompress();
 
     createBinaryFileOfFileToCompress();
 
@@ -50,6 +60,8 @@ int test_FileManagment() {
         return 0;
     }
 }
+
+
 
 int test_LinkedList() {
     LinkedList list = createNode((int) 'c', 3);
