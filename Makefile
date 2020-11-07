@@ -10,9 +10,11 @@ IHMCOMPRESSOR = $(OBJECTS)IHMCompressor/Menu.o $(OBJECTS)IHMCompressor/Scan.o $(
 
 HUFFMAN = $(OBJECTS)Huffman/Encoding.o $(OBJECTS)Huffman/Decoding.o $(OBJECTS)Huffman/Dictionary.o $(OBJECTS)Huffman/HuffmanTree.o
 
+DATASTRUCTURES = $(OBJECTS)DataStructures/LinkedList.o $(OBJECTS)DataStructures/File.o
+
 FILE_MANAGMENT = $(OBJECTS)FileManagment.o
 
-OBJS = $(OBJECTS)main.o $(IHMCOMPRESSOR) $(HUFFMAN) $(FILE_MANAGMENT)
+OBJS = $(OBJECTS)main.o $(IHMCOMPRESSOR) $(HUFFMAN) $(FILE_MANAGMENT) tests/tests.o
 
 
 compressor: $(OBJS)
@@ -20,6 +22,9 @@ compressor: $(OBJS)
 
 
 $(OBJECTS)main.o : $(INCLUDE)FileManagment.h \
+					$(INCLUDE)/Huffman/Encoding.h  \
+					$(INCLUDE)/Huffman/Decoding.h  \
+					$(INCLUDE)/Huffman/Dictionary.h  \
 					tests/tests.h \
 				$(SOURCES)main.c
 	$(COMPILER) -c -g -Wall $(SOURCES)main.c -o $(OBJECTS)main.o
@@ -59,6 +64,7 @@ $(OBJECTS)Huffman/Dictionary.o : $(INCLUDE)Huffman/Dictionary.h  \
 	$(COMPILER) -c -g -Wall $(SOURCES)Huffman/Dictionary.c -o $(OBJECTS)Huffman/Dictionary.o
 
 $(OBJECTS)Huffman/HuffmanTree.o : $(INCLUDE)Huffman/HuffmanTree.h  \
+								$(INCLUDE)DataStructures/File.h  \
 								$(INCLUDE)IHMCompressor/Show.h  \
 								$(SOURCES)Huffman/HuffmanTree.c
 	$(COMPILER) -c -g -Wall $(SOURCES)Huffman/HuffmanTree.c -o $(OBJECTS)Huffman/HuffmanTree.o
@@ -70,6 +76,28 @@ $(OBJECTS)FileManagment.o : $(INCLUDE)FileManagment.h  \
 								$(INCLUDE)IHMCompressor/Show.h \
 								$(SOURCES)FileManagment.c
 	$(COMPILER) -c -g -Wall $(SOURCES)FileManagment.c -o $(OBJECTS)FileManagment.o
+
+
+#DATA_STRUCTURES
+$(OBJECTS)DataStructures/LinkedList.o : $(INCLUDE)DataStructures/LinkedList.h  \
+								$(SOURCES)DataStructures/LinkedList.c
+	$(COMPILER) -c -g -Wall $(SOURCES)DataStructures/LinkedList.c -o $(OBJECTS)DataStructures/LinkedList.o
+
+$(OBJECTS)DataStructures/LinkedList.o : $(INCLUDE)DataStructures/File.h  \
+								$(INCLUDE)DataStructures/LinkedList.h  \
+								$(SOURCES)DataStructures/File.c
+	$(COMPILER) -c -g -Wall $(SOURCES)DataStructures/File.c -o $(OBJECTS)DataStructures/File.o
+
+
+
+
+#TESTS
+tests/tests.o : tests/tests.h  \
+				$(INCLUDE)FileManagment.h  \
+				tests/tests.c
+	$(COMPILER) -c -g -Wall tests/tests.c -o tests/tests.o
+
+
 
 
 

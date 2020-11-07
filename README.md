@@ -1,12 +1,16 @@
 # FileCompression-Huffman
-Data structures and software engineering Project (Efrei - S1 L2 - 2020)  
+Data structures (SDD) and software engineering Project (Efrei - S1 L2 - 2020)  
 Pierrick Delrieu - Benjamin Lesieux - Harold Molter - Raphaël Cadillat - Fausitin Dewas
 ___
 
 
 ## Framing note
+* **SDD**  
 link : https://docs.google.com/document/d/1OUURID_qB3oDBcD7CSMamJLHXSZrWsKi3olc_nWZEvU/edit  
-cf. document "Note de cadrage.pdf"
+cf. document "SDD framing note.pdf"
+
+* **Software engineering**  
+cf. document "Software engineering framing note.pdf"
 ___
 
 

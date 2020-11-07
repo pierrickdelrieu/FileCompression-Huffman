@@ -28,7 +28,13 @@ Binary* createBinaryNumber(int size) {
     x = (Binary*) malloc(sizeof(Binary));
 
     // Allocation of an array of 8 integers
-    x->nb = (int*) calloc(size, sizeof(int)); // Use calloc to reset boxes to 0
+    x->nb = (int*) malloc(size * sizeof(int));
+
+    // Reset boxes to char(0) = int(48)
+    int i;
+    for(i = 0; i < size; i++) {
+        x->nb[i] = ASCII_INIT_NUMBER;
+    }
 
     return x;
 }
