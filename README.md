@@ -25,6 +25,13 @@ ___
 * **gcc Compiler** : download link -> https://gcc.gnu.org/install/index.html
 * **make command** : download in line command -> ```sudo apt-get install make``` (or consult the web)
 * **Doxygen documentation** : download link -> https://www.doxygen.nl/index.html
+* **Creation of folders** :   
+    These files do not appear in the remote repository because the object and executable files are not deliverable  
+    - "Binaray" : Contains the executable file
+    - "Objects" :  Contains the object files of each module
+        + "DatasStructures"
+        + "Huffman"
+        + "IHMCompressor"        
 ___
 
 
