@@ -14,7 +14,7 @@ cf. document "Software engineering framing note.pdf"
 ___
 
 
-## Documentation Doxygen
+## Developper documentation Doxygen
 Software for creating software documentation from source code.  
 Download and syntax link : https://www.doxygen.nl/index.html  
 cf. folder "documentation"
