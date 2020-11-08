@@ -10,7 +10,7 @@ IHMCOMPRESSOR = $(OBJECTS)IHMCompressor/Menu.o $(OBJECTS)IHMCompressor/Scan.o $(
 
 HUFFMAN = $(OBJECTS)Huffman/Encoding.o $(OBJECTS)Huffman/Decoding.o $(OBJECTS)Huffman/Dictionary.o $(OBJECTS)Huffman/HuffmanTree.o
 
-DATASTRUCTURES = $(OBJECTS)DataStructures/LinkedList.o $(OBJECTS)DataStructures/File.o
+DATASTRUCTURES = $(OBJECTS)DataStructures/LinkedList.o $(OBJECTS)DataStructures/Queue.o
 
 FILE_MANAGMENT = $(OBJECTS)FileManagment.o
 
@@ -64,7 +64,7 @@ $(OBJECTS)Huffman/Dictionary.o : $(INCLUDE)Huffman/Dictionary.h  \
 	$(COMPILER) -c -g -Wall $(SOURCES)Huffman/Dictionary.c -o $(OBJECTS)Huffman/Dictionary.o
 
 $(OBJECTS)Huffman/HuffmanTree.o : $(INCLUDE)Huffman/HuffmanTree.h  \
-								$(INCLUDE)DataStructures/File.h  \
+								$(INCLUDE)DataStructures/Queue.h  \
 								$(INCLUDE)IHMCompressor/Show.h  \
 								$(SOURCES)Huffman/HuffmanTree.c
 	$(COMPILER) -c -g -Wall $(SOURCES)Huffman/HuffmanTree.c -o $(OBJECTS)Huffman/HuffmanTree.o
@@ -84,10 +84,10 @@ $(OBJECTS)DataStructures/LinkedList.o : $(INCLUDE)DataStructures/LinkedList.h  \
 								$(SOURCES)DataStructures/LinkedList.c
 	$(COMPILER) -c -g -Wall $(SOURCES)DataStructures/LinkedList.c -o $(OBJECTS)DataStructures/LinkedList.o
 
-$(OBJECTS)DataStructures/File.o : $(INCLUDE)DataStructures/File.h  \
+$(OBJECTS)DataStructures/Queue.o : $(INCLUDE)DataStructures/Queue.h  \
 								$(INCLUDE)DataStructures/LinkedList.h  \
-								$(SOURCES)DataStructures/File.c
-	$(COMPILER) -c -g -Wall $(SOURCES)DataStructures/File.c -o $(OBJECTS)DataStructures/File.o
+								$(SOURCES)DataStructures/Queue.c
+	$(COMPILER) -c -g -Wall $(SOURCES)DataStructures/Queue.c -o $(OBJECTS)DataStructures/Queue.o
 
 
 

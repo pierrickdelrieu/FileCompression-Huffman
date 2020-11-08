@@ -1,7 +1,7 @@
 /**
  * @file File.c
  * @author Pierrick Delrieu
- * @brief Management of the linked list with a file
+ * @brief Management of the linked list with a Queue
  * @version 0.1
  * @date 07-11-2020
  * 
@@ -11,16 +11,16 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../include/DataStructures/File.h"
+#include "../../include/DataStructures/Queue.h"
 
 
 /**
- * @brief Initialization of the start and end fields of the fiel (queue) and memory allocation
+ * @brief Initialization of the start and end fields of the fiel and memory allocation
  * 
- * @param f File (queue) address initialized file initialized (modified data)
+ * @param f Queue address initialized Queue initialized (modified data)
  */
-void initFile(File** f) {
-    *f = (File*) malloc(sizeof(File));
+void initQueue(Queue** f) {
+    *f = (Queue*) malloc(sizeof(Queue));
     (*f)->start = NULL;
     (*f)->end = NULL;
 }
@@ -29,22 +29,22 @@ void initFile(File** f) {
 /**
  * @brief Adding an node to the top of the list
  * 
- * @param f File (queue) adress (modified data) where the node must be added
+ * @param f Queue adress (modified data) where the node must be added
  * @param nx_elem Node to add at the top of the list
- * @return int Return 1 if node has been added and 0 otherwise (if the file (queue) has not been initialized)
+ * @return int Return 1 if node has been added and 0 otherwise (if the Queue has not been initialized)
  */
-int enfiler(File** f, Node* nx_elem) {
-    // If the file (queue) has been initialized
+int pushQueue(Queue** f, Node* nx_elem) {
+    // If the Queue has been initialized
     if (f != NULL) {
 
-        // If the file (queue) is not empty
+        // If the Queue is not empty
         if (((*f)->start == NULL) && ((*f)->end == NULL)) {
             (*f)->start = nx_elem;
             (*f)->end = nx_elem;
             return 1;
         }
 
-        // If the file (queue) already contains nodes
+        // If the Queue already contains nodes
         else {
             Node *temp = (*f)->start;
             (*f)->start = nx_elem;
@@ -53,30 +53,30 @@ int enfiler(File** f, Node* nx_elem) {
         }
     }
     
-    // If the file (queue) has not been initialized
+    // If the Queue has not been initialized
     return 0;
 }
 
 
 /**
- * @brief Remove and return the last element in the file (queue)
+ * @brief Remove and return the last element in the Queue
  * 
- * @param f File (queue) adress (modified data) where the node must be removed
+ * @param f Queue adress (modified data) where the node must be removed
  * @return Node* Removed node
  */
-Node* defiler(File** f) {
-    // If the file (queue) has been initialized
+Node* pullQueue(Queue** f) {
+    // If the Queue has been initialized
     if(f != NULL) {
         Node* temp = (*f)->start;
 
-        // If the file (queue) contains one or zero node
+        // If the Queue contains one or zero node
         if((*f)->start == (*f)->end){
             (*f)->start = NULL;
             (*f)->end = NULL;
             return temp;
         }
 
-        // If the file (queue) contains several nodes
+        // If the Queue contains several nodes
         else {
             Node* ptrprec = NULL;
 
@@ -92,6 +92,6 @@ Node* defiler(File** f) {
         }
     }
 
-    // If the file (queue) has not been initialized
+    // If the Queue has not been initialized
     return NULL;
 }
