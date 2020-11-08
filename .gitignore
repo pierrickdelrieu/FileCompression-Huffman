@@ -1,7 +1,8 @@
 # Prerequisites
 *.d
 
-# Object files
+# Object file
+/objects
 *.o
 *.ko
 *.obj
@@ -29,6 +30,7 @@
 *.dylib
 
 # Executables
+/binaires
 *.exe
 *.out
 *.app
@@ -59,3 +61,4 @@ cmake-build-debug
 # Pierrick's files
 huffman.code-workspace
 .DS_Store
+binaires/compressor
