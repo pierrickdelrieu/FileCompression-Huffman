@@ -38,34 +38,30 @@ void addNode(LinkedList* list, Node* node) {
 }
 
 void removeNode(LinkedList* list, int letter) {
-    if (list != NULL) {
-        Node* del = find(*list, letter);
 
-        if (del != NULL) {
+    Node *del = find(*list, letter);
 
-            if (del == *list) {
-                Node* temp = (*list)->right;
-                *list = temp;
-                free(temp);
-            }
 
-            else {
-                Node* before = del->left;
-                Node* next = del->right;
-
-                before->right = next;
-                next->left = before;
-                free(del);
-            }
-        }
-
-        else {
-            printf("\nCouldn't remove '%c' from the list as it wasn't in it", letter);
-        }
+    if (*list == NULL || del == NULL) { // Why try and delete a node from a list that doesn't exists ?
+        printf("\nCannot remove anything from an empty list");
+        return;
     }
 
     else {
-        printf("\nCannot remove a letter from an empty list");
+
+        if (*list == del) { // If we need to delete the head
+            *list = del->right;
+        }
+
+        if (del->right != NULL) { // Only if we don't delete the last node of the list
+            del->right->left = del->right;
+        }
+
+        if (del->left != NULL) { // Only if we don't delete the first node of the list
+            del->left->right = del->right;
+        }
+
+        free(del); // Then we free del
     }
 }
 

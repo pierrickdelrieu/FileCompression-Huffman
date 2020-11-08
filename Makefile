@@ -14,7 +14,7 @@ DATASTRUCTURES = $(OBJECTS)DataStructures/LinkedList.o $(OBJECTS)DataStructures/
 
 FILE_MANAGMENT = $(OBJECTS)FileManagment.o
 
-OBJS = $(OBJECTS)main.o $(IHMCOMPRESSOR) $(HUFFMAN) $(FILE_MANAGMENT) tests/tests.o
+OBJS = $(OBJECTS)main.o $(IHMCOMPRESSOR) $(HUFFMAN) $(FILE_MANAGMENT) $(DATASTRUCTURES) tests/tests.o
 
 
 compressor: $(OBJS)
