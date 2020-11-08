@@ -79,3 +79,14 @@ int test_LinkedList() {
 
     return 0;
 }
+
+/**
+* @brief test function for analysing occurrence of characters in a file occ_char()
+* @date 08-11-2020
+* @author Harold Molter
+*/
+int test_occurrence() {
+    LinkedList list = occ_char();
+    printList(list);
+    return 0;
+}
