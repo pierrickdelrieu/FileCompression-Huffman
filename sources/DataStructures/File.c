@@ -73,7 +73,7 @@ Node* defiler(File** f) {
         if((*f)->start == (*f)->end){
             (*f)->start = NULL;
             (*f)->end = NULL;
-            return temp->letter;
+            return temp;
         }
 
         // If the file (queue) contains several nodes
@@ -88,7 +88,7 @@ Node* defiler(File** f) {
 
             (*f)->end = ptrprec;
             (*f)->end->right = NULL;
-            return temp->letter;
+            return temp;
         }
     }
 
