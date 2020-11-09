@@ -5,6 +5,7 @@
 int        test_FileManagment      (void);
 int        test_LinkedList         (void);
 int        test_Queue              (void);
+int		   test_Occurrences        (void);
 
 
 #endif // !TESTS

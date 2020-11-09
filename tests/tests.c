@@ -147,8 +147,8 @@ int test_Queue() {
 /**
 * @brief test function for analysing occurrence of characters in a file occ_char()
 */
-int test_occurrence() {
-    LinkedList list = occ_char();
+int test_Occurrences() {
+    LinkedList list = occChar();
     printList(list);
     return 0;
 }

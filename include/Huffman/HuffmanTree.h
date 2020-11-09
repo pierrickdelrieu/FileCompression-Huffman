@@ -1,7 +1,7 @@
 #ifndef HUFFMAN_TREE
 #define HUFFMAN_TREE
 
-LinkedList occ_char();
+LinkedList occChar();
 
 
 #endif // !HUFFMAN_TREE
