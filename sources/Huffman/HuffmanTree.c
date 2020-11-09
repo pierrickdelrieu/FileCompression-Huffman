@@ -1,18 +1,27 @@
+/**
+ * @file HuffmanTree.c
+ * @author Harold Molter
+ * @brief 
+ * @version 0.1
+ * @date 08-11-2020
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../include/Huffman/HuffmanTree.h"
 #include "../../include/IHMCompressor/Show.h"
 #include "../../include/DataStructures/Queue.h"
 
+
+
 /**
-* @author Harold Molter
-* @date 08-11-2020
 * @brief function to determine the number of occurence of a character in a file
 * 
 * @return list of char with their respective occurrence
 */
-
-LinkedList occChar() {
+LinkedList occChar(void) {
 
 	FILE* file = NULL;
 	file = fopen("TextFiles/FileToCompress.txt", "r");	// access path to verify...? 
@@ -41,9 +50,17 @@ LinkedList occChar() {
 			}
 		}
 		fclose(file);
+
+		// Remove char(EOF)
+		HuffmanNode* eof = find(list, EOF)->data;
+		removeNode(&list, eof);
+
+
 		return list;
 	}
 	else {
 		displayErrorMessageOpenFile();
 	}
+
+	return NULL;
 }

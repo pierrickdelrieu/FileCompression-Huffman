@@ -14,6 +14,7 @@ int main(void) {
     printf("test FileManagment: %d\n", test_FileManagment());
     printf("test linked list : %d\n", test_LinkedList());
     printf("test queue : %d\n", test_Queue());
+    printf("test occ : %d\n", test_Occurrences());
 
     return EXIT_SUCCESS;
 }

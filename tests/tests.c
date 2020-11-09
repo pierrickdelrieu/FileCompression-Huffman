@@ -15,16 +15,14 @@
 #include "../include/FileManagment.h"
 #include "../include/DataStructures/LinkedList.h"
 #include "../include/DataStructures/Queue.h"
+#include "../include/Huffman/HuffmanTree.h"
 
 
 /**
  * @brief Initialization of the contents of the file to compress in order to know the noramlement results obtained
  * 
  */
-static void initFileToCompress(void) {
-    // Text to be introduced in the file to compress
-    char* txt = "Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do";
-
+static void initFileToCompress(char* txt) {
     FILE* file = NULL;
     file = fopen("TextFiles/FileToCompress.txt","w");
     
@@ -47,10 +45,10 @@ static void initFileToCompress(void) {
  * 
  * @return int 1 if test ok and 0 else
  */
-int test_FileManagment() {
+int test_FileManagment(void) {
     int nbCaraFileToCompress = 103;
 
-    initFileToCompress();
+    initFileToCompress("Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do");
 
     createBinaryFileOfFileToCompress();
 
@@ -67,7 +65,7 @@ int test_FileManagment() {
  *
  * @return int 1 if test ok and 0 else
  */
-int test_LinkedList() {
+int test_LinkedList(void) {
     LinkedList head = createNode(createHuffmanNode((int) 'b', 4));
     addNode(&head, createNode(createHuffmanNode((int) 'e', 2)));
     addNode(&head, createNode(createHuffmanNode((int) 'n', 8)));
@@ -107,7 +105,7 @@ int test_LinkedList() {
  *
  * @return int 1 if test ok and 0 else
  */
-int test_Queue() {
+int test_Queue(void) {
     // Init queue
     Queue* queue = initQueue();
 
@@ -144,11 +142,27 @@ int test_Queue() {
 
 }
 
+
+
+
+
+static void displayLinkedList(LinkedList l) {
+    Node* head = l;
+    while(head != NULL) {
+        printf("(%c | %d) -> ", head->data->letter, head->data->occ);
+        head = head->next;
+    }
+}
 /**
-* @brief test function for analysing occurrence of characters in a file occ_char()
+* @brief Test function for analysing occurrence of characters in a file occChar()
+ * @return int 1 if test ok and 0 else
 */
-int test_Occurrences() {
+int test_Occurrences(void) {
+    initFileToCompress("");
     LinkedList list = occChar();
-    printList(list);
-    return 0;
+    if((list == NULL) && (numberCharInFile("TextFiles/FileToCompress.txt") != 0)) return 0;
+    if((list != NULL) && (numberCharInFile("TextFiles/FileToCompress.txt") == 0)) return 0;
+    if(getSize(list) != numberCharInFile("TextFiles/FileToCompress.txt")) return 0;
+    // displayLinkedList(list);
+    return 1;
 }

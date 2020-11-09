@@ -1,7 +1,9 @@
 #ifndef HUFFMAN_TREE
 #define HUFFMAN_TREE
 
-LinkedList occChar();
+#include "../DataStructures/LinkedList.h"
+
+LinkedList occChar  (void);
 
 
 #endif // !HUFFMAN_TREE

@@ -65,6 +65,7 @@ $(OBJECTS)Huffman/Dictionary.o : $(INCLUDE)Huffman/Dictionary.h  \
 
 $(OBJECTS)Huffman/HuffmanTree.o : $(INCLUDE)Huffman/HuffmanTree.h  \
 								$(INCLUDE)DataStructures/Queue.h  \
+								$(INCLUDE)DataStructures/LinkedList.h  \
 								$(INCLUDE)IHMCompressor/Show.h  \
 								$(SOURCES)Huffman/HuffmanTree.c
 	$(COMPILER) -c -g -Wall $(SOURCES)Huffman/HuffmanTree.c -o $(OBJECTS)Huffman/HuffmanTree.o
@@ -97,6 +98,7 @@ tests/tests.o : tests/tests.h  \
 				$(INCLUDE)FileManagment.h  \
 				$(INCLUDE)DataStructures/LinkedList.h  \
 				$(INCLUDE)DataStructures/Queue.h  \
+				$(INCLUDE)Huffman/HuffmanTree.h  \
 				tests/tests.c
 	$(COMPILER) -c -g -Wall tests/tests.c -o tests/tests.o
 
