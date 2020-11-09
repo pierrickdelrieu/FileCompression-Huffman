@@ -48,7 +48,7 @@ int pushQueue(Queue** f, HuffmanNode* nx_elem) {
 
         // If the Queue already contains HuffmanNodes
         else {
-            HuffmanNode *temp = (*f)->start;
+            Node *temp = (*f)->start;
             (*f)->start = x;
             x->next = temp;
             return 1;

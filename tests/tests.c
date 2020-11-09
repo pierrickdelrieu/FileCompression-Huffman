@@ -67,24 +67,28 @@ int test_FileManagment() {
  * @return int 1 if test ok and 0 else
  */
 int test_LinkedList() {
-    LinkedList list = createNode((int) 'c', 3);
-    Node* b = createNode((int) 'b', 2);
-    Node* d = createNode((int) 'd', 1);
 
-    addNode(&list, b);
-    addNode(&list, d);
+    LinkedList head = createNode(createHuffmanNode((int) 'b', 4));
+    addNode(&head, createNode(createHuffmanNode((int) 'e', 2)));
+    addNode(&head, createNode(createHuffmanNode((int) 'n', 8)));
 
-    if(find(list, (int) 'f') != NULL) return 0;
 
-    if(find(list, (int) 'c') == NULL) return 0;
+    // size is supposed to be 3
+    if (getSize(head) != 3) return 0;
 
-    if(getSize(list) != 3) return 0;
+    // we are supposed to find 'b'
+    if (find(head, 'b') == NULL) return 0;
 
-    removeNode(&list, (int) 'c');
-    removeNode(&list, (int) 'd');
-    addNode(&list, createNode((int) 'c', 2));
+    // we are not supposed to find 'h'
+    if (find(head, 'h') != NULL) return 0;
 
-    if (getSize(list) != 2) return 0;
+    removeNode(&head, head->data);
+    removeNode(&head, head->next->data);
+
+    addNode(&head, createNode(createHuffmanNode((int) 'o', 2)));
+
+    // size is supposed to be 2
+    if (getSize(head) != 2) return 0;
 
     return 1;
 }

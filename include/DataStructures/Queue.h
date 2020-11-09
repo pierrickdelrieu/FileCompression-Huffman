@@ -13,13 +13,10 @@ typedef struct Queue {
     Node* end;
 } Queue;
 
-typedef Node Leaf;
 
-
-
-void    initQueue     (Queue** f);
-int     pushQueue     (Queue** f, Leaf* nx_elem);
-Leaf*   pullQueue     (Queue** f);
+void            initQueue     (Queue** f);
+int             pushQueue     (Queue** f, HuffmanNode* nx_elem);
+HuffmanNode*    pullQueue     (Queue** f);
 
 
 #endif // !QUEUE
