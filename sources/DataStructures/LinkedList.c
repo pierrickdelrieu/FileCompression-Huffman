@@ -1,7 +1,7 @@
 /**
  * @file LinkedList.c
  * @author Benjamin Lesieux
- * @brief All the basic functions of a doubly linked list
+ * @brief All the basic functions of a linked list
  * @details Part 2 of project
  * @version 1.0
  * @date 09-11-20
@@ -18,28 +18,48 @@
 #include "../../include/IHMCompressor/Show.h"
 
 /**
- * @brief Creates a node for a doubly linked list
+ * @brief Creates an HuffmanNode
  * @param letter An integer corresponding to the ascii value of the letter
  * @param occ The number of occurrences of the letter
  *
+ * @return HuffmanNode* a pointer to an HuffmanNode
+ * */
+HuffmanNode* createHuffmanNode(int letter, int occ) {
+    HuffmanNode* huff = NULL;
+    huff = (HuffmanNode*) malloc(sizeof(HuffmanNode));
+
+    if (huff != NULL) {
+        huff->letter = letter;
+        huff->occ = occ;
+        huff->left = NULL;
+        huff->right = NULL;
+        return huff;
+    }
+    else {
+        displayErrorMemoryAllocation();
+    }
+}
+
+
+/**
+ * @brief Creates a node for a doubly linked list
+ *
+ * @param huffmanNode the data of the Node
  * @return Node* A pointer to a Node
  * */
-Node* createNode(int letter, int occ) {
+Node* createNode(HuffmanNode* huffmanNode) {
 
     Node* newNode = NULL;
     newNode = (Node*) malloc(sizeof(Node));
 
     if (newNode != NULL) {
-        newNode->letter = letter;
-        newNode->occ = occ;
-        newNode->left = NULL;
-        newNode->right = NULL;
+        newNode->data = huffmanNode;
+        newNode->next = NULL;
+        return newNode;
     }
     else {
         displayErrorMemoryAllocation();
     }
-
-    return newNode;
 }
 
 /**
@@ -57,47 +77,56 @@ void addNode(LinkedList* list, Node* node) {
     else {
         LinkedList temp = *list;
 
-        while (temp->right != NULL) {
-            temp = temp->right; // Here 'right' is working as temp->next
+        while (temp->next != NULL) {
+            temp = temp->next; // Here 'right' is working as temp->next
                                 // 'left' works as temp->prev
         }
 
-        temp->right = node;
-        node->left = temp;
+        temp->next = node;
     }
 }
 
 /**
- * @brief Removes a Node from a Doubly Linked List
+ * @brief Removes an HuffmanNode from a Linked List
  * @param list A pointer to a pointer of the head of the list (Node** or LinkedList*)
- * @param letter The ascii value of the letter to delete
+ * @param huffmanNode The HuffmanNode we want to delete
  *
  * */
-void removeNode(LinkedList* list, int letter) {
+void removeNode(LinkedList* list, HuffmanNode* huffmanNode) {
 
-    Node *del = find(*list, letter);
+    LinkedList temp = *list;
+    LinkedList previous = NULL;
 
+    if (temp != NULL) {
 
-    if (*list == NULL || del == NULL) { // Why try and delete a node from a list that doesn't exists ?
-        printf("\nCannot remove anything from an empty list");
-        return;
+        if (huffmanNode == NULL) {
+            printf("\nCannot delete an empty node.");
+        }
+
+        else if (temp->data == huffmanNode) { // That means deleting the head
+            *list = temp->next;
+            free(temp);
+            return;
+        }
+
+        else {
+            while (temp != NULL && temp->data != huffmanNode) {
+                previous = temp;
+                temp = temp->next;
+            }
+
+            if (temp != NULL) {
+                previous->next = temp->next;
+                free(temp);
+            }
+            else {
+                return;
+            }
+        }
     }
 
     else {
-
-        if (*list == del) { // If we need to delete the head
-            *list = del->right;
-        }
-
-        if (del->right != NULL) { // Only if we don't delete the last node of the list
-            del->right->left = del->right;
-        }
-
-        if (del->left != NULL) { // Only if we don't delete the first node of the list
-            del->left->right = del->right;
-        }
-
-        free(del); // Then we free del
+        printf("\nCannot remove anything from an empty list...");
     }
 }
 
@@ -111,13 +140,16 @@ void removeNode(LinkedList* list, int letter) {
 Node* find(LinkedList list, int letter) {
     if (list != NULL) {
         Node* temp = list;
+        HuffmanNode* search = NULL;
 
         while (temp != NULL) {
-            if (temp->letter == letter) {
+            search = temp->data;
+
+            if (search->letter == letter) {
                 return temp;
             }
 
-            temp = temp->right;
+            temp = temp->next;
         }
     }
 
@@ -140,18 +172,7 @@ int getSize(LinkedList list) {
     }
 
     else {
-        return 1 + getSize(list->right);
+        return 1 + getSize(list->next);
     }
 }
 
-/**
- * @brief Prints the contents of the list
- * @param list A pointer to the head of the list
- *
- * */
-void printList(LinkedList list) {
-    if (list != NULL) {
-        printf("\nLetter '%c' present %d times ", list->letter, list->occ);
-        printList(list->right);
-    }
-}

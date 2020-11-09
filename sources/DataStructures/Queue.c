@@ -48,7 +48,7 @@ int pushQueue(Queue** f, Leaf* nx_elem) {
         else {
             Leaf *temp = (*f)->start;
             (*f)->start = nx_elem;
-            nx_elem->right = temp;
+            nx_elem->next = temp;
             return 1;
         }
     }
@@ -81,13 +81,13 @@ Leaf* pullQueue(Queue** f) {
             Leaf* ptrprec = NULL;
 
             // Placement at the last and penultimate Leaf of the list
-            while (temp->right != NULL) {
+            while (temp->next != NULL) {
                 ptrprec = temp;
-                temp = temp->right;
+                temp = temp->next;
             }
 
             (*f)->end = ptrprec;
-            (*f)->end->right = NULL;
+            (*f)->end->next = NULL;
             return temp;
         }
     }

@@ -15,26 +15,25 @@ typedef struct HuffmanNode {
     struct HuffmanNode* left;
 } HuffmanNode;
 
-///@brief Defines the pointer of a doubly linked list
-typedef Node* LinkedList;
-
 typedef struct Node {
     HuffmanNode* data;
     struct Node* next;
 } Node;
 
-Node*      createHuffmanNode     (int letter, int occ);
+///@brief Defines the pointer of a doubly linked list
+typedef Node* LinkedList;
 
-Node*      createNode     (HuffmanNode* data);
+HuffmanNode*      createHuffmanNode     (int letter, int occ);
 
-void       addNode        (LinkedList* list, Node* node);
+Node*             createNode            (HuffmanNode* data);
 
-void       removeNode     (LinkedList* list, int letter);
+void              addNode               (LinkedList* list, Node* node);
 
-Node*      find           (LinkedList list, int letter);
+void              removeNode            (LinkedList* list, HuffmanNode* huffmanNode);
 
-int        getSize        (LinkedList list);
+Node*             find                  (LinkedList list, int letter);
 
-void       printList      (LinkedList list);
+int               getSize               (LinkedList list);
+
 
 #endif // !LINKED_LIST
