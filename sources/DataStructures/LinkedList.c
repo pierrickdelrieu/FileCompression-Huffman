@@ -18,14 +18,11 @@
 #include "../../include/IHMCompressor/Show.h"
 
 /**
- *
- * @author Benjamin Lesieux
- *
  * @brief Creates a node for a doubly linked list
- * @param letter, an integer corresponding to the ascii value of the letter
- * @param occ, the number of occurrences of the letter
+ * @param letter An integer corresponding to the ascii value of the letter
+ * @param occ The number of occurrences of the letter
  *
- * @return Node*, A pointer to a Node
+ * @return Node* A pointer to a Node
  * */
 Node* createNode(int letter, int occ) {
 
@@ -35,6 +32,8 @@ Node* createNode(int letter, int occ) {
     if (newNode != NULL) {
         newNode->letter = letter;
         newNode->occ = occ;
+        newNode->left = NULL;
+        newNode->right = NULL;
     }
     else {
         displayErrorMemoryAllocation();
@@ -44,12 +43,9 @@ Node* createNode(int letter, int occ) {
 }
 
 /**
- *
- * @author Benjamin Lesieux
- *
- * @brief adds a Node to a Doubly Linked List
- * @param list, the head of the list (Node*)
- * @param node, a pointer to the Node we want to add
+ * @brief Adds a Node to a Doubly Linked List
+ * @param list The head of the list (Node*)
+ * @param node A pointer to the Node we want to add
  *
  * */
 void addNode(LinkedList* list, Node* node) {
@@ -72,12 +68,9 @@ void addNode(LinkedList* list, Node* node) {
 }
 
 /**
- *
- * @author Benjamin Lesieux
- *
- * @brief removes a Node from a Doubly Linked List
- * @param list, a pointer to a pointer of the head of the list (Node** or LinkedList*)
- * @param letter, the ascii value of the letter to delete
+ * @brief Removes a Node from a Doubly Linked List
+ * @param list A pointer to a pointer of the head of the list (Node** or LinkedList*)
+ * @param letter The ascii value of the letter to delete
  *
  * */
 void removeNode(LinkedList* list, int letter) {
@@ -109,14 +102,11 @@ void removeNode(LinkedList* list, int letter) {
 }
 
 /**
+ * @brief Search for a Node that contains the letter we are searching for
+ * @param list A pointer to the head of the list
+ * @param letter The ascii value of the letter to search
  *
- * @author Benjamin Lesieux
- *
- * @brief search for a Node that contains the letter we are searching for
- * @param list, a pointer to the head of the list
- * @param letter, the ascii value of the letter to search
- *
- * @return Node*, a pointer to the node containing the letter
+ * @return Node* A pointer to the node containing the letter
  * */
 Node* find(LinkedList list, int letter) {
     if (list != NULL) {
@@ -139,13 +129,10 @@ Node* find(LinkedList list, int letter) {
 }
 
 /**
+ * @brief Calculates the size of the linked list
+ * @param list A pointer to the head of the list
  *
- * @author Benjamin Lesieux
- *
- * @brief calculates the size of the linked list
- * @param list, a pointer to the head of the list
- *
- * @return int, the size of the list
+ * @return int The size of the list
  * */
 int getSize(LinkedList list) {
     if (list == NULL) {
@@ -158,11 +145,8 @@ int getSize(LinkedList list) {
 }
 
 /**
- *
- * @author Benjamin Lesieux
- *
- * @brief prints the contents of the list
- * @param list, a pointer to the head of the list
+ * @brief Prints the contents of the list
+ * @param list A pointer to the head of the list
  *
  * */
 void printList(LinkedList list) {
