@@ -60,3 +60,9 @@ cmake-build-debug
 documentation
 huffman.code-workspace
 .DS_Store
+/.vs/slnx.sqlite
+/.vs/FileCompression-Huffman/v16/ipch/AutoPCH/3c199c9a415fbe00/DICTIONARY.ipch
+/.vs/FileCompression-Huffman/v16/Browse.VC.db-wal
+/.vs/FileCompression-Huffman/v16/Browse.VC.opendb
+/.vs/FileCompression-Huffman/v16/Browse.VC.db-shm
+/.vs/FileCompression-Huffman/v16/Browse.VC.db

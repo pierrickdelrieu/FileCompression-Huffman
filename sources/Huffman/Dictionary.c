@@ -3,40 +3,53 @@
 #include "../../include/Huffman/Dictionary.h"
 #include "../../include/IHMCompressor/Show.h"
 
-void add_char_to_string(char* s, char c, int size) {
-    realloc(s, size * sizeof(char));
-    s[size - 1] = c;
-}
-
-void print_to_file(int size, char* s, char c, FILE* file, int bool) {
-    fprintf(file, "%c:", c);
-    for (int i = 0; i < size; i++)
-    {
-        fprintf(file, "%c", s[i]);
+char* add_char_to_new_string(char* c, char s, int size) {
+    size++;
+    char* new_c = (char*)malloc(size * sizeof(char));
+    int i;
+    for (i = 0; i < size - 1; i++) {
+        new_c[i] = c[i];
     }
-    if(bool != 1)
-        fprintf(file, "0\n");
-    else
-        fprintf(file, "\n");
+    new_c[i] = s;
+    return new_c;
 }
-void print_dictionary(Leaf* huffman) {
 
+void print_to_file( char* code, char letter, int sizecode, FILE* file) {
+    fprintf(file, "%c:", letter);
+    for (int i = 0; i < sizecode; i++)
+    {
+        fprintf(file, "%c", code[i]);
+    }
+    fprintf(file, '\n');
+}
+
+void create_dictionary(HuffmanNode* huffman) {
+    
     if (huffman != NULL) {
         FILE* dictionary = fopen("../../TextFiles/HuffmanDictionary.txt", "w+");
-        Leaf* temp = huffman;
-        int size = 1;
-        char* n = (char*)malloc(size * sizeof(char));
-        printf('%s', n);
-        while (temp->right != NULL)
-        {
-            printf('%s', n);
-            print_to_file(size, n, temp->left->letter, dictionary, 0);
-            size++;
-            add_char_to_string(n, '1', size);
-            temp = temp->right;
+        int sizecode = 1;
+        print_dictionary(huffman->left, "0", sizecode, dictionary);
+        print_dictionary(huffman->right, "1", sizecode, dictionary);
+        int returnCode = fclose(dictionary);
+        if (returncode == EOF)
+            printf("Erreur lors de la fermeture du fichier.\n");
+        free(code);
+    }
+    
+}
+
+void print_dictionary(HuffmanNode* huffman, char* code, int sizecode, FILE* file) {
+
+    if (huffman != NULL) {
+        if (huffman->left == NULL && huffman->right == NULL)
+            print_to_file(code, huffman->letter, sizecode, file);
+        else {
+            char* code1 = add_char_to_new_string(code, '0', sizecode++);
+            char* code2 = add_char_to_new_string(code, '1', sizecode++);
+            print_dictionary(huffman->left, code1, sizecode + 1);
+            print_dictionary(huffman->right, code2, sizecode + 1);
+            free(code1);
+            free(code2);
         }
-        fprintf(dictionary, "%c:%s\n", temp->left->letter, n, 1);
-        free(huffman);
-        free(n);
     }
 }
