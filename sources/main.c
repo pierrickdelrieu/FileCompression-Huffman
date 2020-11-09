@@ -12,7 +12,7 @@ int main(void) {
 
     // FileManagement function test (part 1 of project)
     printf("test FileManagment: %d\n", test_FileManagment());
-    printf("\ntest linked list : %d", test_LinkedList());
+    printf("test linked list : %d\n", test_LinkedList());
 
     return EXIT_SUCCESS;
 }

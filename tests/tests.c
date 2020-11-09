@@ -74,9 +74,9 @@ int test_LinkedList() {
     addNode(&list, b);
     addNode(&list, d);
 
-    if (find(list, (int) 'f') != NULL) return 0;
+    if(find(list, (int) 'f') != NULL) return 0;
 
-    if (find(list, (int) 'c') == NULL) return 0;
+    if(find(list, (int) 'c') == NULL) return 0;
 
     if(getSize(list) != 3) return 0;
 
