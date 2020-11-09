@@ -1,7 +1,8 @@
 # Prerequisites
 *.d
 
-# Object files
+# Object file
+/objects
 *.o
 *.ko
 *.obj
@@ -29,6 +30,7 @@
 *.dylib
 
 # Executables
+/binaries
 *.exe
 *.out
 *.app
@@ -54,15 +56,11 @@ dkms.conf
 cmake-build-debug
 .idea
 .vscode
+/.vs*
 
 
 # Pierrick's files
 huffman.code-workspace
 .DS_Store
-/.vs/Huffman/v16/ipch/AutoPCH/a78aeebe9dfc1cf6/LINKEDLIST.ipch
-/.vs/Huffman/v16/ipch/AutoPCH/9451b1306f880c0f/FILEMANAGMENT.ipch
-/.vs/Huffman/v16/ipch/AutoPCH/b8029a443c699e89/HUFFMANTREE.ipch
-/.vs/Huffman/v16/ipch/AutoPCH/cc7d5cceb34e0c69/FILE.ipch
-/.vs/Huffman/v16/ipch/AutoPCH/f2a94727060fe76b/TESTS.ipch
-/.vs/Huffman/v16
-/.vs
+binaries/compressor
+

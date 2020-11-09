@@ -1,8 +1,8 @@
 /**
  * @file tests.c
- * @author Pierrick Delrieu
+ * @author Pierrick Delrieu - Benjamin Lesieux - Harold Molter
  * @brief function test of project
- * @version 0.1
+ * @version 0.3
  * @date 07-11-2020
  * 
  * @copyright Copyright (c) 2020
@@ -14,15 +14,14 @@
 #include "tests.h"
 #include "../include/FileManagment.h"
 #include "../include/DataStructures/LinkedList.h"
+#include "../include/DataStructures/Queue.h"
 
 
 /**
- * @brief FileManagement function test (part 1 of project)
+ * @brief Initialization of the contents of the file to compress in order to know the noramlement results obtained
  * 
- * @return int 1 if test ok and 0 else
  */
-int test_FileManagment() {
-
+static void initFileToCompress(void) {
     // Text to be introduced in the file to compress
     char* txt = "Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do";
 
@@ -39,10 +38,23 @@ int test_FileManagment() {
         printf("TEST : FILE OPENING ERROR\n");
         exit(EXIT_FAILURE); // Forced program exit with failure
     }
+}
+
+
+
+/**
+ * @brief FileManagement function test (part 1 of project)
+ * 
+ * @return int 1 if test ok and 0 else
+ */
+int test_FileManagment() {
+    int nbCaraFileToCompress = 103;
+
+    initFileToCompress();
 
     createBinaryFileOfFileToCompress();
 
-    if((numberCharInFile("TextFiles/FileToCompress.txt") == 103) || (numberCharInFile("TextFiles/BinaryFile.txt") == 824)) {
+    if((numberCharInFile("TextFiles/FileToCompress.txt") == nbCaraFileToCompress) || (numberCharInFile("TextFiles/BinaryFile.txt") == nbCaraFileToCompress * SIZE_BINARY)) {
         return 1;
     }
     else {
@@ -50,40 +62,90 @@ int test_FileManagment() {
     }
 }
 
+/**
+ * @brief LinkedList function test (part 2 of project)
+ *
+ * @return int 1 if test ok and 0 else
+ */
 int test_LinkedList() {
-    LinkedList list = createNode((int) 'c', 3);
-    Node* b = createNode((int) 'b', 2);
-    Node* d = createNode((int) 'd', 1);
+    LinkedList head = createNode(createHuffmanNode((int) 'b', 4));
+    addNode(&head, createNode(createHuffmanNode((int) 'e', 2)));
+    addNode(&head, createNode(createHuffmanNode((int) 'n', 8)));
 
-    addNode(&list, b); printf("\nAdded 'b' to the list");
-    addNode(&list, d); printf("\nAdded 'd' to the list");
 
-    printList(list);
+    // size is supposed to be 3
+    if (getSize(head) != 3) return 0;
 
-    printf("\nResearching letter 'f'");
-    if (find(list, (int) 'f') == NULL) printf("\nLetter 'f' not found as expected");
-    else printf("\nThere might be an error :(");
+    // we are supposed to find 'b'
+    if (find(head, 'b') == NULL) return 0;
 
-    printf("\nResearching letter 'c'");
-    if (find(list, (int) 'c') != NULL) printf("\nLetter 'c' was found as expected");
-    else printf("\nThere might be an error :(");
+    // we are not supposed to find 'h'
+    if (find(head, 'h') != NULL) return 0;
 
-    printf("\nList has 3 elements, getSize returns %d", getSize(list));
+    removeNode(&head, head->data);
+    removeNode(&head, head->next->data);
 
-    removeNode(&list, (int) 'c');
-    removeNode(&list, (int) 'd');
-    addNode(&list, createNode((int) 'c', 2));
+    addNode(&head, createNode(createHuffmanNode((int) 'o', 2)));
 
-    printList(list);
-    printf("\nList has 2 elements, getSize returns %d", getSize(list));
+    // size is supposed to be 2
+    if (getSize(head) != 2) return 0;
 
-    return 0;
+    return 1;
+}
+
+
+// static void displayQueue(Queue* queue) {
+//     Node* head = queue->start;
+//     while(head != NULL) {
+//         printf("(%c | %d) -> ", head->data->letter, head->data->occ);
+//         head = head->next;
+//     }
+// }
+/**
+ * @brief Queue function test (part 2 of project)
+ * @details Test with queue NULL and not NULL
+ *
+ * @return int 1 if test ok and 0 else
+ */
+int test_Queue() {
+    // Init queue
+    Queue* queue = initQueue();
+
+    LinkedList head = createNode(createHuffmanNode((int) 'b', 8));
+    addNode(&head, createNode(createHuffmanNode((int) 'e', 4)));
+    addNode(&head, createNode(createHuffmanNode((int) 'n', 2)));
+
+    queue->start = head;
+    queue->end = head->next->next;
+    if(getSize(queue->start) != 3) return 0;
+
+    // Display queue
+    // displayQueue(queue);
+    // printf("\n");
+
+    // PushQueue
+    HuffmanNode* x = createHuffmanNode((int) 'z', 24);
+    pushQueue(&queue, x);
+    if(getSize(queue->start) != 4) return 0;
+    // Display queue
+    // displayQueue(queue);
+
+
+    // PullQueue
+    x = pullQueue(&queue);
+    if(getSize(queue->start) != 3) return 0;
+    // printf("\n noued retiré : ");
+    // printf("(%c | %d) \n", x->letter, x->occ);
+    // Display queue
+    // displayQueue(queue);
+    // printf("\n");
+
+    return 1;
+
 }
 
 /**
 * @brief test function for analysing occurrence of characters in a file occ_char()
-* @date 08-11-2020
-* @author Harold Molter
 */
 int test_occurrence() {
     LinkedList list = occ_char();

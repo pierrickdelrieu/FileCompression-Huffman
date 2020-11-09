@@ -1,25 +1,39 @@
 #ifndef LINKED_LIST
 #define LINKED_LIST
 
-typedef struct Node {
+/***
+ * @brief Defines the node of a doubly linked list
+ * @details as this structure will be used as the Node of an HuffmanTree,
+ * the pointers right and left are named after the property the list will
+ * have in the future. When used as a doubly linked list, right means 'next'
+ * and left means 'previous'
+ */
+typedef struct HuffmanNode {
     int letter;
     int occ;
-    struct Node* right;
-    struct Node* left;
+    struct HuffmanNode* right;
+    struct HuffmanNode* left;
+} HuffmanNode;
+
+typedef struct Node {
+    HuffmanNode* data;
+    struct Node* next;
 } Node;
 
+///@brief Defines the pointer of a doubly linked list
 typedef Node* LinkedList;
 
-Node*      createNode     (int letter, int occ);
+HuffmanNode*      createHuffmanNode     (int letter, int occ);
 
-void       addNode            (LinkedList* list, Node* node);
+Node*             createNode            (HuffmanNode* data);
 
-void       removeNode         (LinkedList* list, int letter);
+void              addNode               (LinkedList* list, Node* node);
 
-Node*      find           (LinkedList list, int letter);
+void              removeNode            (LinkedList* list, HuffmanNode* huffmanNode);
 
-int        getSize        (LinkedList list);
+Node*             find                  (LinkedList list, int letter);
 
-void       printList      (LinkedList list);
+int               getSize               (LinkedList list);
+
 
 #endif // !LINKED_LIST
