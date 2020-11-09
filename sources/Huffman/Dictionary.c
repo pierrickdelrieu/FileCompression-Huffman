@@ -44,12 +44,17 @@ void print_dictionary(HuffmanNode* huffman, char* code, int sizecode, FILE* file
         if (huffman->left == NULL && huffman->right == NULL)
             print_to_file(code, huffman->letter, sizecode, file);
         else {
-            char* code1 = add_char_to_new_string(code, '0', sizecode++);
-            char* code2 = add_char_to_new_string(code, '1', sizecode++);
-            print_dictionary(huffman->left, code1, sizecode + 1);
-            print_dictionary(huffman->right, code2, sizecode + 1);
-            free(code1);
-            free(code2);
+            if (huffman->left != NULL) {
+                char* code1 = add_char_to_new_string(code, '0', sizecode++);
+                print_dictionary(huffman->left, code1, sizecode + 1);
+                free(code1);
+            }
+            if (huffman->right != NULL) {
+                char* code2 = add_char_to_new_string(code, '1', sizecode++);
+                print_dictionary(huffman->right, code2, sizecode + 1);
+                free(code2);
+            }
+            
         }
     }
 }
