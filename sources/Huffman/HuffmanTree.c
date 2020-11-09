@@ -32,7 +32,7 @@ LinkedList occ_char() {
 
 			// letter is in list
 			if (temp != NULL) {
-				temp->occ = temp->occ + 1;
+				temp->data->occ = temp->data->occ + 1;
 			}
 			// letter not in list
 			else {
