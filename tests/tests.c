@@ -50,6 +50,11 @@ int test_FileManagment() {
     }
 }
 
+/**
+ * @brief LinkedList function test (part 2 of project)
+ *
+ * @return int 1 if test ok and 0 else
+ */
 int test_LinkedList() {
     LinkedList list = createNode((int) 'c', 3);
     Node* b = createNode((int) 'b', 2);
