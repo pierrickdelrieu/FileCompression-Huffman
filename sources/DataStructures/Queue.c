@@ -27,13 +27,13 @@ void initQueue(Queue** f) {
 
 
 /**
- * @brief Adding an node to the top of the list
+ * @brief Adding an Leaf to the top of the list
  * 
- * @param f Queue adress (modified data) where the node must be added
- * @param nx_elem Node to add at the top of the list
- * @return int Return 1 if node has been added and 0 otherwise (if the Queue has not been initialized)
+ * @param f Queue adress (modified data) where the Leaf must be added
+ * @param nx_elem Leaf to add at the top of the list
+ * @return int Return 1 if Leaf has been added and 0 otherwise (if the Queue has not been initialized)
  */
-int pushQueue(Queue** f, Node* nx_elem) {
+int pushQueue(Queue** f, Leaf* nx_elem) {
     // If the Queue has been initialized
     if (f != NULL) {
 
@@ -44,9 +44,9 @@ int pushQueue(Queue** f, Node* nx_elem) {
             return 1;
         }
 
-        // If the Queue already contains nodes
+        // If the Queue already contains Leafs
         else {
-            Node *temp = (*f)->start;
+            Leaf *temp = (*f)->start;
             (*f)->start = nx_elem;
             nx_elem->right = temp;
             return 1;
@@ -61,26 +61,26 @@ int pushQueue(Queue** f, Node* nx_elem) {
 /**
  * @brief Remove and return the last element in the Queue
  * 
- * @param f Queue adress (modified data) where the node must be removed
- * @return Node* Removed node
+ * @param f Queue adress (modified data) where the Leaf must be removed
+ * @return Leaf* Removed Leaf
  */
-Node* pullQueue(Queue** f) {
+Leaf* pullQueue(Queue** f) {
     // If the Queue has been initialized
     if(f != NULL) {
-        Node* temp = (*f)->start;
+        Leaf* temp = (*f)->start;
 
-        // If the Queue contains one or zero node
+        // If the Queue contains one or zero Leaf
         if((*f)->start == (*f)->end){
             (*f)->start = NULL;
             (*f)->end = NULL;
             return temp;
         }
 
-        // If the Queue contains several nodes
+        // If the Queue contains several Leafs
         else {
-            Node* ptrprec = NULL;
+            Leaf* ptrprec = NULL;
 
-            // Placement at the last and penultimate node of the list
+            // Placement at the last and penultimate Leaf of the list
             while (temp->right != NULL) {
                 ptrprec = temp;
                 temp = temp->right;
