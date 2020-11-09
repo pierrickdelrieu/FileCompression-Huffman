@@ -1,4 +1,4 @@
-OUTPUT=binaires/
+OUTPUT=binaries/
 OBJECTS= objects/
 SOURCES= sources/
 INCLUDE= include/

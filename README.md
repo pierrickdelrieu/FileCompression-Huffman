@@ -36,8 +36,8 @@ ___
 * **Doxygen documentation** : download link -> https://www.doxygen.nl/index.html
 * **Creation of folders** :   
     These files do not appear in the remote repository because the object and executable files are not deliverable  
-    - "Binaray" : Contains the executable file
-    - "Objects" :  Contains the object files of each module
+    - "binaries" : Contains the executable file
+    - "objects" :  Contains the object files of each module
         + "DatasStructures"
         + "Huffman"
         + "IHMCompressor"        

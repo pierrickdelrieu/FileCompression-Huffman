@@ -30,7 +30,7 @@
 *.dylib
 
 # Executables
-/binaires
+/binaries
 *.exe
 *.out
 *.app
@@ -61,4 +61,4 @@ cmake-build-debug
 # Pierrick's files
 huffman.code-workspace
 .DS_Store
-binaires/compressor
+binaries/compressor
