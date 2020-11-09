@@ -4,6 +4,6 @@
 - Huffman Tree : Pierrick et Benjamin
 - Occurence : Harold
 - Dictionary : Faustin
-- Encoding : Huffman
+- Encoding : Raphael
 
 Date : 08/11/2020
