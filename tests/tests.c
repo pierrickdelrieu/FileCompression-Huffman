@@ -61,34 +61,30 @@ int test_FileManagment() {
     }
 }
 
-
-
+/**
+ * @brief LinkedList function test (part 2 of project)
+ *
+ * @return int 1 if test ok and 0 else
+ */
 int test_LinkedList() {
     LinkedList list = createNode((int) 'c', 3);
     Node* b = createNode((int) 'b', 2);
     Node* d = createNode((int) 'd', 1);
 
-    addNode(&list, b); printf("\nAdded 'b' to the list");
-    addNode(&list, d); printf("\nAdded 'd' to the list");
+    addNode(&list, b);
+    addNode(&list, d);
 
-    printList(list);
+    if (find(list, (int) 'f') != NULL) return 0;
 
-    printf("\nResearching letter 'f'");
-    if (find(list, (int) 'f') == NULL) printf("\nLetter 'f' not found as expected");
-    else printf("\nThere might be an error :(");
+    if (find(list, (int) 'c') == NULL) return 0;
 
-    printf("\nResearching letter 'c'");
-    if (find(list, (int) 'c') != NULL) printf("\nLetter 'c' was found as expected");
-    else printf("\nThere might be an error :(");
-
-    printf("\nList has 3 elements, getSize returns %d", getSize(list));
+    if(getSize(list) != 3) return 0;
 
     removeNode(&list, (int) 'c');
     removeNode(&list, (int) 'd');
     addNode(&list, createNode((int) 'c', 2));
 
-    printList(list);
-    printf("\nList has 2 elements, getSize returns %d", getSize(list));
+    if (getSize(list) != 2) return 0;
 
-    return 0;
+    return 1;
 }
