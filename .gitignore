@@ -56,9 +56,11 @@ dkms.conf
 cmake-build-debug
 .idea
 .vscode
+/.vs*
 
 
 # Pierrick's files
 huffman.code-workspace
 .DS_Store
 binaries/compressor
+

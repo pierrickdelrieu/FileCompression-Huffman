@@ -1,8 +1,8 @@
 /**
  * @file tests.c
- * @author Pierrick Delrieu - Benjamin Lesieux
+ * @author Pierrick Delrieu - Benjamin Lesieux - Harold Molter
  * @brief function test of project
- * @version 0.1
+ * @version 0.3
  * @date 07-11-2020
  * 
  * @copyright Copyright (c) 2020
@@ -142,4 +142,13 @@ int test_Queue() {
 
     return 1;
 
+}
+
+/**
+* @brief test function for analysing occurrence of characters in a file occ_char()
+*/
+int test_occurrence() {
+    LinkedList list = occ_char();
+    printList(list);
+    return 0;
 }
