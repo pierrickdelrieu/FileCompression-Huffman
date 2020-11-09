@@ -8,17 +8,24 @@
  * have in the future. When used as a doubly linked list, right means 'next'
  * and left means 'previous'
  */
-typedef struct Node {
+typedef struct HuffmanNode {
     int letter;
     int occ;
-    struct Node* right;
-    struct Node* left;
-} Node;
+    struct HuffmanNode* right;
+    struct HuffmanNode* left;
+} HuffmanNode;
 
 ///@brief Defines the pointer of a doubly linked list
 typedef Node* LinkedList;
 
-Node*      createNode     (int letter, int occ);
+typedef struct Node {
+    HuffmanNode* data;
+    struct Node* next;
+} Node;
+
+Node*      createHuffmanNode     (int letter, int occ);
+
+Node*      createNode     (HuffmanNode* data);
 
 void       addNode        (LinkedList* list, Node* node);
 
