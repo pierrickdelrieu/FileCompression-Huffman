@@ -1,6 +1,6 @@
 /**
  * @file tests.c
- * @author Pierrick Delrieu
+ * @author Pierrick Delrieu - Benjamin Lesieux
  * @brief function test of project
  * @version 0.1
  * @date 07-11-2020
@@ -14,6 +14,7 @@
 #include "tests.h"
 #include "../include/FileManagment.h"
 #include "../include/DataStructures/LinkedList.h"
+#include "../include/DataStructures/Queue.h"
 
 
 /**
@@ -91,4 +92,50 @@ int test_LinkedList() {
     if (getSize(head) != 2) return 0;
 
     return 1;
+}
+
+
+static void displayQueue(Queue* queue) {
+    Node* head = queue->start;
+    while(head != NULL) {
+        printf("(%c | %d) -> ", head->data->letter, head->data->occ);
+        head = head->next;
+    }
+}
+/**
+ * @brief Queue function test (part 2 of project)
+ *
+ * @return int 1 if test ok and 0 else
+ */
+int test_Queue() {
+    Queue* queue = initQueue();
+
+    LinkedList head = createNode(createHuffmanNode((int) 'b', 8));
+    addNode(&head, createNode(createHuffmanNode((int) 'e', 4)));
+    addNode(&head, createNode(createHuffmanNode((int) 'n', 2)));
+
+    queue->start = head;
+    queue->end = head->next->next;
+
+    // Display queue
+    displayQueue(queue);
+    printf("\n");
+
+    HuffmanNode* x = createHuffmanNode((int) 'z', 24);
+    pushQueue(&queue, x);
+    // Display queue
+    LinkedList head1 = head;
+    displayQueue(queue);
+
+
+    x = pullQueue(&queue);
+    printf("\n noued retiré : ");
+    printf("(%c | %d) \n", x->letter, x->occ);
+
+    // Display queue
+    displayQueue(queue);
+    printf("\n");
+
+    return 1;
+
 }

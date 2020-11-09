@@ -17,12 +17,14 @@
 /**
  * @brief Initialization of the start and end fields of the fiel and memory allocation
  * 
- * @param f Queue address initialized Queue initialized (modified data)
+ * @return Queue* address initialized Queue initialized
  */
-void initQueue(Queue** f) {
-    *f = (Queue*) malloc(sizeof(Queue));
-    (*f)->start = NULL;
-    (*f)->end = NULL;
+Queue* initQueue(void) {
+    Queue* f = NULL;
+    f = (Queue*) malloc(sizeof(Queue));
+    f->start = NULL;
+    f->end = NULL;
+    return f;
 }
 
 

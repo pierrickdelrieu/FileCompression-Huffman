@@ -96,6 +96,7 @@ $(OBJECTS)DataStructures/Queue.o : $(INCLUDE)DataStructures/Queue.h  \
 tests/tests.o : tests/tests.h  \
 				$(INCLUDE)FileManagment.h  \
 				$(INCLUDE)DataStructures/LinkedList.h  \
+				$(INCLUDE)DataStructures/Queue.h  \
 				tests/tests.c
 	$(COMPILER) -c -g -Wall tests/tests.c -o tests/tests.o
 
