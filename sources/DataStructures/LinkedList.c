@@ -29,18 +29,18 @@
  * */
 Node* createNode(int letter, int occ) {
 
-    Node* newNode = (Node*) malloc(sizeof(Node));
+    Node* newNode = NULL;
+    newNode = (Node*) malloc(sizeof(Node));
 
     if (newNode != NULL) {
         newNode->letter = letter;
         newNode->occ = occ;
-
-        return newNode;
     }
-
     else {
         displayErrorMemoryAllocation();
     }
+
+    return newNode;
 }
 
 /**
@@ -129,13 +129,13 @@ Node* find(LinkedList list, int letter) {
 
             temp = temp->right;
         }
-
-        return NULL;
     }
 
     else {
         printf("\nCannot search for a letter in an empty list");
     }
+
+    return NULL;
 }
 
 /**

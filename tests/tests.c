@@ -17,12 +17,10 @@
 
 
 /**
- * @brief FileManagement function test (part 1 of project)
+ * @brief Initialization of the contents of the file to compress in order to know the noramlement results obtained
  * 
- * @return int 1 if test ok and 0 else
  */
-int test_FileManagment() {
-
+static void initFileToCompress(void) {
     // Text to be introduced in the file to compress
     char* txt = "Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do";
 
@@ -39,10 +37,23 @@ int test_FileManagment() {
         printf("TEST : FILE OPENING ERROR\n");
         exit(EXIT_FAILURE); // Forced program exit with failure
     }
+}
+
+
+
+/**
+ * @brief FileManagement function test (part 1 of project)
+ * 
+ * @return int 1 if test ok and 0 else
+ */
+int test_FileManagment() {
+    int nbCaraFileToCompress = 103;
+
+    initFileToCompress();
 
     createBinaryFileOfFileToCompress();
 
-    if((numberCharInFile("TextFiles/FileToCompress.txt") == 103) || (numberCharInFile("TextFiles/BinaryFile.txt") == 824)) {
+    if((numberCharInFile("TextFiles/FileToCompress.txt") == nbCaraFileToCompress) || (numberCharInFile("TextFiles/BinaryFile.txt") == nbCaraFileToCompress * SIZE_BINARY)) {
         return 1;
     }
     else {
