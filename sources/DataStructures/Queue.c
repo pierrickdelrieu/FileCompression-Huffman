@@ -27,28 +27,30 @@ void initQueue(Queue** f) {
 
 
 /**
- * @brief Adding an Leaf to the top of the list
+ * @brief Adding an HuffmanNode to the top of the list
  * 
- * @param f Queue adress (modified data) where the Leaf must be added
- * @param nx_elem Leaf to add at the top of the list
- * @return int Return 1 if Leaf has been added and 0 otherwise (if the Queue has not been initialized)
+ * @param f Queue adress (modified data) where the HuffmanNode must be added
+ * @param nx_elem HuffmanNode to add at the top of the list
+ * @return int Return 1 if HuffmanNode has been added and 0 otherwise (if the Queue has not been initialized)
  */
-int pushQueue(Queue** f, Leaf* nx_elem) {
+int pushQueue(Queue** f, HuffmanNode* nx_elem) {
+    
     // If the Queue has been initialized
     if (f != NULL) {
+        Node* x = createNode(nx_elem);
 
         // If the Queue is not empty
         if (((*f)->start == NULL) && ((*f)->end == NULL)) {
-            (*f)->start = nx_elem;
-            (*f)->end = nx_elem;
+            (*f)->start = x;
+            (*f)->end = x;
             return 1;
         }
 
-        // If the Queue already contains Leafs
+        // If the Queue already contains HuffmanNodes
         else {
-            Leaf *temp = (*f)->start;
-            (*f)->start = nx_elem;
-            nx_elem->right = temp;
+            HuffmanNode *temp = (*f)->start;
+            (*f)->start = x;
+            x->next = temp;
             return 1;
         }
     }
@@ -61,34 +63,34 @@ int pushQueue(Queue** f, Leaf* nx_elem) {
 /**
  * @brief Remove and return the last element in the Queue
  * 
- * @param f Queue adress (modified data) where the Leaf must be removed
- * @return Leaf* Removed Leaf
+ * @param f Queue adress (modified data) where the HuffmanNode must be removed
+ * @return HuffmanNode* Removed HuffmanNode
  */
-Leaf* pullQueue(Queue** f) {
+HuffmanNode* pullQueue(Queue** f) {
     // If the Queue has been initialized
     if(f != NULL) {
-        Leaf* temp = (*f)->start;
+        Node* temp = (*f)->start;
 
-        // If the Queue contains one or zero Leaf
+        // If the Queue contains one or zero HuffmanNode
         if((*f)->start == (*f)->end){
             (*f)->start = NULL;
             (*f)->end = NULL;
-            return temp;
+            return temp->data;
         }
 
-        // If the Queue contains several Leafs
+        // If the Queue contains several HuffmanNodes
         else {
-            Leaf* ptrprec = NULL;
+            Node* ptrprec = NULL;
 
-            // Placement at the last and penultimate Leaf of the list
-            while (temp->right != NULL) {
+            // Placement at the last and penultimate HuffmanNode of the list
+            while (temp->next != NULL) {
                 ptrprec = temp;
-                temp = temp->right;
+                temp = temp->next;
             }
 
             (*f)->end = ptrprec;
-            (*f)->end->right = NULL;
-            return temp;
+            (*f)->end->next = NULL;
+            return temp->data;
         }
     }
 
