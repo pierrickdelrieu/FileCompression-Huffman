@@ -65,7 +65,6 @@ $(OBJECTS)Huffman/Dictionary.o : $(INCLUDE)Huffman/Dictionary.h  \
 
 $(OBJECTS)Huffman/HuffmanTree.o : $(INCLUDE)Huffman/HuffmanTree.h  \
 								$(INCLUDE)DataStructures/Queue.h  \
-								$(INCLUDE)DataStructures/LinkedList.h  \
 								$(INCLUDE)IHMCompressor/Show.h  \
 								$(SOURCES)Huffman/HuffmanTree.c
 	$(COMPILER) -c -g -Wall $(SOURCES)Huffman/HuffmanTree.c -o $(OBJECTS)Huffman/HuffmanTree.o

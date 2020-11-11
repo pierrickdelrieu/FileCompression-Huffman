@@ -12,7 +12,6 @@
 #include <stdlib.h>
 #include "../../include/Huffman/HuffmanTree.h"
 #include "../../include/IHMCompressor/Show.h"
-#include "../../include/DataStructures/Queue.h"
 
 
 
@@ -64,3 +63,47 @@ LinkedList occChar(void) {
 
 	return NULL;
 }
+
+/**
+ * @brief Compare huffman nodes according to their occurrence
+ * 
+ * @param node1 Node to compare
+ * @param node2 Node to compare
+ * @return int 1 if occ(node1) > occ(node2)
+ *             -1 if occ(node1) < occ(node2)
+ *             0 if occ(node1) = occ(node2)
+ */
+int compareHuffmanNode(HuffmanNode* node1, HuffmanNode* node2) {
+	if((node1 == NULL) && (node2 != NULL)) {
+		return -1;
+	}
+	else if((node1 != NULL) && (node2 == NULL)) {
+		return 1;
+	}
+    else if(node1->occ > node2->occ) {
+        return 1;
+    } 
+    else if(node1->occ < node2->occ) {
+        return -1;
+    }
+    else {
+        return 0;
+    }
+}
+
+
+// HuffmanNode* returnSortNode(Queue* occQueue; Queue* nodeQueue)
+
+
+
+// HuffmanTree createHuffmanTree() {
+// 	Queue* occQueue = initQueue;
+// 	Queue* nodeQueue = initQueue;
+
+// 	occQueue = createSortOccQueue();
+
+// 	while((getSize(occQueue->start) != 0) || (getSize(nodeQueue->start) > 1)) {
+		
+// 	}
+
+// }
