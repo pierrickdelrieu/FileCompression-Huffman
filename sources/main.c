@@ -5,9 +5,6 @@
 #include "../include/Huffman/Decoding.h"
 #include "../tests/tests.h"
 
-
-
-
 int main(void) {
 
     // FileManagement function test (part 1 of project)
@@ -15,6 +12,7 @@ int main(void) {
     printf("test linked list : %d\n", test_LinkedList());
     printf("test queue : %d\n", test_Queue());
     printf("test occ : %d\n", test_Occurrences());
+    printf("test hufftree : %d\n", test_HuffmanTree());
 
     return EXIT_SUCCESS;
 }

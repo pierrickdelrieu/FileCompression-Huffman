@@ -22,22 +22,21 @@
  * @brief Initialization of the contents of the file to compress in order to know the noramlement results obtained
  * 
  */
-static void initFileToCompress(char* txt) {
-    FILE* file = NULL;
-    file = fopen("TextFiles/FileToCompress.txt","w");
-    
+static void initFileToCompress(char *txt) {
+    FILE *file = NULL;
+    file = fopen("TextFiles/FileToCompress.txt", "w");
+
     // If the file is opened correctly
-    if(file != NULL) {
+    if (file != NULL) {
         fputs(txt, file);
         fclose(file);
     }
-    // If the file is not opened correctly
+        // If the file is not opened correctly
     else {
         printf("TEST : FILE OPENING ERROR\n");
         exit(EXIT_FAILURE); // Forced program exit with failure
     }
 }
-
 
 
 /**
@@ -48,14 +47,15 @@ static void initFileToCompress(char* txt) {
 int test_FileManagment(void) {
     int nbCaraFileToCompress = 103;
 
-    initFileToCompress("Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do");
+    initFileToCompress(
+            "Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do");
 
     createBinaryFileOfFileToCompress();
 
-    if((numberCharInFile("TextFiles/FileToCompress.txt") == nbCaraFileToCompress) || (numberCharInFile("TextFiles/BinaryFile.txt") == nbCaraFileToCompress * SIZE_BINARY)) {
+    if ((numberCharInFile("TextFiles/FileToCompress.txt") == nbCaraFileToCompress) ||
+        (numberCharInFile("TextFiles/BinaryFile.txt") == nbCaraFileToCompress * SIZE_BINARY)) {
         return 1;
-    }
-    else {
+    } else {
         return 0;
     }
 }
@@ -91,14 +91,14 @@ int test_LinkedList(void) {
     return 1;
 }
 
-
-static void displayQueue(Queue* queue) {
-    Node* head = queue->last;
-    while(head != NULL) {
+static void displayQueue(Queue *queue) {
+    Node *head = queue->last;
+    while (head != NULL) {
         printf("(%c | %d) -> ", head->data->letter, head->data->occ);
         head = head->next;
     }
 }
+
 /**
  * @brief Queue function test (part 2 of project)
  * @details Test with queue NULL and not NULL
@@ -107,7 +107,7 @@ static void displayQueue(Queue* queue) {
  */
 int test_Queue(void) {
     // Init queue
-    Queue* queue = initQueue();
+    Queue *queue = initQueue();
 
     LinkedList head = createNode(createHuffmanNode((int) 'b', 8));
     addNode(&head, createNode(createHuffmanNode((int) 'e', 4)));
@@ -115,44 +115,42 @@ int test_Queue(void) {
 
     queue->last = head;
     queue->first = head->next->next;
-    if(getSize(queue->last) != 3) return 0;
+    if (getSize(queue->last) != 3) return 0;
 
     // Display queue
-    displayQueue(queue);
-    printf("\n");
+    //displayQueue(queue);
+    //printf("\n");
 
     // PushQueue
-    HuffmanNode* x = createHuffmanNode((int) 'z', 24);
+    HuffmanNode *x = createHuffmanNode((int) 'z', 24);
     pushQueue(&queue, x);
-    if(getSize(queue->last) != 4) return 0;
+    if (getSize(queue->last) != 4) return 0;
     // Display queue
-    displayQueue(queue);
+    //displayQueue(queue);
 
 
     // PullQueue
     x = pullQueue(&queue);
-    if(getSize(queue->last) != 3) return 0;
-    printf("\n noued retiré : ");
-    printf("(%c | %d) \n", x->letter, x->occ);
+    if (getSize(queue->last) != 3) return 0;
+    //printf("\n noued retiré : ");
+    //printf("(%c | %d) \n", x->letter, x->occ);
     // Display queue
-    displayQueue(queue);
-    printf("\n");
+    //displayQueue(queue);
+    //printf("\n");
 
     return 1;
 
 }
 
 
-
-
-
 static void displayLinkedList(LinkedList l) {
-    Node* head = l;
-    while(head != NULL) {
+    Node *head = l;
+    while (head != NULL) {
         printf("(%c | %d) -> ", head->data->letter, head->data->occ);
         head = head->next;
     }
 }
+
 /**
 * @brief Test function for analysing occurrence of characters in a file occChar()
  * @return int 1 if test ok and 0 else
@@ -160,9 +158,34 @@ static void displayLinkedList(LinkedList l) {
 int test_Occurrences(void) {
     initFileToCompress("");
     LinkedList list = occChar();
-    if((list == NULL) && (numberCharInFile("TextFiles/FileToCompress.txt") != 0)) return 0;
-    if((list != NULL) && (numberCharInFile("TextFiles/FileToCompress.txt") == 0)) return 0;
-    if(getSize(list) != numberCharInFile("TextFiles/FileToCompress.txt")) return 0;
+    if ((list == NULL) && (numberCharInFile("TextFiles/FileToCompress.txt") != 0)) return 0;
+    if ((list != NULL) && (numberCharInFile("TextFiles/FileToCompress.txt") == 0)) return 0;
+    if (getSize(list) != numberCharInFile("TextFiles/FileToCompress.txt")) return 0;
     // displayLinkedList(list);
+    return 1;
+}
+
+static void displayTree(HuffmanTree tree) {
+    if (tree != NULL) {
+        printf("\n (%d | %d) ", tree->letter, tree->occ);
+        displayTree(tree->left);
+        displayTree(tree->right);
+    }
+}
+
+int test_HuffmanTree(void) {
+    LinkedList head = createNode(createHuffmanNode((int) 'b', 8));
+    addNode(&head, createNode(createHuffmanNode((int) 'e', 4)));
+    addNode(&head, createNode(createHuffmanNode((int) 'n', 2)));
+
+    Queue* occQueue = initQueue(); // Queue is sorted
+    occQueue->last = head;
+    occQueue->first = head->next->next;
+    //printf("\nWe have the following Queue : ");
+    //displayQueue(occQueue);
+
+    HuffmanTree tree = createHuffmanTree(occQueue);
+    //displayTree(tree);
+
     return 1;
 }
