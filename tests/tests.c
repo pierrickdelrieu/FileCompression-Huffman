@@ -92,13 +92,13 @@ int test_LinkedList(void) {
 }
 
 
-// static void displayQueue(Queue* queue) {
-//     Node* head = queue->start;
-//     while(head != NULL) {
-//         printf("(%c | %d) -> ", head->data->letter, head->data->occ);
-//         head = head->next;
-//     }
-// }
+static void displayQueue(Queue* queue) {
+    Node* head = queue->last;
+    while(head != NULL) {
+        printf("(%c | %d) -> ", head->data->letter, head->data->occ);
+        head = head->next;
+    }
+}
 /**
  * @brief Queue function test (part 2 of project)
  * @details Test with queue NULL and not NULL
@@ -113,30 +113,30 @@ int test_Queue(void) {
     addNode(&head, createNode(createHuffmanNode((int) 'e', 4)));
     addNode(&head, createNode(createHuffmanNode((int) 'n', 2)));
 
-    queue->start = head;
-    queue->end = head->next->next;
-    if(getSize(queue->start) != 3) return 0;
+    queue->last = head;
+    queue->first = head->next->next;
+    if(getSize(queue->last) != 3) return 0;
 
     // Display queue
-    // displayQueue(queue);
-    // printf("\n");
+    displayQueue(queue);
+    printf("\n");
 
     // PushQueue
     HuffmanNode* x = createHuffmanNode((int) 'z', 24);
     pushQueue(&queue, x);
-    if(getSize(queue->start) != 4) return 0;
+    if(getSize(queue->last) != 4) return 0;
     // Display queue
-    // displayQueue(queue);
+    displayQueue(queue);
 
 
     // PullQueue
     x = pullQueue(&queue);
-    if(getSize(queue->start) != 3) return 0;
-    // printf("\n noued retiré : ");
-    // printf("(%c | %d) \n", x->letter, x->occ);
+    if(getSize(queue->last) != 3) return 0;
+    printf("\n noued retiré : ");
+    printf("(%c | %d) \n", x->letter, x->occ);
     // Display queue
-    // displayQueue(queue);
-    // printf("\n");
+    displayQueue(queue);
+    printf("\n");
 
     return 1;
 

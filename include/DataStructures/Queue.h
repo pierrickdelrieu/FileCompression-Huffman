@@ -4,13 +4,13 @@
 #include "../../include/DataStructures/LinkedList.h"
 
 /**
- * @brief Structure containing the start and end node of the list. Queue allows you to manage items like a queue. 
- * LIFO : Last In First Out
+ * @brief Structure containing the first and last node of the list. Queue allows you to manage items like a queue. 
+ * FIFO : First In First Out
  * 
  */
 typedef struct Queue {
-    Node* start;
-    Node* end;
+    Node* first;
+    Node* last;
 } Queue;
 
 

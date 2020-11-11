@@ -15,15 +15,15 @@
 
 
 /**
- * @brief Initialization of the start and end fields of the fiel and memory allocation
+ * @brief Initialization of the last and first fields of the fiel and memory allocation
  * 
  * @return Queue* address initialized Queue initialized
  */
 Queue* initQueue(void) {
     Queue* f = NULL;
     f = (Queue*) malloc(sizeof(Queue));
-    f->start = NULL;
-    f->end = NULL;
+    f->last = NULL;
+    f->first = NULL;
     return f;
 }
 
@@ -42,16 +42,16 @@ int pushQueue(Queue** f, HuffmanNode* nx_elem) {
         Node* x = createNode(nx_elem);
 
         // If the Queue is not empty
-        if (((*f)->start == NULL) && ((*f)->end == NULL)) {
-            (*f)->start = x;
-            (*f)->end = x;
+        if (((*f)->last == NULL) && ((*f)->first == NULL)) {
+            (*f)->last = x;
+            (*f)->first = x;
             return 1;
         }
 
         // If the Queue already contains HuffmanNodes
         else {
-            Node *temp = (*f)->start;
-            (*f)->start = x;
+            Node *temp = (*f)->last;
+            (*f)->last = x;
             x->next = temp;
             return 1;
         }
@@ -71,12 +71,12 @@ int pushQueue(Queue** f, HuffmanNode* nx_elem) {
 HuffmanNode* pullQueue(Queue** f) {
     // If the Queue has been initialized
     if(f != NULL) {
-        Node* temp = (*f)->start;
+        Node* temp = (*f)->last;
 
         // If the Queue contains one or zero HuffmanNode
-        if((*f)->start == (*f)->end){
-            (*f)->start = NULL;
-            (*f)->end = NULL;
+        if((*f)->last == (*f)->first){
+            (*f)->last = NULL;
+            (*f)->first = NULL;
             return temp->data;
         }
 
@@ -90,8 +90,8 @@ HuffmanNode* pullQueue(Queue** f) {
                 temp = temp->next;
             }
 
-            (*f)->end = ptrprec;
-            (*f)->end->next = NULL;
+            (*f)->first = ptrprec;
+            (*f)->first->next = NULL;
             return temp->data;
         }
     }
