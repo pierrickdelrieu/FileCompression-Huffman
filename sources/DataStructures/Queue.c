@@ -19,9 +19,9 @@
  * 
  * @return Queue* address initialized Queue initialized
  */
-Queue* initQueue(void) {
-    Queue* f = NULL;
-    f = (Queue*) malloc(sizeof(Queue));
+Queue *initQueue(void) {
+    Queue *f = NULL;
+    f = (Queue *) malloc(sizeof(Queue));
     f->last = NULL;
     f->first = NULL;
     return f;
@@ -35,11 +35,11 @@ Queue* initQueue(void) {
  * @param nx_elem HuffmanNode to add at the top of the list
  * @return int Return 1 if HuffmanNode has been added and 0 otherwise (if the Queue has not been initialized)
  */
-int pushQueue(Queue** f, HuffmanNode* nx_elem) {
-    
+int pushQueue(Queue **f, HuffmanNode *nx_elem) {
+
     // If the Queue has been initialized
     if (f != NULL) {
-        Node* x = createNode(nx_elem);
+        Node *x = createNode(nx_elem);
 
         // If the Queue is not empty
         if (((*f)->last == NULL) && ((*f)->first == NULL)) {
@@ -48,7 +48,7 @@ int pushQueue(Queue** f, HuffmanNode* nx_elem) {
             return 1;
         }
 
-        // If the Queue already contains HuffmanNodes
+            // If the Queue already contains HuffmanNodes
         else {
             Node *temp = (*f)->last;
             (*f)->last = x;
@@ -56,7 +56,7 @@ int pushQueue(Queue** f, HuffmanNode* nx_elem) {
             return 1;
         }
     }
-    
+
     // If the Queue has not been initialized
     return 0;
 }
@@ -68,21 +68,21 @@ int pushQueue(Queue** f, HuffmanNode* nx_elem) {
  * @param f Queue adress (modified data) where the HuffmanNode must be removed
  * @return HuffmanNode* Removed HuffmanNode
  */
-HuffmanNode* pullQueue(Queue** f) {
+HuffmanNode *pullQueue(Queue **f) {
     // If the Queue has been initialized
-    if(f != NULL) {
-        Node* temp = (*f)->last;
+    if (f != NULL) {
+        Node *temp = (*f)->last;
 
         // If the Queue contains one or zero HuffmanNode
-        if((*f)->last == (*f)->first){
+        if ((*f)->last == (*f)->first) {
             (*f)->last = NULL;
             (*f)->first = NULL;
             return temp->data;
         }
 
-        // If the Queue contains several HuffmanNodes
+            // If the Queue contains several HuffmanNodes
         else {
-            Node* ptrprec = NULL;
+            Node *ptrprec = NULL;
 
             // Placement at the last and penultimate HuffmanNode of the list
             while (temp->next != NULL) {

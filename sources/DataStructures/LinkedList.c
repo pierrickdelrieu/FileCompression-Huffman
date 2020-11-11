@@ -24,9 +24,9 @@
  *
  * @return HuffmanNode* a pointer to an HuffmanNode
  * */
-HuffmanNode* createHuffmanNode(int letter, int occ) {
-    HuffmanNode* huff = NULL;
-    huff = (HuffmanNode*) malloc(sizeof(HuffmanNode));
+HuffmanNode *createHuffmanNode(int letter, int occ) {
+    HuffmanNode *huff = NULL;
+    huff = (HuffmanNode *) malloc(sizeof(HuffmanNode));
 
     if (huff != NULL) {
         huff->letter = letter;
@@ -34,8 +34,7 @@ HuffmanNode* createHuffmanNode(int letter, int occ) {
         huff->left = NULL;
         huff->right = NULL;
         return huff;
-    }
-    else {
+    } else {
         displayErrorMemoryAllocation();
     }
     return NULL;
@@ -48,17 +47,16 @@ HuffmanNode* createHuffmanNode(int letter, int occ) {
  * @param huffmanNode the data of the Node
  * @return Node* A pointer to a Node
  * */
-Node* createNode(HuffmanNode* huffmanNode) {
+Node *createNode(HuffmanNode *huffmanNode) {
 
-    Node* newNode = NULL;
-    newNode = (Node*) malloc(sizeof(Node));
+    Node *newNode = NULL;
+    newNode = (Node *) malloc(sizeof(Node));
 
     if (newNode != NULL) {
         newNode->data = huffmanNode;
         newNode->next = NULL;
         return newNode;
-    }
-    else {
+    } else {
         displayErrorMemoryAllocation();
     }
     return NULL;
@@ -70,18 +68,16 @@ Node* createNode(HuffmanNode* huffmanNode) {
  * @param node A pointer to the Node we want to add
  *
  * */
-void addNode(LinkedList* list, Node* node) {
+void addNode(LinkedList *list, Node *node) {
 
     if (*list == NULL) {
         *list = node;
-    }
-
-    else {
+    } else {
         LinkedList temp = *list;
 
         while (temp->next != NULL) {
             temp = temp->next; // Here 'right' is working as temp->next
-                                // 'left' works as temp->prev
+            // 'left' works as temp->prev
         }
 
         temp->next = node;
@@ -94,7 +90,7 @@ void addNode(LinkedList* list, Node* node) {
  * @param huffmanNode The HuffmanNode we want to delete
  *
  * */
-void removeNode(LinkedList* list, HuffmanNode* huffmanNode) {
+void removeNode(LinkedList *list, HuffmanNode *huffmanNode) {
 
     LinkedList temp = *list;
     LinkedList previous = NULL;
@@ -103,15 +99,11 @@ void removeNode(LinkedList* list, HuffmanNode* huffmanNode) {
 
         if (huffmanNode == NULL) {
             printf("\nCannot delete an empty node.");
-        }
-
-        else if (temp->data == huffmanNode) { // That means deleting the head
+        } else if (temp->data == huffmanNode) { // That means deleting the head
             *list = temp->next;
             free(temp);
             return;
-        }
-
-        else {
+        } else {
             while (temp != NULL && temp->data != huffmanNode) {
                 previous = temp;
                 temp = temp->next;
@@ -120,14 +112,11 @@ void removeNode(LinkedList* list, HuffmanNode* huffmanNode) {
             if (temp != NULL) {
                 previous->next = temp->next;
                 free(temp);
-            }
-            else {
+            } else {
                 return;
             }
         }
-    }
-
-    else {
+    } else {
         printf("\nCannot remove anything from an empty list...");
     }
 }
@@ -139,10 +128,10 @@ void removeNode(LinkedList* list, HuffmanNode* huffmanNode) {
  *
  * @return Node* A pointer to the node containing the letter
  * */
-Node* find(LinkedList list, int letter) {
+Node *find(LinkedList list, int letter) {
     if (list != NULL) {
-        Node* temp = list;
-        HuffmanNode* search = NULL;
+        Node *temp = list;
+        HuffmanNode *search = NULL;
 
         while (temp != NULL) {
             search = temp->data;
@@ -153,9 +142,7 @@ Node* find(LinkedList list, int letter) {
 
             temp = temp->next;
         }
-    }
-
-    else {
+    } else {
         printf("\nCannot search for a letter in an empty list");
     }
 
@@ -171,10 +158,7 @@ Node* find(LinkedList list, int letter) {
 int getSize(LinkedList list) {
     if (list == NULL) {
         return 0;
-    }
-
-    else {
+    } else {
         return 1 + getSize(list->next);
     }
 }
-
