@@ -116,11 +116,6 @@ HuffmanTree createHuffmanTree(Queue* occQueue) {
 
     while ((getSize(occQueue->last) != 0) || (getSize(nodeQueue->last) >= 1)) {
 
-//        printf("\nOccQueue : ");
-//        displayQueue(occQueue);
-//        printf("\nNodeQueue : ");
-//        displayQueue(nodeQueue);
-
         int occQSize = getSize(occQueue->last);
         int nodeQSize = getSize(nodeQueue->last);
 
