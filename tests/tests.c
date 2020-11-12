@@ -185,7 +185,7 @@ int test_HuffmanTree(void) {
     //displayQueue(occQueue);
 
     HuffmanTree tree = createHuffmanTree(occQueue);
-    //displayTree(tree);
+    // displayTree(tree);
 
     return 1;
 }

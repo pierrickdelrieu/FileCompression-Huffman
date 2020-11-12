@@ -71,29 +71,34 @@ LinkedList occChar(void) {
  *             -1 if occ(node1) < occ(node2)
  *             0 if occ(node1) = occ(node2)
  */
-int compareHuffmanNode(HuffmanNode *node1, HuffmanNode *node2) {
+static int compareNodeQueue(Node *node1, Node *node2) {
     if ((node1 == NULL) && (node2 == NULL)) {
         return 0;
     } else if ((node1 == NULL) && (node2 != NULL)) {
         return -1;
     } else if ((node1 != NULL) && (node2 == NULL)) {
         return 1;
-    } else if (node1->occ > node2->occ) {
+    } else if ((node1->data == NULL) && (node2->data == NULL)) {
+        return 0;
+    } else if ((node1->data == NULL) && (node2->data != NULL)) {
+        return -1;
+    } else if ((node1->data != NULL) && (node2->data == NULL)) {
         return 1;
-    } else if (node1->occ < node2->occ) {
+    } else if (node1->data->occ > node2->data->occ) {
+        return 1;
+    } else if (node1->data->occ < node2->data->occ) {
         return -1;
     } else {
         return 0;
     }
 }
 
-// HuffmanNode* returnSortNode(Queue* occQueue; Queue* nodeQueue)
 
-HuffmanNode* getMin(Queue* occQueue, Queue* nodeQueue) {
+static HuffmanNode* getMin(Queue* occQueue, Queue* nodeQueue) {
 
     HuffmanNode* min = NULL;
 
-    int compare = compareHuffmanNode(occQueue->first, nodeQueue->first);
+    int compare = compareNodeQueue(occQueue->first, nodeQueue->first);
 
     if (compare == 1) {
         min = pullQueue(&occQueue);
@@ -132,4 +137,6 @@ HuffmanTree createHuffmanTree(Queue* occQueue) {
             pushQueue(&nodeQueue, parent);
         }
     }
+
+    return NULL;
 }
