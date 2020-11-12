@@ -75,9 +75,9 @@ static int compareNodeQueue(Node *node1, Node *node2) {
     if ((node1 == NULL) && (node2 == NULL)) {
         return 0;
     } else if ((node1 == NULL) && (node2 != NULL)) {
-        return -1;
-    } else if ((node1 != NULL) && (node2 == NULL)) {
         return 1;
+    } else if ((node1 != NULL) && (node2 == NULL)) {
+        return -1;
     } else if ((node1->data == NULL) && (node2->data == NULL)) {
         return 0;
     } else if ((node1->data == NULL) && (node2->data != NULL)) {
@@ -93,7 +93,13 @@ static int compareNodeQueue(Node *node1, Node *node2) {
     }
 }
 
-
+/**
+ * @brief Get the Min object
+ * 
+ * @param occQueue 
+ * @param nodeQueue 
+ * @return HuffmanNode* 
+ */
 static HuffmanNode* getMin(Queue* occQueue, Queue* nodeQueue) {
 
     HuffmanNode* min = NULL;
@@ -101,15 +107,16 @@ static HuffmanNode* getMin(Queue* occQueue, Queue* nodeQueue) {
     int compare = compareNodeQueue(occQueue->first, nodeQueue->first);
 
     if (compare == 1) {
-        min = pullQueue(&occQueue);
-    } else if (compare == -1) {
         min = pullQueue(&nodeQueue);
+    } else if (compare == -1) {
+        min = pullQueue(&occQueue);
     } else {
         min = pullQueue(&occQueue);
     }
 
     return min;
 }
+
 
 HuffmanTree createHuffmanTree(Queue* occQueue) {
 

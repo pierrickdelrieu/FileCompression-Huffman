@@ -174,15 +174,23 @@ static void displayTree(HuffmanTree tree) {
 }
 
 int test_HuffmanTree(void) {
-    LinkedList head = createNode(createHuffmanNode((int) 'b', 8));
+    LinkedList head = createNode(createHuffmanNode((int) 'a', 5));
+    addNode(&head, createNode(createHuffmanNode((int) 'z', 5)));
+    addNode(&head, createNode(createHuffmanNode((int) 's', 5)));
     addNode(&head, createNode(createHuffmanNode((int) 'e', 4)));
-    addNode(&head, createNode(createHuffmanNode((int) 'n', 2)));
+    addNode(&head, createNode(createHuffmanNode((int) 'd', 3)));
+    addNode(&head, createNode(createHuffmanNode((int) 'r', 3)));
+    addNode(&head, createNode(createHuffmanNode((int) 'v', 3)));
+    addNode(&head, createNode(createHuffmanNode((int) 'c', 1)));
+    addNode(&head, createNode(createHuffmanNode((int) 'd', 1)));
+    addNode(&head, createNode(createHuffmanNode((int) 'm', 1)));
+
 
     Queue* occQueue = initQueue(); // Queue is sorted
     occQueue->last = head;
-    occQueue->first = head->next->next;
+    occQueue->first = head->next->next->next->next->next->next->next->next->next;
     //printf("\nWe have the following Queue : ");
-    //displayQueue(occQueue);
+    // displayQueue(occQueue);
 
     HuffmanTree tree = createHuffmanTree(occQueue);
     // displayTree(tree);
