@@ -4,7 +4,7 @@
 #include "../include/Huffman/Encoding.h"
 #include "../include/Huffman/Decoding.h"
 #include "../tests/tests.h"
-
+//for commit
 int main(void) {
 
     // FileManagement function test (part 1 of project)
