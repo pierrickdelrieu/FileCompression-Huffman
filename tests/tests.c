@@ -173,6 +173,12 @@ static void displayTree(HuffmanTree tree) {
     }
 }
 
+/**
+ * @brief Creating a Huffman tree with the two-queue process
+ * @details Verification of the tree obtained using: https://csfieldguide.org.nz/en/interactives/huffman-tree/
+ * 
+ * @return int Returns 1 all the time if there is no error during execution
+ */
 int test_HuffmanTree(void) {
     LinkedList head = createNode(createHuffmanNode((int) 'a', 5));
     addNode(&head, createNode(createHuffmanNode((int) 'z', 5)));

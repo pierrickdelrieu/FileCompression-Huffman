@@ -70,6 +70,7 @@ LinkedList occChar(void) {
  * @return int 1 if occ(node1) > occ(node2)
  *             -1 if occ(node1) < occ(node2)
  *             0 if occ(node1) = occ(node2)
+ * If one of the two nodes is NULL the smaller will be then the existing one
  */
 static int compareNodeQueue(Node *node1, Node *node2) {
     if ((node1 == NULL) && (node2 == NULL)) {
@@ -95,10 +96,11 @@ static int compareNodeQueue(Node *node1, Node *node2) {
 
 /**
  * @brief Get the Min object
+ * @details The function compare compareNodeQueue is essential for the operation of this function
  * 
- * @param occQueue 
- * @param nodeQueue 
- * @return HuffmanNode* 
+ * @param occQueue Queue of occurrence sort
+ * @param nodeQueue Tail containing Huffman Nodes
+ * @return HuffmanNode* The smaller node of the two queues (by favoring the queue of occurrence if the occurences are equal)
  */
 static HuffmanNode* getMin(Queue* occQueue, Queue* nodeQueue) {
 
