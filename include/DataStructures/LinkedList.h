@@ -35,5 +35,7 @@ Node*             find                  (LinkedList list, int letter);
 
 int               getSize               (LinkedList list);
 
+Node*             findMinOccLetter      (LinkedList list);
+
 
 #endif // !LINKED_LIST

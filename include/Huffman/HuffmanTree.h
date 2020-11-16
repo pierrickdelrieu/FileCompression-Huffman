@@ -9,6 +9,7 @@ LinkedList occChar  (void);
 
 HuffmanTree createHuffmanTree(Queue* occQueue);
 
+Queue*          createSortOccQueue      (void);
 
 
 
