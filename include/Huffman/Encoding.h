@@ -3,3 +3,4 @@
 
 
 #endif // !ENCODING
+void encoding_text(void);

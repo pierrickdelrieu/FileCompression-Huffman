@@ -9,7 +9,7 @@
 #include <stdlib.h>
 
 
-void encodage_texte_dictionary(void)
+void encoding_text(void)
 {
     FILE* FileToCompress = NULL;
     FILE* HuffmanCompression = NULL;
