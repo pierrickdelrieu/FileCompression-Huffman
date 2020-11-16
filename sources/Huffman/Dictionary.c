@@ -27,14 +27,6 @@ long int countLineFile(FILE* file)
     return line;
 }
 
-
-void addCharToString(char* c, char s, int size) {
-    size++;
-    realloc(c, size*sizeof(char));
-    int i = size - 1;
-    c[i] = s;
-}
-
 void printToFile( char* code, char letter, int sizecode, FILE* file) {
     fprintf(file, "%c:", letter);
     for (int i = 0; i < sizecode; i++)
@@ -43,9 +35,6 @@ void printToFile( char* code, char letter, int sizecode, FILE* file) {
     }
     fprintf(file, '\n');
 }
-
-
-
 
 
 void createDictionary(HuffmanTree huffman) {
@@ -140,8 +129,7 @@ void printDicoNode(DicoNode* dico, int lines) {
     }
 }
 
-
-void print_string(char* c, int size) {
+void printString(char* c, int size) {
     for (int i = 0; i < size; i++) {
         printf("%c", c[i]);
     }
