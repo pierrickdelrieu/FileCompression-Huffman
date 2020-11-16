@@ -203,3 +203,34 @@ int test_HuffmanTree(void) {
 
     return 1;
 }
+
+
+int test_dictionary(void) {
+    LinkedList head = createNode(createHuffmanNode((int)'a', 5));
+    addNode(&head, createNode(createHuffmanNode((int)'z', 5)));
+    addNode(&head, createNode(createHuffmanNode((int)'s', 5)));
+    addNode(&head, createNode(createHuffmanNode((int)'e', 4)));
+    addNode(&head, createNode(createHuffmanNode((int)'d', 3)));
+    addNode(&head, createNode(createHuffmanNode((int)'r', 3)));
+    addNode(&head, createNode(createHuffmanNode((int)'v', 3)));
+    addNode(&head, createNode(createHuffmanNode((int)'c', 1)));
+    addNode(&head, createNode(createHuffmanNode((int)'d', 1)));
+    addNode(&head, createNode(createHuffmanNode((int)'m', 1)));
+
+
+    Queue* occQueue = initQueue(); // Queue is sorted
+    occQueue->last = head;
+    occQueue->first = head->next->next->next->next->next->next->next->next->next;
+    //printf("\nWe have the following Queue : ");
+    // displayQueue(occQueue);
+
+    HuffmanTree tree = createHuffmanTree(occQueue);
+    // displayTree(tree);
+
+    createDictionary(tree);
+    int* lines;
+    DicoNode* dico = createDicoNode(&lines);
+    printDicoNode(dico, *lines);
+
+    return 1;
+}

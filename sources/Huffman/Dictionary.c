@@ -72,7 +72,7 @@ void printDictionaryOnFile(HuffmanNode* huffman, char* code, int sizecode, FILE*
 }
 
 DicoNode* createDicoNode(int** returnline) {
-    FILE* filedico = fopen("HuffmanDictionary.txt", "r");
+    FILE* filedico = fopen("TextFiles/HuffmanDictionary.txt", "r");
     if (filedico != NULL) {
 
         int lines = countLineFile(filedico);
@@ -134,12 +134,4 @@ void printString(char* c, int size) {
         printf("%c", c[i]);
     }
     printf("\n");
-}
-
-void printDicoNode(DicoNode* dico, int sizedico) {
-    if (dico != NULL) {
-        for (int i = 0; dico[i] != NULL; i++) {
-            printf("%c:\n", dico[i].letter);
-        }
-    }
 }

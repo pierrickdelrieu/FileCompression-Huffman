@@ -13,7 +13,7 @@ typedef struct DicoNode {
 
 
 void addCharToString(char* s, char c, int size);
-void printDictionaryOnFile(Leaf* huffman);
+void printDictionaryOnFile(HuffmanNode* huffman, char* code, int sizecode, FILE* file);
 long int countLineFile(FILE* file);
 void printToFile(int size, char* s, char c, FILE* file);
 void createDictionary(HuffmanTree huffman);
