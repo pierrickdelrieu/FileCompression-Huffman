@@ -15,6 +15,7 @@ HuffmanNode* getMin(Queue* occQueue, Queue* nodeQueue);
 
 HuffmanTree createHuffmanTree(Queue* occQueue);
 
+Queue*          createSortOccQueue      (void);
 
 
 

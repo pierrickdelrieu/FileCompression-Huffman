@@ -1,6 +1,6 @@
 /**
  * @file HuffmanTree.c
- * @author Harold Molter
+ * @author Pierrick Delrieu - Benjamins Lesieux - Harold Molter
  * @brief 
  * @version 0.1
  * @date 08-11-2020
@@ -137,4 +137,57 @@ HuffmanTree createHuffmanTree(Queue* occQueue) {
             pushQueue(&nodeQueue, parent);
         }
     }
+}
+
+
+
+
+/**
+ * @brief Create a Sort Queue From Occ List object
+ * 
+ * @param list 
+ * @return Queue* 
+ */
+Queue* createSortOccQueue(void) { 
+
+    Node* list = occChar();
+    
+    // list not empty
+    if (list != NULL) {
+        int nb = 1;                     // security on pushQueue
+        Node* min = NULL;               // Node with least occurrences
+        Node* prec = NULL;              // Previous Node of min
+        Queue* f = initQueue();         // Queue to return
+
+        // Repeat process size times to go through whole list
+        while((list != NULL) && (nb != 0)) {
+
+            // prec always initialised to first node and min is being searched
+            prec = list;
+            min = findMinOccLetter(list);
+
+            // Node with least occurrences is the first one
+            if (prec == min) {
+                list = list->next;
+                nb = pushQueue(&f, min->data);
+            }
+            // go through list to find previous Node of min
+            else {
+                while (prec->next != min) {
+                    prec = prec->next;
+                }
+
+                // connect previous Node to the one after min and enqueue min
+                prec->next = min->next;
+                nb = pushQueue(&f, min->data); // don't know how to use it though
+            }
+        }
+        return f;
+
+        // list is empty
+    }
+
+    // list is empty
+    return NULL;
+    
 }

@@ -1,6 +1,6 @@
 /**
  * @file LinkedList.c
- * @author Benjamin Lesieux
+ * @author Benjamin Lesieux - Harold Molter
  * @brief All the basic functions of a linked list
  * @details Part 2 of project
  * @version 1.0

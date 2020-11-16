@@ -157,26 +157,21 @@ static void displayLinkedList(LinkedList l) {
 */
 
 int test_Occurrences(void) {
-    /*
-    initFileToCompress("");
-    LinkedList list = occChar();
-    if ((list == NULL) && (numberCharInFile("TextFiles/FileToCompress.txt") != 0)) return 0;
-    if ((list != NULL) && (numberCharInFile("TextFiles/FileToCompress.txt") == 0)) return 0;
-    if (getSize(list) != numberCharInFile("TextFiles/FileToCompress.txt")) return 0;
-    // displayLinkedList(list);
-    return 1;
-    */
+    
+    // initFileToCompress("");
+    // LinkedList list = occChar();
+    // if ((list == NULL) && (numberCharInFile("TextFiles/FileToCompress.txt") != 0)) return 0;
+    // if ((list != NULL) && (numberCharInFile("TextFiles/FileToCompress.txt") == 0)) return 0;
+    // if (getSize(list) != numberCharInFile("TextFiles/FileToCompress.txt")) return 0;
+    // // displayLinkedList(list);
+    
    
-    Node* list = occChar();
-    printf("Liste : ");
-    displayLinkedList(list);
-    printf("\n");
-    Queue* f = sortList(&list);
+    // initFileToCompress("alice");
+    Queue* f = createSortOccQueue();
     printf("Queue : ");
     displayQueue(f);
     printf("\n");
-    printf("Liste : ");
-    displayLinkedList(list);
+
 
     return 1;
 }
