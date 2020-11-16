@@ -26,6 +26,8 @@ void    createBinaryFileOfFileToCompress    (void);
 int     numberCharInFile                    (char* filePath);
 void    initFileToCompress                  (char *txt);
 
+float   ratioCompression                    (void);
+
 
 
 #endif // !FILE_MANAGMENT
