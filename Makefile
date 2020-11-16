@@ -31,7 +31,10 @@ $(OBJECTS)main.o : $(INCLUDE)FileManagment.h \
 	
 
 #IHMCOMPRESSOR
-$(OBJECTS)IHMCompressor/Menu.o : $(INCLUDE)IHMCompressor/Menu.h \
+$(OBJECTS)IHMCompressor/Menu.o : $(INCLUDE)IHMCompressor/Menu.h  \
+								 $(INCLUDE)IHMCompressor/Scan.h  \
+								 $(INCLUDE)IHMCompressor/Show.h  \
+								 $(SOURCES)FileManagment.h  \
 								$(SOURCES)IHMCompressor/Menu.c
 	$(COMPILER) -c -g -Wall $(SOURCES)IHMCompressor/Menu.c -o $(OBJECTS)IHMCompressor/Menu.o
 

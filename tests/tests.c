@@ -19,27 +19,6 @@
 
 
 /**
- * @brief Initialization of the contents of the file to compress in order to know the noramlement results obtained
- * 
- */
-static void initFileToCompress(char *txt) {
-    FILE *file = NULL;
-    file = fopen("TextFiles/FileToCompress.txt", "w");
-
-    // If the file is opened correctly
-    if (file != NULL) {
-        fputs(txt, file);
-        fclose(file);
-    }
-        // If the file is not opened correctly
-    else {
-        printf("TEST : FILE OPENING ERROR\n");
-        exit(EXIT_FAILURE); // Forced program exit with failure
-    }
-}
-
-
-/**
  * @brief FileManagement function test (part 1 of project)
  * 
  * @return int 1 if test ok and 0 else
@@ -207,7 +186,7 @@ int test_HuffmanTree(void) {
     // occQueue->last = head;
     // occQueue->first = head->next->next->next->next->next->next->next->next->next;
 
-    initFileToCompress("abcccc");
+    initFileToCompress("ab\ncccc");
     Queue* occQueue = createSortOccQueue();
     printf("\nWe have the following Queue : ");
     displayQueue(occQueue);
