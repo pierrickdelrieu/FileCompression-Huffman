@@ -1,19 +1,13 @@
 #ifndef HUFFMAN_TREE
 #define HUFFMAN_TREE
 
-typedef struct HuffmanNode {
-    int letter;
-    int occ;
-    struct HuffmanNode* right;
-    struct HuffmanNode* left;
-} HuffmanNode;
+#include "../../include/DataStructures/Queue.h"
 
-///@brief Defines the pointer of a doubly linked list
-typedef Node* LinkedList;
+typedef HuffmanNode* HuffmanTree;
 
-typedef struct Node {
-    HuffmanNode* data;
-    struct Node* next;
-} Node;
+LinkedList occChar  (void);
+
+HuffmanTree createHuffmanTree(Queue* occQueue);
+
 
 #endif // !HUFFMAN_TREE

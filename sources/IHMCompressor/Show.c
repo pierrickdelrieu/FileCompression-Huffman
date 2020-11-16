@@ -32,3 +32,12 @@ void displayErrorMessageOpenFile(void) {
 void cleanTerminal(void) {
     system(strcmp(OPERATING_SYSTEM, "win") == 0 ? "cls" : "clear");
 }
+
+/**
+ * @brief Display of an error message and forced exit from the program when there is a memory allocation problem
+ */
+void displayErrorMemoryAllocation(void) {
+    printf("MEMORY ALLOCATION ERROR\n");
+    exit(EXIT_FAILURE); // Forced program exit with failure
+}
+

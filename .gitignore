@@ -1,7 +1,8 @@
 # Prerequisites
 *.d
 
-# Object files
+# Object file
+/objects
 *.o
 *.ko
 *.obj
@@ -29,6 +30,7 @@
 *.dylib
 
 # Executables
+/binaries
 *.exe
 *.out
 *.app
@@ -54,22 +56,9 @@ dkms.conf
 cmake-build-debug
 .idea
 .vscode
+/.vs*
 
 
 # Pierrick's files
-documentation
 huffman.code-workspace
 .DS_Store
-/.vs/slnx.sqlite
-/.vs/FileCompression-Huffman/v16/ipch/AutoPCH/3c199c9a415fbe00/DICTIONARY.ipch
-/.vs/FileCompression-Huffman/v16/Browse.VC.db-wal
-/.vs/FileCompression-Huffman/v16/Browse.VC.opendb
-/.vs/FileCompression-Huffman/v16/Browse.VC.db-shm
-/.vs/FileCompression-Huffman/v16/Browse.VC.db
-/.vs/VSWorkspaceState.json
-/.vs/ProjectSettings.json
-/.vs/FileCompression-Huffman/v16/ipch/AutoPCH/e598ac2384f80195/FILEMANAGMENT.ipch
-/.vs/FileCompression-Huffman/v16/ipch/AutoPCH/ac280d3d3a12c17/MENU.ipch
-/.vs/FileCompression-Huffman/v16/ipch/AutoPCH/5790faf32ffed24e/MAIN.ipch
-/.vs/FileCompression-Huffman/v16/ipch/AutoPCH/54ec0904112250b1/SHOW.ipch
-/.vs/FileCompression-Huffman/v16/ipch/AutoPCH/3ef1942ce115ee05/SCAN.ipch
