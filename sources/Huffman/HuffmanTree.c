@@ -70,41 +70,55 @@ LinkedList occChar(void) {
  * @return int 1 if occ(node1) > occ(node2)
  *             -1 if occ(node1) < occ(node2)
  *             0 if occ(node1) = occ(node2)
+ * If one of the two nodes is NULL the smaller will be then the existing one
  */
-int compareHuffmanNode(HuffmanNode *node1, HuffmanNode *node2) {
+static int compareNodeQueue(Node *node1, Node *node2) {
     if ((node1 == NULL) && (node2 == NULL)) {
         return 0;
     } else if ((node1 == NULL) && (node2 != NULL)) {
-        return -1;
+        return 1;
     } else if ((node1 != NULL) && (node2 == NULL)) {
+        return -1;
+    } else if ((node1->data == NULL) && (node2->data == NULL)) {
+        return 0;
+    } else if ((node1->data == NULL) && (node2->data != NULL)) {
+        return -1;
+    } else if ((node1->data != NULL) && (node2->data == NULL)) {
         return 1;
-    } else if (node1->occ > node2->occ) {
+    } else if (node1->data->occ > node2->data->occ) {
         return 1;
-    } else if (node1->occ < node2->occ) {
+    } else if (node1->data->occ < node2->data->occ) {
         return -1;
     } else {
         return 0;
     }
 }
 
-// HuffmanNode* returnSortNode(Queue* occQueue; Queue* nodeQueue)
-
-HuffmanNode* getMin(Queue* occQueue, Queue* nodeQueue) {
+/**
+ * @brief Get the Min object
+ * @details The function compare compareNodeQueue is essential for the operation of this function
+ * 
+ * @param occQueue Queue of occurrence sort
+ * @param nodeQueue Tail containing Huffman Nodes
+ * @return HuffmanNode* The smaller node of the two queues (by favoring the queue of occurrence if the occurences are equal)
+ */
+static HuffmanNode* getMin(Queue* occQueue, Queue* nodeQueue) {
 
     HuffmanNode* min = NULL;
 
-    int compare = compareHuffmanNode(occQueue->first, nodeQueue->first);
+    int compare = compareNodeQueue(occQueue->first, nodeQueue->first);
 
     if (compare == 1) {
-        min = pullQueue(&occQueue);
-    } else if (compare == -1) {
         min = pullQueue(&nodeQueue);
+    } else if (compare == -1) {
+        min = pullQueue(&occQueue);
     } else {
         min = pullQueue(&occQueue);
     }
 
     return min;
 }
+
 
 HuffmanTree createHuffmanTree(Queue* occQueue) {
 
@@ -115,11 +129,6 @@ HuffmanTree createHuffmanTree(Queue* occQueue) {
     }
 
     while ((getSize(occQueue->last) != 0) || (getSize(nodeQueue->last) >= 1)) {
-
-//        printf("\nOccQueue : ");
-//        displayQueue(occQueue);
-//        printf("\nNodeQueue : ");
-//        displayQueue(nodeQueue);
 
         int occQSize = getSize(occQueue->last);
         int nodeQSize = getSize(nodeQueue->last);
@@ -137,6 +146,7 @@ HuffmanTree createHuffmanTree(Queue* occQueue) {
             pushQueue(&nodeQueue, parent);
         }
     }
+  return NULL;
 }
 
 
@@ -183,11 +193,8 @@ Queue* createSortOccQueue(void) {
             }
         }
         return f;
-
-        // list is empty
     }
 
     // list is empty
     return NULL;
-    
 }
