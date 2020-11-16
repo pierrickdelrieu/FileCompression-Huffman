@@ -62,5 +62,3 @@ cmake-build-debug
 # Pierrick's files
 huffman.code-workspace
 .DS_Store
-binaries/compressor
-

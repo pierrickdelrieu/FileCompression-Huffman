@@ -10,7 +10,4 @@ LinkedList occChar  (void);
 HuffmanTree createHuffmanTree(Queue* occQueue);
 
 
-
-
-
 #endif // !HUFFMAN_TREE
