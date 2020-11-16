@@ -228,9 +228,9 @@ int test_dictionary(void) {
     // displayTree(tree);
 
     createDictionary(tree);
-    int* lines;
-    DicoNode* dico = createDicoNode(&lines);
-    printDicoNode(dico, *lines);
+    //int* lines;
+    //DicoNode* dico = createDicoNode(&lines);
+    //printDicoNode(dico, *lines);
 
     return 1;
 }

@@ -60,6 +60,7 @@ $(OBJECTS)Huffman/Encoding.o : $(INCLUDE)Huffman/Encoding.h  \
 
 $(OBJECTS)Huffman/Dictionary.o : $(INCLUDE)Huffman/Dictionary.h  \
 								$(INCLUDE)IHMCompressor/Show.h  \
+								$(INCLUDE)Huffman/HuffmanTree.h \
 								$(SOURCES)Huffman/Dictionary.c
 	$(COMPILER) -c -g -Wall $(SOURCES)Huffman/Dictionary.c -o $(OBJECTS)Huffman/Dictionary.o
 
