@@ -98,6 +98,7 @@ tests/tests.o : tests/tests.h  \
 				$(INCLUDE)DataStructures/LinkedList.h  \
 				$(INCLUDE)DataStructures/Queue.h  \
 				$(INCLUDE)Huffman/HuffmanTree.h  \
+				$(INCLUDE)Huffman/Dictionary.h  \
 				tests/tests.c
 	$(COMPILER) -c -g -Wall tests/tests.c -o tests/tests.o
 

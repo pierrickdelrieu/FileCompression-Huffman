@@ -16,7 +16,7 @@
 #include "../include/DataStructures/LinkedList.h"
 #include "../include/DataStructures/Queue.h"
 #include "../include/Huffman/HuffmanTree.h"
-
+#include "../include/Huffman/Dictionary.h"
 
 /**
  * @brief Initialization of the contents of the file to compress in order to know the noramlement results obtained
