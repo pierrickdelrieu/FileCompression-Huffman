@@ -155,13 +155,29 @@ static void displayLinkedList(LinkedList l) {
 * @brief Test function for analysing occurrence of characters in a file occChar()
  * @return int 1 if test ok and 0 else
 */
+
 int test_Occurrences(void) {
+    /*
     initFileToCompress("");
     LinkedList list = occChar();
     if ((list == NULL) && (numberCharInFile("TextFiles/FileToCompress.txt") != 0)) return 0;
     if ((list != NULL) && (numberCharInFile("TextFiles/FileToCompress.txt") == 0)) return 0;
     if (getSize(list) != numberCharInFile("TextFiles/FileToCompress.txt")) return 0;
     // displayLinkedList(list);
+    return 1;
+    */
+   
+    Node* list = occChar();
+    printf("Liste : ");
+    displayLinkedList(list);
+    printf("\n");
+    Queue* f = sortList(&list);
+    printf("Queue : ");
+    displayQueue(f);
+    printf("\n");
+    printf("Liste : ");
+    displayLinkedList(list);
+
     return 1;
 }
 
