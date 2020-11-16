@@ -99,3 +99,46 @@ HuffmanNode *pullQueue(Queue **f) {
     // If the Queue has not been initialized
     return NULL;
 }
+
+Queue* sortList(Node** list) {
+    // list not empty
+    if (*list != NULL) {
+        int nb = 0;                     // security on pushQueue
+        Node* min = NULL;               // Node with least occurrences
+        Node* prec = NULL;              // Previous Node of min
+        Queue* f = initQueue();         // Queue to return
+        int size = getSize(*list);      // size of list to do a loop.
+        int i = 0;                      // counter
+
+        // Repeat process size times to go through whole list
+        for (i = 0; i < size; i++) {
+
+            // prec always initialised to first node and min is being searched
+            prec = *list;
+            min = findMinOccLetter(*list);
+
+            // Node with least occurrences is the first one
+            if (prec == min) {
+                *list = (*list)->next;
+                nb = pushQueue(&f, min->data);
+
+                // go through list to find previous Node of min
+            }
+            else {
+                while (prec->next != min) {
+                    prec = prec->next;
+                }
+
+                // connect previous Node to the one after min and enqueue min
+                prec->next = min->next;
+                nb = pushQueue(&f, min->data); // don't know how to use it though
+            }
+        }
+        return f;
+
+        // list is empty
+    }
+    else {
+        return NULL;
+    }
+}

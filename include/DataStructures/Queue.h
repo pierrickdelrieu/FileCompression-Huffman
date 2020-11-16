@@ -17,6 +17,7 @@ typedef struct Queue {
 Queue*          initQueue     (void);
 int             pushQueue     (Queue** f, HuffmanNode* nx_elem);
 HuffmanNode*    pullQueue     (Queue** f);
+Queue*          sortList      (Node** list);
 
 
 #endif // !QUEUE
