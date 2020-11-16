@@ -227,7 +227,8 @@ int test_dictionary(void) {
     HuffmanTree tree = createHuffmanTree(occQueue);
     // displayTree(tree);
 
-    createDictionary(tree);
+    char* code = NULL;
+    printDictionaryOnFile(tree, code, 0);
     //int* lines;
     //DicoNode* dico = createDicoNode(&lines);
     //printDicoNode(dico, *lines);

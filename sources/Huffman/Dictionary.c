@@ -5,19 +5,39 @@
 #include "../../include/IHMCompressor/Show.h"
 
 char *addCharToNewString(char *c, char s, int size) {
-    size++;
-    char *new_c = (char *) malloc(size * sizeof(char));
-    int i;
-    for (i = 0; i < size - 1; i++) {
-        new_c[i] = c[i];
+
+    if (c != NULL) {
+        char* new_c = (char*)malloc(size * sizeof(char));
+        int i;
+        for (i = 0; i < size - 1; i++) {
+            new_c[i] = c[i];
+        }
+        new_c[i] = s;
+        return new_c;
     }
-    new_c[i] = s;
-    return new_c;
+    else {
+        char* new_c = (char*)malloc(sizeof(char));
+        new_c[0] = s;
+        return new_c;
+    }
+    
 }
 
-long int countLineFile(FILE *file) {
+int sizeOfLineFile(FILE *file) {
+    int size = 0;
+    int n = fgetc(file);
+    while (n != EOF && n != '/') {
+        size++;
+        n = fgetc(file);
+    }
+    return size;
+}
+
+
+int countLineFile(FILE* file)
+{
     int n;
-    long int line = 0;
+    int line = 0;
     while ((n = fgetc(file)) != EOF) {
         if (n == '\n') {
             line++;
@@ -27,51 +47,17 @@ long int countLineFile(FILE *file) {
     return line;
 }
 
-void printToFile(char *code, char letter, int sizecode, FILE *file) {
-    printf("\nThere are fishes");
-    fprintf(file, "%c:", letter);
-    for (int i = 0; i < sizecode; i++) {
-        fprintf(file, "%c", code[i]);
-    }
-    fprintf(file, '\n');
-}
-
-int sizeOfLineFile(FILE *file) {
-    int size = 0;
-    int n = fgetc(file);
-    while (n != EOF && n != '\n') {
-        size++;
-        n = fgetc(file);
-    }
-    return size;
-}
-
-void createDictionary(HuffmanTree huffman) {
-
-    if (huffman != NULL) {
-        printf("\nBefore the before");
-        FILE *dictionary = fopen("../../TextFiles/HuffmanDictionary.txt", "w+");
-        int sizecode = 1;
-        printf("\nBefore");
-        printDictionaryOnFile(huffman->left, "0", sizecode, dictionary);
-        printDictionaryOnFile(huffman->right, "1", sizecode, dictionary);
-        printf("\nAfter");
-        int returnCode = fclose(dictionary);
-        if (returnCode == EOF) {
-            printf("Erreur lors de la fermeture du fichier.\n");
-        }
-    }
-}
-
-void printDictionaryOnFile(HuffmanNode *huffman, char *code, int sizecode, FILE *file) {
+void printDictionaryOnFile(HuffmanNode *huffman, char *code, int sizecode) {
     printf("\nEntering");
     if (huffman != NULL) {
         if (huffman->left == NULL && huffman->right == NULL) {
+            FILE* file = fopen("../../TextFiles/HuffmanDictionary.txt", "a+");
             fprintf(file, "%c:", huffman->letter);
             for (int i = 0; i < sizecode; i++) {
                 fprintf(file, "%c", code[i]);
             }
-            fprintf(file, '\n');
+            fprintf(file, '/');
+            fclose(file);
         } else {
 
             printf("\nInto the unknown");
@@ -81,13 +67,13 @@ void printDictionaryOnFile(HuffmanNode *huffman, char *code, int sizecode, FILE 
                 printf("\nOriginal : %s", code);
                 char *code1 = addCharToNewString(code, '0', sizecode);
                 printf("\nThe char : %s", code1);
-                printDictionaryOnFile(huffman->left, code1, sizecode + 1, file);
+                printDictionaryOnFile(huffman->left, code1, sizecode + 1);
                 free(code1);
             }
             if (huffman->right != NULL) {
                 char *code2 = addCharToNewString(code, '1', sizecode);
                 printf("\nThe char : %s", code2);
-                printDictionaryOnFile(huffman->right, code2, sizecode + 1, file);
+                printDictionaryOnFile(huffman->right, code2, sizecode + 1);
                 free(code2);
             }
         }
