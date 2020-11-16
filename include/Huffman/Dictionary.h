@@ -5,8 +5,17 @@
 #ifndef DICTIONARY
 #define DICTIONARY
 
-void add_char_to_string(char* s, char c, int size);
-void print_dictionary(Leaf* huffman);
-void print_to_file(int size, char* s, char c, FILE* file);
+typedef struct DicoNode {
+	char* code;	//Binary
+	char letter;
+	int sizecode;
+}DicoNode;
+
+
+void addCharToString(char* s, char c, int size);
+void printDictionaryOnFile(Leaf* huffman);
+void printToFile(int size, char* s, char c, FILE* file);
+
+DicoNode* readDictionary();
 
 #endif // !DICTIONARY
