@@ -5,59 +5,90 @@
 #include "../../include/Huffman/Encoding.h"
 #include "../../include/Huffman/Dictionary.h"
 
-void encodage_texte_dico(void){
+#include <stdio.h>
+#include <stdlib.h>
+
+
+void encodage_texte_dictionary(void)
+{
     FILE* FileToCompress = NULL;
     FILE* HuffmanCompression = NULL;
     FILE* HuffmanDictionary = NULL;
-    int jason;
-    char lettre;
+
+    char letter,dictionary,copy;
 
 
     FileToCompress = fopen("FileToCompress.txt","r");
     HuffmanDictionary = fopen("HuffmanDictionary.txt","r");
-    HuffmanCompression = fopen("HuffmanCompression.txt","w");
-    if ((FileToCompress != NULL ) &&  (HuffmanDictionary!= NULL) && (HuffmanCompression !=NULL)){
+    HuffmanCompression = fopen("HuffmanCompression.txt","w+");
+    if ((FileToCompress != NULL ) &&  (HuffmanDictionary!= NULL) && (HuffmanCompression !=NULL))
+    {
 
-        do {  lettre = fgetc(FileToCompress);
-            printf("%c",lettre);
-            //while (lettre!=EOF){
-            //lettre = fgetc(FileToCompress);
-            if (lettre!= '\n'){
-                char dico = fgetc(HuffmanDictionary);
-                if (dico == lettre && (dico!=EOF)) {
-                    //printf("test");
+        do
+        {
+            letter = fgetc(FileToCompress);
+
+            //while (letter!=EOF){
+            //letter = fgetc(FileToCompress);
+            if (letter!= '\n')
+            {
+                dictionary = fgetc(HuffmanDictionary);
+                if (dictionary == letter && (dictionary!=EOF))
+                {
+
                     fseek(HuffmanDictionary,1,SEEK_CUR);
-                    do{
-                        jason = fgetc(HuffmanDictionary);
-                        fputc(jason,HuffmanCompression);
-                    }while((jason != EOF) && (jason !='\n'));
+                    do
+                    {
+                        copy = fgetc(HuffmanDictionary);
+                        fputc(copy,HuffmanCompression);
+
+
+                    }
+                    while((copy != EOF) && (copy !='\n'));
                     rewind(HuffmanDictionary);
+                    copy= fgetc(HuffmanDictionary);
+
+
                 }
-                else{
-                    do{
-                        //printf("oui");
-                        printf("%c",dico);
-                        dico= fgetc(HuffmanDictionary);
-                        if  ((dico == lettre) && (dico!=EOF)) {
+                else
+                {
+                    do  //Parcours le dictionnaire tant qu'il n'est pas fini ou qu'on a pas trouvé la letter
+                    {
+
+                        printf("%c",dictionary);
+                        dictionary=fgetc(HuffmanDictionary);
+                        if  ((dictionary == letter) && (dictionary!=EOF))            ///  c KC.
+                        {
+
+
                             fseek(HuffmanDictionary,1,SEEK_CUR);
-                            do{
-                                jason = fgetc(HuffmanDictionary);
-                                fputc(jason,HuffmanCompression);
-                            }while((jason != EOF) && (jason !='\n'));
+                            do
+                            {
+                                copy = fgetc(HuffmanDictionary);
+                                // if (copy =! '\n'){
+                                fputc(copy,HuffmanCompression);//}
+
+                            }
+                            while((copy != EOF) && (copy !='\n'));
                             rewind(HuffmanDictionary);
                         }
-                    }while ((dico!=lettre)&& (dico!=EOF)&& (dico!='\n'));
+                    }
+                    while ((dictionary!=letter)&& (dictionary!=EOF));
 
                 }
 
-            }}while (lettre!=EOF);
+            }
+        }
+        while ((letter!=EOF)&&(letter!='\n'));
 
 
 
         fclose(FileToCompress);
         fclose(HuffmanCompression);
         fclose(HuffmanDictionary);
-    }}
+    }
+}
 /* else {
      displayErrorMessageOpenFile();
  }*/
+
