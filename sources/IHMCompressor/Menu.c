@@ -16,7 +16,7 @@ int displayMenu(void) {
     do {
         cleanTerminal();
         printf("************************************************************************\n");
-        printf("                             FILE COMPRESSOR                            \n");
+        printf("                           * FILE COMPRESSOR *                          \n");
         printf("                                (Huffman)                               \n\n");
         
         printf("          Choice :\n");

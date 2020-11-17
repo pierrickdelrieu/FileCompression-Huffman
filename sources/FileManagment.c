@@ -159,7 +159,7 @@ int numberCharInFile(char *filePath) {
 
 
 float ratioCompression(void) {
-    float nbHuffmanCompression = (float) numberCharInFile("TextFiles/HuffmanCompression.txt");
+    float nbHuffmanCompression = (float) (numberCharInFile("TextFiles/HuffmanCompression.txt") + numberCharInFile("TextFiles/HuffmanDictionary.txt"));
     float nbBinaryFile = (float) numberCharInFile("TextFiles/BinaryFile.txt");
 
     if((nbBinaryFile == 0) || (nbHuffmanCompression == 0)){

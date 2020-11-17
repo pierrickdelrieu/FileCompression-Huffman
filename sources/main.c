@@ -20,7 +20,7 @@ int main(void) {
             addText();
         } 
         else if(choice == COMPRESS) {
-            // compressFile();
+            compressFile();
         }
         else if(choice == DECOMPRESS) {
 
