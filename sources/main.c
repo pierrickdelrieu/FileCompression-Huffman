@@ -13,8 +13,8 @@ int main(void) {
     printf("test queue : %d\n", test_Queue());
     printf("test occ : %d\n", test_Occurrences());
     printf("test hufftree : %d\n", test_HuffmanTree());
-    printf("Test dictionary :\n");
-    test_dictionary();
+    printf("Test dictionary : %d\n", test_Dictionary());
+
 
     return EXIT_SUCCESS;
 }

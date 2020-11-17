@@ -49,13 +49,12 @@ int sizeOfLineFile(FILE *file) {
 void createDictionary(HuffmanTree huffman) {
 
     if (huffman != NULL) {
-        printf("\nBefore the before");
-        FILE *dictionary = fopen("../../TextFiles/HuffmanDictionary.txt", "w+");
+        FILE *dictionary = fopen("TextFiles/HuffmanDictionary.txt", "w+");
+
         int sizecode = 1;
-        printf("\nBefore");
+
         printDictionaryOnFile(huffman->left, "0", sizecode, dictionary);
         printDictionaryOnFile(huffman->right, "1", sizecode, dictionary);
-        printf("\nAfter");
         int returnCode = fclose(dictionary);
         if (returnCode == EOF) {
             printf("Erreur lors de la fermeture du fichier.\n");
@@ -64,29 +63,22 @@ void createDictionary(HuffmanTree huffman) {
 }
 
 void printDictionaryOnFile(HuffmanNode *huffman, char *code, int sizecode, FILE *file) {
-    printf("\nEntering");
     if (huffman != NULL) {
         if (huffman->left == NULL && huffman->right == NULL) {
             fprintf(file, "%c:", huffman->letter);
             for (int i = 0; i < sizecode; i++) {
                 fprintf(file, "%c", code[i]);
             }
-            fprintf(file, '\n');
+            fprintf(file, "\n");
         } else {
 
-            printf("\nInto the unknown");
-
             if (huffman->left != NULL) {
-                printf("\nLeft !");
-                printf("\nOriginal : %s", code);
                 char *code1 = addCharToNewString(code, '0', sizecode);
-                printf("\nThe char : %s", code1);
                 printDictionaryOnFile(huffman->left, code1, sizecode + 1, file);
                 free(code1);
             }
             if (huffman->right != NULL) {
                 char *code2 = addCharToNewString(code, '1', sizecode);
-                printf("\nThe char : %s", code2);
                 printDictionaryOnFile(huffman->right, code2, sizecode + 1, file);
                 free(code2);
             }

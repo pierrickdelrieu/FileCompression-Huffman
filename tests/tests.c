@@ -205,7 +205,7 @@ int test_HuffmanTree(void) {
 }
 
 
-int test_dictionary(void) {
+int test_Dictionary(void) {
     LinkedList head = createNode(createHuffmanNode((int)'a', 5));
     addNode(&head, createNode(createHuffmanNode((int)'z', 5)));
     addNode(&head, createNode(createHuffmanNode((int)'s', 5)));
@@ -228,9 +228,11 @@ int test_dictionary(void) {
     // displayTree(tree);
 
     createDictionary(tree);
-    //int* lines;
-    //DicoNode* dico = createDicoNode(&lines);
+    int* lines;
+    DicoNode* dico = createDicoNode(&lines);
     //printDicoNode(dico, *lines);
+
+    if (dico == NULL) return 0;
 
     return 1;
 }
