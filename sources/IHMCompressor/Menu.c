@@ -13,24 +13,24 @@
 #define POURCENT 37
 
 
-int displayMenu(void) {
+void displayMenu(void) {
+    int choice;
+    do {
+        cleanTerminal();
+        printf("************************************************************************\n");
+        printf("                             FILE COMPRESSOR                            \n");
+        printf("                                (Huffman)                               \n\n");
+        
+        printf("          Choice :\n");
+        printf("                1) Add text to FileTo Compress\n");
+        printf("                2) Compress File\n");
+        printf("                3) Decompress File\n");
+        printf("                4) Quit\n\n");
 
-    printf("************************************************************************\n");
-    printf("                             FILE COMPRESSOR                            \n");
-    printf("                                (Huffman)                               \n\n");
-    
-    printf("          Choice :\n");
-    printf("                1) Add text to FileTo Compress\n");
-    printf("                2) Compress File\n");
-    printf("                3) Decompress File\n");
-    printf("                4) Quit\n\n");
-
-    printf("          Enter value (1-4) : ");
-    // int choice = scanChoiceMenu();
-    cleanTerminal();
-
-
-    return 1;
+        printf("          Enter value (1-4) : ");
+        
+        scanInteger(&choice);
+    } while((choice != 1) && (choice != 2) && (choice != 3) && (choice != 4));
 }
 
 
@@ -58,7 +58,9 @@ void compressFile(void) {
 
     // ajouter la compression avec le temps de compression
 
+
     do {
+        cleanTerminal();
         printf("************************************************************************\n");
         printf("                           * FILE COMPRESSOR *                          \n");
         printf("                                (Huffman)                               \n\n");
@@ -70,8 +72,8 @@ void compressFile(void) {
         printf("                    Compression ratio : %.2f %c\n", ratioCompression(), POURCENT);
         printf("                    Compression time : \n\n");
         printf("          Enter Q to return to the menu : ");
-        
-        scanf("%c",&choice);
+
+        scanString(&choice);
 
         cleanTerminal();
     } while(choice != 'Q');

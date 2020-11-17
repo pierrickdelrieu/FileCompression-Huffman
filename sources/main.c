@@ -14,8 +14,9 @@ int main(void) {
     // printf("test queue : %d\n", test_Queue());
     // printf("test occ : %d\n", test_Occurrences());
     // printf("test hufftree : %d\n", test_HuffmanTree());
-    
-    compressFile();
+
+    // compressFile();
+    displayMenu();
 
     return EXIT_SUCCESS;
 }

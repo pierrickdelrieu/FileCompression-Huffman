@@ -3,10 +3,14 @@
 #include "../../include/IHMCompressor/Scan.h"
 
 
-int scanChoiceMenu(void) {
-
+void scanInteger(int* integer) {
+    fflush(stdin);
+    scanf("%d", integer);
+    fflush(stdout);
 }
 
-char* scanText(void) {
-
+void scanString(char* string) {
+    fflush(stdin);
+    scanf("%c",string);
+    fflush(stdout);
 }
