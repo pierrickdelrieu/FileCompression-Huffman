@@ -1,8 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/FileManagment.h"
-#include "../include/Huffman/Encoding.h"
-#include "../include/Huffman/Decoding.h"
 #include "../tests/tests.h"
 #include "../include/IHMCompressor/Menu.h"
 

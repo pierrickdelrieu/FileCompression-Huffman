@@ -26,13 +26,13 @@ void displayErrorMessageOpenFile(void) {
 }
 
 
-
 /**
  * @brief Cleaning of terminal elements for linux, windows and mac operating systems
  */
 void cleanTerminal(void) {
     system(strcmp(OPERATING_SYSTEM, "win") == 0 ? "cls" : "clear");
 }
+
 
 /**
  * @brief Display of an error message and forced exit from the program when there is a memory allocation problem
@@ -41,6 +41,7 @@ void displayErrorMemoryAllocation(void) {
     printf("MEMORY ALLOCATION ERROR\n");
     exit(EXIT_FAILURE); // Forced program exit with failure
 }
+
 
 /**
  * @brief Pauses program execution for n seconds
