@@ -12,16 +12,13 @@ typedef struct DicoNode {
 }DicoNode;
 
 
-void addCharToString(char* s, char c, int size);
-void printDictionaryOnFile(HuffmanNode* huffman, char* code, int sizecode, FILE* file);
-long int countLineFile(FILE* file);
+char* addCharToNewString(char* c, char s, int size);
+int countLineFile(FILE* file);
+void printDictionaryOnFile(HuffmanNode* huffman, char* code, int sizecode);
 void printToFile(char* code, char letter, int sizecode, FILE* file);
-void createDictionary(HuffmanTree huffman);
-void printDictionaryOnFile(HuffmanNode* huffman, char* code, int sizecode, FILE* file);
 DicoNode* createDicoNode(int** returnline);
 void printString(char* c, int size);
 void printDicoNode(DicoNode* dico, int lines);
 void readDictionary(FILE* filedico, DicoNode* dico);
-int sizeOfLineFile(FILE* file);
 
 #endif // !DICTIONARY
