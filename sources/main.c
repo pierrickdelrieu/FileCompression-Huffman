@@ -23,7 +23,7 @@ int main(void) {
             compressFile();
         }
         else if(choice == DECOMPRESS) {
-
+            decompressFile();
         }
     } while(choice != QUIT);
     

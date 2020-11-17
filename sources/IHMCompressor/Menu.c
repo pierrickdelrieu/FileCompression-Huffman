@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-// #include <unistd.h>
 #include "../../include/IHMCompressor/Menu.h"
 #include "../../include/FileManagment.h"
 #include "../../include/IHMCompressor/Scan.h"
@@ -51,7 +50,6 @@ void addText(void) {
     printf("                                (Huffman)                               \n\n");
     printf("          The text has been added\n");
     stopExe(3);
-    cleanTerminal();
 }
 
 
@@ -77,6 +75,26 @@ void compressFile(void) {
 
         scanString(&choice);
 
+    } while(choice != 'Q');
+}
+
+
+void decompressFile(void) {
+    char choice;
+
+    // ajouter la decompression avec le temps de compression
+
+
+    do {
         cleanTerminal();
+        printf("************************************************************************\n");
+        printf("                           * FILE COMPRESSOR *                          \n");
+        printf("                                (Huffman)                               \n\n");
+        printf("          The file has been decompressed\n");
+        printf("                    Compression time : \n\n");
+        printf("          Enter Q to return to the menu : ");
+
+        scanString(&choice);
+
     } while(choice != 'Q');
 }
