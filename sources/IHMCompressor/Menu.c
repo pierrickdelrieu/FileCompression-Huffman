@@ -1,19 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+// #include <unistd.h>
 #include "../../include/IHMCompressor/Menu.h"
 #include "../../include/FileManagment.h"
 #include "../../include/IHMCompressor/Scan.h"
 #include "../../include/IHMCompressor/Show.h"
 
 
-#define ADDTEXT 1
-#define COMPRESS 2
-#define DECOMPRESS 3
-#define QUIT 4
 #define POURCENT 37
 
 
-void displayMenu(void) {
+int displayMenu(void) {
     int choice;
     do {
         cleanTerminal();
@@ -31,16 +29,20 @@ void displayMenu(void) {
         
         scanInteger(&choice);
     } while((choice != 1) && (choice != 2) && (choice != 3) && (choice != 4));
+
+    return choice;
 }
 
 
 void addText(void) {
+    cleanTerminal();
     printf("************************************************************************\n");
     printf("                           * FILE COMPRESSOR *                          \n");
     printf("                                (Huffman)                               \n\n");
     printf("          Enter text : ");
-    // char* txt = scanText();
-    // initFileToCompress(txt);
+    char* txt = NULL;
+    scanStrings(&txt);
+    initFileToCompress(txt);
     cleanTerminal();
     
 
@@ -48,7 +50,7 @@ void addText(void) {
     printf("                           * FILE COMPRESSOR *                          \n");
     printf("                                (Huffman)                               \n\n");
     printf("          The text has been added\n");
-    // sleep(3);
+    stopExe(3);
     cleanTerminal();
 }
 

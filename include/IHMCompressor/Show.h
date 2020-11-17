@@ -6,6 +6,7 @@
 void displayErrorMessageOpenFile    (void);
 void cleanTerminal                  (void);
 void displayErrorMemoryAllocation   (void);
+int  stopExe                        (int secTime);
 
 
 //...................OPERATING SYSTEM....................

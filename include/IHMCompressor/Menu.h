@@ -2,7 +2,8 @@
 #define MENU
 
 void compressFile(void);
-void displayMenu(void);
+int displayMenu(void);
+void addText(void);
 
 
 #endif // !MENU
