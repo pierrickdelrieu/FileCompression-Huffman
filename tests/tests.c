@@ -155,13 +155,24 @@ static void displayLinkedList(LinkedList l) {
 * @brief Test function for analysing occurrence of characters in a file occChar()
  * @return int 1 if test ok and 0 else
 */
+
 int test_Occurrences(void) {
-    initFileToCompress("");
-    LinkedList list = occChar();
-    if ((list == NULL) && (numberCharInFile("TextFiles/FileToCompress.txt") != 0)) return 0;
-    if ((list != NULL) && (numberCharInFile("TextFiles/FileToCompress.txt") == 0)) return 0;
-    if (getSize(list) != numberCharInFile("TextFiles/FileToCompress.txt")) return 0;
-    // displayLinkedList(list);
+    
+    // initFileToCompress("");
+    // LinkedList list = occChar();
+    // if ((list == NULL) && (numberCharInFile("TextFiles/FileToCompress.txt") != 0)) return 0;
+    // if ((list != NULL) && (numberCharInFile("TextFiles/FileToCompress.txt") == 0)) return 0;
+    // if (getSize(list) != numberCharInFile("TextFiles/FileToCompress.txt")) return 0;
+    // // displayLinkedList(list);
+    
+   
+    // initFileToCompress("alice");
+    Queue* f = createSortOccQueue();
+    // printf("Queue : ");
+    // displayQueue(f);
+    // printf("\n");
+
+
     return 1;
 }
 
@@ -180,26 +191,29 @@ static void displayTree(HuffmanTree tree) {
  * @return int Returns 1 all the time if there is no error during execution
  */
 int test_HuffmanTree(void) {
-    LinkedList head = createNode(createHuffmanNode((int) 'a', 5));
-    addNode(&head, createNode(createHuffmanNode((int) 'z', 5)));
-    addNode(&head, createNode(createHuffmanNode((int) 's', 5)));
-    addNode(&head, createNode(createHuffmanNode((int) 'e', 4)));
-    addNode(&head, createNode(createHuffmanNode((int) 'd', 3)));
-    addNode(&head, createNode(createHuffmanNode((int) 'r', 3)));
-    addNode(&head, createNode(createHuffmanNode((int) 'v', 3)));
-    addNode(&head, createNode(createHuffmanNode((int) 'c', 1)));
-    addNode(&head, createNode(createHuffmanNode((int) 'd', 1)));
-    addNode(&head, createNode(createHuffmanNode((int) 'm', 1)));
+    // LinkedList head = createNode(createHuffmanNode((int) 'a', 5));
+    // addNode(&head, createNode(createHuffmanNode((int) 'z', 5)));
+    // addNode(&head, createNode(createHuffmanNode((int) 's', 5)));
+    // addNode(&head, createNode(createHuffmanNode((int) 'e', 4)));
+    // addNode(&head, createNode(createHuffmanNode((int) 'd', 3)));
+    // addNode(&head, createNode(createHuffmanNode((int) 'r', 3)));
+    // addNode(&head, createNode(createHuffmanNode((int) 'v', 3)));
+    // addNode(&head, createNode(createHuffmanNode((int) 'c', 1)));
+    // addNode(&head, createNode(createHuffmanNode((int) 'd', 1)));
+    // addNode(&head, createNode(createHuffmanNode((int) 'm', 1)));
 
 
-    Queue* occQueue = initQueue(); // Queue is sorted
-    occQueue->last = head;
-    occQueue->first = head->next->next->next->next->next->next->next->next->next;
-    //printf("\nWe have the following Queue : ");
-    // displayQueue(occQueue);
+    // Queue* occQueue = initQueue(); // Queue is sorted
+    // occQueue->last = head;
+    // occQueue->first = head->next->next->next->next->next->next->next->next->next;
+
+    initFileToCompress("abcccc");
+    Queue* occQueue = createSortOccQueue();
+    printf("\nWe have the following Queue : ");
+    displayQueue(occQueue);
 
     HuffmanTree tree = createHuffmanTree(occQueue);
-    // displayTree(tree);
+    displayTree(tree);
 
     return 1;
 }
