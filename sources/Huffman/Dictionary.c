@@ -131,10 +131,3 @@ void printDicoNode(DicoNode *dico, int lines) {
         i++;
     }
 }
-
-void printString(char *c, int size) {
-    for (int i = 0; i < size; i++) {
-        printf("%c", c[i]);
-    }
-    printf("\n");
-}
