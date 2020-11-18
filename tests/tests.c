@@ -228,10 +228,17 @@ int test_dictionary(void) {
     // displayTree(tree);
 
     char* code = NULL;
-    printDictionaryOnFile(tree, code, 0);
-    //int* lines;
-    //DicoNode* dico = createDicoNode(&lines);
-    //printDicoNode(dico, *lines);
+    FILE* file = fopen("../TextFiles/HuffmanDictionary.txt", "w+");
+    if(file != NULL){
+        printDictionaryOnFile(tree, code, 0, file);
+    } else {
+        printf("PAS POSSIBLE D'OUVRIR.");
+    }
+    fclose(file);
+
+    int* lines;
+    DicoNode* dico = createDicoNode(&lines);
+    printDicoNode(dico, *lines);
 
     return 1;
 }

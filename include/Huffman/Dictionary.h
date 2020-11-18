@@ -14,8 +14,7 @@ typedef struct DicoNode {
 
 char* addCharToNewString(char* c, char s, int size);
 int countLineFile(FILE* file);
-void printDictionaryOnFile(HuffmanNode* huffman, char* code, int sizecode);
-void printToFile(char* code, char letter, int sizecode, FILE* file);
+void printDictionaryOnFile(HuffmanNode* huffman, char* code, int sizecode, FILE* file);
 DicoNode* createDicoNode(int** returnline);
 void printString(char* c, int size);
 void printDicoNode(DicoNode* dico, int lines);
