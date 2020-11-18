@@ -15,6 +15,5 @@ int main(void) {
     printf("test hufftree : %d\n", test_HuffmanTree());
     printf("Test dictionary : %d\n", test_dictionary());
 
-
     return EXIT_SUCCESS;
 }

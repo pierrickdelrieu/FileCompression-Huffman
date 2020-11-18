@@ -48,13 +48,11 @@ int countSlashFile(FILE* file)
     return line;
 }
 
-void printDictionaryOnFile(HuffmanNode *huffman, char *code, int sizecode, FILE* file) {
-    printf("\nEntering");
+void printDictionary(HuffmanNode *huffman, char *code, int sizecode, FILE* file) {
 
     if (huffman != NULL) {
         if (huffman->left == NULL && huffman->right == NULL) {
-            printf("\nActual code : %s", code);
-            fprintf(file, "%c:", huffman->letter);
+            fprintf(file, "%c", huffman->letter);
             for (int i = 0; i < sizecode; i++) {
                 fprintf(file, "%c", code[i]);
             }
@@ -64,19 +62,19 @@ void printDictionaryOnFile(HuffmanNode *huffman, char *code, int sizecode, FILE*
 
             if (huffman->left != NULL) {
                 char *code1 = addCharToNewString(code, '0', sizecode);
-                printDictionaryOnFile(huffman->left, code1, sizecode + 1, file);
+                printDictionary(huffman->left, code1, sizecode + 1, file);
                 free(code1);
             }
             if (huffman->right != NULL) {
                 char *code2 = addCharToNewString(code, '1', sizecode);
-                printDictionaryOnFile(huffman->right, code2, sizecode + 1, file);
+                printDictionary(huffman->right, code2, sizecode + 1, file);
                 free(code2);
             }
         }
     }
 }
 
-DicoNode *createDicoNode(int **returnline) {
+DicoNode *readDictionary(int **returnline) {
     FILE *filedico = fopen("../TextFiles/HuffmanDictionary.txt", "r");
     if (filedico != NULL) {
 
@@ -84,11 +82,11 @@ DicoNode *createDicoNode(int **returnline) {
         DicoNode *dico = (DicoNode *) malloc(lines * sizeof(DicoNode));
         int i;
         for (i = 0; i < lines; i++) {
-            dico[i].sizecode = sizeOfLineFile(filedico) - 2;
+            dico[i].sizecode = sizeOfLineFile(filedico) - 1;
         }
 
         fseek(filedico, 0, SEEK_SET);
-        readDictionary(filedico, dico);
+        readCodeDictionary(filedico, dico);
         fclose(filedico);
 
         *returnline = &lines;
@@ -99,20 +97,21 @@ DicoNode *createDicoNode(int **returnline) {
     }
 }
 
-void readDictionary(FILE *filedico, DicoNode *dico) {
+void readCodeDictionary(FILE *filedico, DicoNode *dico) {
     int actual = fgetc(filedico);
     int i = 0;
     int j;
     while (actual != EOF) {
         dico[i].letter = actual;
-        dico[i].code = (char *) malloc(dico[i].sizecode * sizeof(char));
+        dico[i].code.nb = (int*) malloc(dico[i].sizecode * sizeof(int));
         j = 0;
-        actual = fgetc(filedico);                //On ne veut pas du ":"
-        while (actual != '/') {
+        do{
             actual = fgetc(filedico);
-            dico[i].code[j] = actual;
+            actual -= 48;
+            dico[i].code.nb[j] = actual;
+            printf("actual : %c\n", actual+48);
             j++;
-        }
+        }while (actual+48 != 47);
         i++;
         actual = fgetc(filedico);
     }
@@ -121,11 +120,12 @@ void readDictionary(FILE *filedico, DicoNode *dico) {
 void printDicoNode(DicoNode *dico, int lines) {
     int i = 0;
     int j;
+    printf("Size = %d", lines);
     printf("DicoNode :\n");
     while (i != lines) {
         printf("%c : ", dico[i].letter);
         for (j = 0; j < dico[i].sizecode; j++) {
-            printf("%c", dico[i].code[j]);
+            printf("%d", dico[i].code.nb[j]);
         }
         printf("\n");
         i++;

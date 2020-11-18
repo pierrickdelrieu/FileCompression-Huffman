@@ -230,15 +230,19 @@ int test_dictionary(void) {
     char* code = NULL;
     FILE* file = fopen("../TextFiles/HuffmanDictionary.txt", "w+");
     if(file != NULL){
-        printDictionaryOnFile(tree, code, 0, file);
+        printDictionary(tree, code, 0, file);
+        fclose(file);
     } else {
         printf("PAS POSSIBLE D'OUVRIR.");
     }
-    fclose(file);
-
+    
+    printf("PrintDico is ok\n");
     int* lines;
-    DicoNode* dico = createDicoNode(&lines);
-    printDicoNode(dico, *lines);
+    DicoNode* dico = readDictionary(&lines);
+    int size = *lines;
+    printf("lines ; %d\n", size);
+    printf("ReadDico is ok\n");
+    printDicoNode(dico, size);
 
     return 1;
 }
