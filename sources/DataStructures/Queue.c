@@ -71,28 +71,30 @@ int pushQueue(Queue **f, HuffmanNode *nx_elem) {
 HuffmanNode *pullQueue(Queue **f) {
     // If the Queue has been initialized
     if (f != NULL) {
-        Node *temp = (*f)->last;
+        if(((*f)->first != NULL) && ((*f)->last != NULL)) {
+            Node *temp = (*f)->last;
 
-        // If the Queue contains one or zero HuffmanNode
-        if ((*f)->last == (*f)->first) {
-            (*f)->last = NULL;
-            (*f)->first = NULL;
-            return temp->data;
-        }
-
-            // If the Queue contains several HuffmanNodes
-        else {
-            Node *ptrprec = NULL;
-
-            // Placement at the last and penultimate HuffmanNode of the list
-            while (temp->next != NULL) {
-                ptrprec = temp;
-                temp = temp->next;
+            // If the Queue contains one or zero HuffmanNode
+            if ((*f)->last == (*f)->first) {
+                (*f)->last = NULL;
+                (*f)->first = NULL;
+                return temp->data;
             }
 
-            (*f)->first = ptrprec;
-            (*f)->first->next = NULL;
-            return temp->data;
+                // If the Queue contains several HuffmanNodes
+            else {
+                Node *ptrprec = NULL;
+
+                // Placement at the last and penultimate HuffmanNode of the list
+                while (temp->next != NULL) {
+                    ptrprec = temp;
+                    temp = temp->next;
+                }
+
+                (*f)->first = ptrprec;
+                (*f)->first->next = NULL;
+                return temp->data;
+            }
         }
     }
 
