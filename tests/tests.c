@@ -17,27 +17,7 @@
 #include "../include/DataStructures/Queue.h"
 #include "../include/Huffman/HuffmanTree.h"
 #include "../include/Huffman/Dictionary.h"
-
-/**
- * @brief Initialization of the contents of the file to compress in order to know the noramlement results obtained
- * 
- */
-static void initFileToCompress(char *txt) {
-    FILE *file = NULL;
-    file = fopen("TextFiles/FileToCompress.txt", "w");
-
-    // If the file is opened correctly
-    if (file != NULL) {
-        fputs(txt, file);
-        fclose(file);
-    }
-        // If the file is not opened correctly
-    else {
-        printf("TEST : FILE OPENING ERROR\n");
-        exit(EXIT_FAILURE); // Forced program exit with failure
-    }
-}
-
+#include "../include/Huffman/Encoding.h"
 
 /**
  * @brief FileManagement function test (part 1 of project)
@@ -207,7 +187,23 @@ static void displayTree(HuffmanTree tree) {
  * @return int Returns 1 all the time if there is no error during execution
  */
 int test_HuffmanTree(void) {
-    initFileToCompress("abccccdd");
+    // LinkedList head = createNode(createHuffmanNode((int) 'a', 5));
+    // addNode(&head, createNode(createHuffmanNode((int) 'z', 5)));
+    // addNode(&head, createNode(createHuffmanNode((int) 's', 5)));
+    // addNode(&head, createNode(createHuffmanNode((int) 'e', 4)));
+    // addNode(&head, createNode(createHuffmanNode((int) 'd', 3)));
+    // addNode(&head, createNode(createHuffmanNode((int) 'r', 3)));
+    // addNode(&head, createNode(createHuffmanNode((int) 'v', 3)));
+    // addNode(&head, createNode(createHuffmanNode((int) 'c', 1)));
+    // addNode(&head, createNode(createHuffmanNode((int) 'd', 1)));
+    // addNode(&head, createNode(createHuffmanNode((int) 'm', 1)));
+
+
+    // Queue* occQueue = initQueue(); // Queue is sorted
+    // occQueue->last = head;
+    // occQueue->first = head->next->next->next->next->next->next->next->next->next;
+
+    initFileToCompress("ab\ncccc");
     Queue* occQueue = createSortOccQueue();
     printf("\nWe have the following Queue : ");
     displayQueue(occQueue);
@@ -233,7 +229,7 @@ static void displayDicoTree(DicoTree tree){
 
 int test_dictionary() {
 
-    initFileToCompress("je m'appelle aristote");
+    initFileToCompress("abbbbccddd");
     Queue* occQueue = createSortOccQueue();
     // printf("\nWe have the following Queue : ");
     // displayQueue(occQueue);
@@ -246,6 +242,8 @@ int test_dictionary() {
     // printf("\n DicoTree : ");
     // displayDicoTree(dicoTree);
     initDictionaryPrinting(dicoTree);
+
+    encodingFile(dicoTree);
 
     return 1;
 }

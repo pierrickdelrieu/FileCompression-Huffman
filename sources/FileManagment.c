@@ -17,6 +17,27 @@
 
 
 /**
+ * @brief Initialization of the contents of the file to compress in order to know the noramlement results obtained
+ * 
+ */
+void initFileToCompress(char *txt) {
+    FILE *file = NULL;
+    file = fopen("TextFiles/FileToCompress.txt", "w");
+
+    // If the file is opened correctly
+    if (file != NULL) {
+        fputs(txt, file);
+        fclose(file);
+    }
+        // If the file is not opened correctly
+    else {
+        printf("TEST : FILE OPENING ERROR\n");
+        exit(EXIT_FAILURE); // Forced program exit with failure
+    }
+}
+
+
+/**
  * @brief Memory allocation of the Binary structure and of the 1D array representing the bytes
  * 
  * @param size Array size, number of bits used to represent the number
@@ -133,4 +154,18 @@ int numberCharInFile(char *filePath) {
     }
 
     return 0;
+}
+
+
+
+float ratioCompression(void) {
+    float nbHuffmanCompression = (float) (numberCharInFile("TextFiles/HuffmanCompression.txt") + numberCharInFile("TextFiles/HuffmanDictionary.txt"));
+    float nbBinaryFile = (float) numberCharInFile("TextFiles/BinaryFile.txt");
+
+    if((nbBinaryFile == 0) || (nbHuffmanCompression == 0)){
+        return 0;
+    }
+    else {
+        return (nbHuffmanCompression/nbBinaryFile) * 100;
+    }
 }

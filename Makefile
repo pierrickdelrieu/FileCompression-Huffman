@@ -21,17 +21,20 @@ compressor: $(OBJS)
 	$(COMPILER) $(OBJS) -o $(OUTPUT)/$(EXEC)
 
 
-$(OBJECTS)main.o : $(INCLUDE)FileManagment.h \
-					$(INCLUDE)/Huffman/Encoding.h  \
-					$(INCLUDE)/Huffman/Decoding.h  \
-					$(INCLUDE)/Huffman/Dictionary.h  \
+$(OBJECTS)main.o : $(INCLUDE)/IHMCompressor/Menu.h  \
 					tests/tests.h \
 				$(SOURCES)main.c
 	$(COMPILER) -c -g -Wall $(SOURCES)main.c -o $(OBJECTS)main.o
 	
 
 #IHMCOMPRESSOR
-$(OBJECTS)IHMCompressor/Menu.o : $(INCLUDE)IHMCompressor/Menu.h \
+$(OBJECTS)IHMCompressor/Menu.o : $(INCLUDE)IHMCompressor/Menu.h  \
+								 $(INCLUDE)IHMCompressor/Scan.h  \
+								 $(INCLUDE)IHMCompressor/Show.h  \
+								 $(INCLUDE)FileManagment.h \
+								 $(INCLUDE)Huffman/Encoding.h  \
+								 $(INCLUDE)Huffman/Decoding.h  \
+								 $(INCLUDE)FileManagment.h  \
 								$(SOURCES)IHMCompressor/Menu.c
 	$(COMPILER) -c -g -Wall $(SOURCES)IHMCompressor/Menu.c -o $(OBJECTS)IHMCompressor/Menu.o
 
@@ -101,6 +104,7 @@ tests/tests.o : tests/tests.h  \
 				$(INCLUDE)DataStructures/Queue.h  \
 				$(INCLUDE)Huffman/HuffmanTree.h  \
 				$(INCLUDE)Huffman/Dictionary.h  \
+				$(INCLUDE)Huffman/Encoding.h  \
 				tests/tests.c
 	$(COMPILER) -c -g -Wall tests/tests.c -o tests/tests.o
 

@@ -24,6 +24,9 @@ Binary* convertIntToBinary  (int value);
 
 void    createBinaryFileOfFileToCompress    (void);
 int     numberCharInFile                    (char* filePath);
+void    initFileToCompress                  (char *txt);
+
+float   ratioCompression                    (void);
 
 
 
