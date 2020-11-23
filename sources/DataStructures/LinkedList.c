@@ -1,6 +1,6 @@
 /**
  * @file LinkedList.c
- * @author Benjamin Lesieux
+ * @author Benjamin Lesieux - Harold Molter
  * @brief All the basic functions of a linked list
  * @details Part 2 of project
  * @version 1.0
@@ -161,4 +161,29 @@ int getSize(LinkedList list) {
     } else {
         return 1 + getSize(list->next);
     }
+}
+/**
+* @brief
+* @param
+* 
+* @return 
+**/
+
+Node* findMinOccLetter(Node* list) {       
+    if (list != NULL) {
+        Node* min = list;             
+
+        while (list != NULL) {
+            if (list->data->occ < min->data->occ) {  
+                min = list;
+            }
+            list = list->next;
+        }
+        return min;
+
+    }
+    else {
+        return NULL;
+    }
+
 }
