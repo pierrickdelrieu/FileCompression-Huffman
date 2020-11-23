@@ -17,6 +17,7 @@
 #include "../include/DataStructures/Queue.h"
 #include "../include/Huffman/HuffmanTree.h"
 #include "../include/Huffman/Dictionary.h"
+#include "../include/Huffman/Encoding.h"
 
 /**
  * @brief Initialization of the contents of the file to compress in order to know the noramlement results obtained
@@ -233,7 +234,7 @@ static void displayDicoTree(DicoTree tree){
 
 int test_dictionary() {
 
-    initFileToCompress("je m'appelle aristote");
+    initFileToCompress("abbbbccddd");
     Queue* occQueue = createSortOccQueue();
     // printf("\nWe have the following Queue : ");
     // displayQueue(occQueue);
@@ -246,6 +247,8 @@ int test_dictionary() {
     // printf("\n DicoTree : ");
     // displayDicoTree(dicoTree);
     initDictionaryPrinting(dicoTree);
+
+    encodingFile(dicoTree);
 
     return 1;
 }
