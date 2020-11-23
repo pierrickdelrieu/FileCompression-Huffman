@@ -16,7 +16,7 @@
 #include "../include/DataStructures/LinkedList.h"
 #include "../include/DataStructures/Queue.h"
 #include "../include/Huffman/HuffmanTree.h"
-
+#include "../include/Huffman/Dictionary.h"
 
 /**
  * @brief Initialization of the contents of the file to compress in order to know the noramlement results obtained
@@ -106,37 +106,53 @@ static void displayQueue(Queue *queue) {
  * @return int 1 if test ok and 0 else
  */
 int test_Queue(void) {
-    // Init queue
-    Queue *queue = initQueue();
+    // INPUT
+    HuffmanNode* last = createHuffmanNode((int) 'n', 2);
+    LinkedList head1 = createNode(last);
+    LinkedList head3 = createNode(createHuffmanNode((int) 'b', 8));
+    addNode(&head3, createNode(createHuffmanNode((int) 'e', 4)));
+    addNode(&head3, createNode(last));
+    LinkedList input[3] = {NULL, head1, head3}; 
 
-    LinkedList head = createNode(createHuffmanNode((int) 'b', 8));
-    addNode(&head, createNode(createHuffmanNode((int) 'e', 4)));
-    addNode(&head, createNode(createHuffmanNode((int) 'n', 2)));
-
-    queue->last = head;
-    queue->first = head->next->next;
-    if (getSize(queue->last) != 3) return 0;
-
-    // Display queue
-    //displayQueue(queue);
-    //printf("\n");
-
-    // PushQueue
-    HuffmanNode *x = createHuffmanNode((int) 'z', 24);
-    pushQueue(&queue, x);
-    if (getSize(queue->last) != 4) return 0;
-    // Display queue
-    //displayQueue(queue);
+    // TEST
+    int i;
+    for(i=0; i<3; i++) {
+        // Initialisation
+        Queue* f = initQueue();
+        f->last = input[i];
+        if(input[i] == NULL) {
+            f->first = input[i];
+        }
+        else {
+            while(input[i]->next != NULL) {
+                input[i] = input[i]->next;
+            }
+            f->first = input[i];
+        }
 
 
-    // PullQueue
-    x = pullQueue(&queue);
-    if (getSize(queue->last) != 3) return 0;
-    //printf("\n noued retiré : ");
-    //printf("(%c | %d) \n", x->letter, x->occ);
-    // Display queue
-    //displayQueue(queue);
-    //printf("\n");
+        // Vérification des tests
+        HuffmanNode* node = createHuffmanNode((int) 'a', 3);
+        if(input[i] == NULL) {
+            if(pullQueue(&f) != NULL) {
+                return 0;
+            }
+            if(pushQueue(&f, node) != 1) {
+                return 0;
+            }
+            if((pullQueue(&f) != node) || (f->last != NULL) || (f->first != NULL)) {
+                return 0;
+            }
+        }
+        else {
+            if(pushQueue(&f, node) != 1) {
+                return 0;
+            }
+            if(pullQueue(&f) != last) {
+                return 0;
+            }
+        }
+    }
 
     return 1;
 
@@ -191,29 +207,45 @@ static void displayTree(HuffmanTree tree) {
  * @return int Returns 1 all the time if there is no error during execution
  */
 int test_HuffmanTree(void) {
-    // LinkedList head = createNode(createHuffmanNode((int) 'a', 5));
-    // addNode(&head, createNode(createHuffmanNode((int) 'z', 5)));
-    // addNode(&head, createNode(createHuffmanNode((int) 's', 5)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'e', 4)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'd', 3)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'r', 3)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'v', 3)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'c', 1)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'd', 1)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'm', 1)));
-
-
-    // Queue* occQueue = initQueue(); // Queue is sorted
-    // occQueue->last = head;
-    // occQueue->first = head->next->next->next->next->next->next->next->next->next;
-
-    initFileToCompress("abcccc");
+    initFileToCompress("abccccdd");
     Queue* occQueue = createSortOccQueue();
     printf("\nWe have the following Queue : ");
     displayQueue(occQueue);
 
     HuffmanTree tree = createHuffmanTree(occQueue);
     displayTree(tree);
+
+    return 1;
+}
+
+
+
+
+static void displayDicoTree(DicoTree tree){
+    if (tree != NULL){
+        printf("(%c - %s)", tree->letter, tree->code);
+        displayDicoTree(tree->left);
+        displayDicoTree(tree->right);
+    }
+}
+
+
+
+int test_dictionary() {
+
+    initFileToCompress("je m'appelle aristote");
+    Queue* occQueue = createSortOccQueue();
+    // printf("\nWe have the following Queue : ");
+    // displayQueue(occQueue);
+
+    HuffmanTree tree = createHuffmanTree(occQueue);
+    // displayTree(tree);
+
+    DicoTree dicoTree = NULL;
+    dicoTree = createDicoTree(tree);
+    // printf("\n DicoTree : ");
+    // displayDicoTree(dicoTree);
+    initDictionaryPrinting(dicoTree);
 
     return 1;
 }

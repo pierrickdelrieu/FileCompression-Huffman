@@ -127,7 +127,7 @@ int numberCharInFile(char *filePath) {
 
         return nbChara;
     }
-        // If the file is not opened correctly
+    // If the file is not opened correctly
     else {
         displayErrorMessageOpenFile();
     }
