@@ -229,20 +229,22 @@ static void displayDicoTree(DicoTree tree){
     }
 }
 
+
+
 int test_dictionary() {
 
-    initFileToCompress("faustin ma vie mon amour mon sang");
+    initFileToCompress("je m'appelle aristote");
     Queue* occQueue = createSortOccQueue();
-    printf("\nWe have the following Queue : ");
-    displayQueue(occQueue);
+    // printf("\nWe have the following Queue : ");
+    // displayQueue(occQueue);
 
     HuffmanTree tree = createHuffmanTree(occQueue);
-    displayTree(tree);
+    // displayTree(tree);
 
     DicoTree dicoTree = NULL;
     dicoTree = createDicoTree(tree);
-    printf("\n DicoTree : ");
-    displayDicoTree(dicoTree);
+    // printf("\n DicoTree : ");
+    // displayDicoTree(dicoTree);
     initDictionaryPrinting(dicoTree);
 
     return 1;

@@ -11,4 +11,7 @@ HuffmanTree createHuffmanTree(Queue* occQueue);
 
 Queue*          createSortOccQueue      (void);
 
+int depthOfHuffmanTree(HuffmanTree tree);
+
+
 #endif // !HUFFMAN_TREE
