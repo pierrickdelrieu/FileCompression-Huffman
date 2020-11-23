@@ -198,3 +198,4 @@ Queue* createSortOccQueue(void) {
     // list is empty
     return NULL;
 }
+

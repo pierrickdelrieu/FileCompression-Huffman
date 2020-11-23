@@ -49,6 +49,7 @@ $(OBJECTS)IHMCompressor/Show.o : $(INCLUDE)IHMCompressor/Show.h \
 $(OBJECTS)Huffman/Decoding.o : $(INCLUDE)Huffman/Decoding.h  \
 								$(INCLUDE)IHMCompressor/Show.h  \
 								$(INCLUDE)Huffman/Dictionary.h  \
+								$(INCLUDE)Huffman/HuffmanTree.h \
 								$(SOURCES)Huffman/Decoding.c
 	$(COMPILER) -c -g -Wall $(SOURCES)Huffman/Decoding.c -o $(OBJECTS)Huffman/Decoding.o
 

@@ -17,6 +17,7 @@
 #include "../include/DataStructures/Queue.h"
 #include "../include/Huffman/HuffmanTree.h"
 #include "../include/Huffman/Dictionary.h"
+#include "../include/Huffman/Decoding.h"
 
 /**
  * @brief Initialization of the contents of the file to compress in order to know the noramlement results obtained
@@ -207,13 +208,12 @@ static void displayTree(HuffmanTree tree) {
  * @return int Returns 1 all the time if there is no error during execution
  */
 int test_HuffmanTree(void) {
-    initFileToCompress("abccccdd");
+    //initFileToCompress("je m'appelle aristote");
     Queue* occQueue = createSortOccQueue();
-    printf("\nWe have the following Queue : ");
-    displayQueue(occQueue);
 
-    HuffmanTree tree = createHuffmanTree(occQueue);
-    displayTree(tree);
+
+    FILE* f = fopen("TextFiles/HuffmanCompression.txt", "r");
+    printf("\n%s", decodeFile(f));
 
     return 1;
 }
@@ -231,18 +231,18 @@ static void displayDicoTree(DicoTree tree){
 
 int test_dictionary() {
 
-    initFileToCompress("faustin ma vie mon amour mon sang");
+    initFileToCompress("je m'appelle faustin je suis une grosse merde");
     Queue* occQueue = createSortOccQueue();
-    printf("\nWe have the following Queue : ");
-    displayQueue(occQueue);
+    //printf("\nWe have the following Queue : ");
+    //displayQueue(occQueue);
 
     HuffmanTree tree = createHuffmanTree(occQueue);
-    displayTree(tree);
+    //displayTree(tree);
 
     DicoTree dicoTree = NULL;
     dicoTree = createDicoTree(tree);
-    printf("\n DicoTree : ");
-    displayDicoTree(dicoTree);
+    //printf("\n DicoTree : ");
+    //displayDicoTree(dicoTree);
     initDictionaryPrinting(dicoTree);
 
     return 1;

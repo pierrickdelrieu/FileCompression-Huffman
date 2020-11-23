@@ -149,7 +149,6 @@ DicoTree createDicoTree(HuffmanTree tree) {
         }
     }
 
-    
     return avl;
 }
 
@@ -192,8 +191,8 @@ void initDictionaryPrinting(DicoTree dicoTree) {
 void printDictionaryFile(DicoTree dicoTree, FILE* file) {
     if (dicoTree != NULL) {
         printDictionaryFile(dicoTree->left, file);
-        printDictionaryFile(dicoTree->right, file);
         fprintf(file, "%c%s/", dicoTree->letter, dicoTree->code);
+        printDictionaryFile(dicoTree->right, file);
     }
 }
 
