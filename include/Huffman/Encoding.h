@@ -3,4 +3,5 @@
 
 
 #endif // !ENCODING
-void encoding_text(void);
+void EncodingFile(DicoTree* Tree);
+int SearchLetter(char letter,DicoTree* Tree,FILE* HuffmanCompression)
