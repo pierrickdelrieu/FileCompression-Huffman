@@ -199,3 +199,20 @@ Queue* createSortOccQueue(void) {
     return NULL;
 }
 
+
+
+int depthOfHuffmanTree(HuffmanTree tree) {
+    if (tree == NULL) {
+        return 0;
+    } 
+    else {
+        int leftDepth = depthOfHuffmanTree(tree->left);
+        int rightDepth = depthOfHuffmanTree(tree->right);
+        if (leftDepth > rightDepth) {
+            return 1 + leftDepth;
+        }
+        else{
+            return 1 +rightDepth;
+        }
+    }
+}
