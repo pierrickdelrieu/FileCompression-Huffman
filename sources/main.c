@@ -34,6 +34,5 @@ int main(void) {
     // printf("test occ : %d\n", test_Occurrences());
     // printf("test hufftree : %d\n", test_HuffmanTree());
 
-
     return EXIT_SUCCESS;
 }

@@ -63,6 +63,8 @@ $(OBJECTS)Huffman/Encoding.o : $(INCLUDE)Huffman/Encoding.h  \
 
 $(OBJECTS)Huffman/Dictionary.o : $(INCLUDE)Huffman/Dictionary.h  \
 								$(INCLUDE)IHMCompressor/Show.h  \
+								$(INCLUDE)Huffman/HuffmanTree.h \
+								$(INCLUDE)FileManagment.h \
 								$(SOURCES)Huffman/Dictionary.c
 	$(COMPILER) -c -g -Wall $(SOURCES)Huffman/Dictionary.c -o $(OBJECTS)Huffman/Dictionary.o
 
@@ -101,6 +103,8 @@ tests/tests.o : tests/tests.h  \
 				$(INCLUDE)DataStructures/LinkedList.h  \
 				$(INCLUDE)DataStructures/Queue.h  \
 				$(INCLUDE)Huffman/HuffmanTree.h  \
+				$(INCLUDE)Huffman/Dictionary.h  \
+				$(INCLUDE)Huffman/Encoding.h  \
 				tests/tests.c
 	$(COMPILER) -c -g -Wall tests/tests.c -o tests/tests.o
 
