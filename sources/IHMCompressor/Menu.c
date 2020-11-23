@@ -89,12 +89,15 @@ void compressFile(void) {
     t1 = clock();
  
     // Programme
-    // ajouter la compression avec le temps de compression
+    Queue* occQueue = createSortOccQueue();
+    HuffmanTree tree = createHuffmanTree(occQueue);
+    DicoTree dicoTree = createDicoTree(tree);
+    encodingFile(dicoTree);
      
     t2 = clock();
     time = (float)(t2-t1)/CLOCKS_PER_SEC;
-    printf("temps = %f\n", time);
-
+    createBinaryFileOfFileToCompress();
+    initDictionaryPrinting(dicoTree);
 
     do {
         cleanTerminal();
