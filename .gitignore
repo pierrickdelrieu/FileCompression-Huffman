@@ -1,7 +1,8 @@
 # Prerequisites
 *.d
 
-# Object files
+# Object file
+/objects
 *.o
 *.ko
 *.obj
@@ -29,6 +30,7 @@
 *.dylib
 
 # Executables
+/binaries
 *.exe
 *.out
 *.app
@@ -50,12 +52,40 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-/CMakeLists.txt
 cmake-build-debug
 .idea
 .vscode
+/.vs*
 
 
 # Pierrick's files
 huffman.code-workspace
 .DS_Store
+/out/build/x64-Debug (par défaut)/VSInheritEnvironments.txt
+/out/build/x64-Debug (par défaut)/Testing/Temporary/LastTest.log
+/out/build/x64-Debug (par défaut)/rules.ninja
+/out/build/x64-Debug (par défaut)/cmake_install.cmake
+/out/build/x64-Debug (par défaut)/CMakeFiles/TargetDirectories.txt
+/out/build/x64-Debug (par défaut)/CMakeFiles/ShowIncludes/main.c
+/out/build/x64-Debug (par défaut)/CMakeFiles/ShowIncludes/foo.h
+/out/build/x64-Debug (par défaut)/CMakeFiles/FileCompression-Huffman.dir/manifest.res
+/out/build/x64-Debug (par défaut)/CMakeFiles/FileCompression-Huffman.dir/manifest.rc
+/out/build/x64-Debug (par défaut)/CMakeFiles/FileCompression-Huffman.dir/intermediate.manifest
+/out/build/x64-Debug (par défaut)/CMakeFiles/FileCompression-Huffman.dir/embed.manifest
+/out/build/x64-Debug (par défaut)/CMakeFiles/CMakeOutput.log
+/out/build/x64-Debug (par défaut)/CMakeFiles/cmake.check_cache
+/out/build/x64-Debug (par défaut)/CMakeFiles/3.17.20032601-MSVC_2/CompilerIdC/CMakeCCompilerId.c
+/out/build/x64-Debug (par défaut)/CMakeFiles/3.17.20032601-MSVC_2/CMakeSystem.cmake
+/out/build/x64-Debug (par défaut)/CMakeFiles/3.17.20032601-MSVC_2/CMakeRCCompiler.cmake
+/out/build/x64-Debug (par défaut)/CMakeFiles/3.17.20032601-MSVC_2/CMakeDetermineCompilerABI_C.bin
+/out/build/x64-Debug (par défaut)/CMakeFiles/3.17.20032601-MSVC_2/CMakeCCompiler.cmake
+/out/build/x64-Debug (par défaut)/CMakeCache.txt
+/out/build/x64-Debug (par défaut)/build.ninja
+/out/build/x64-Debug (par défaut)/.ninja_log
+/out/build/x64-Debug (par défaut)/.ninja_deps
+/out/build/x64-Debug (par défaut)/.cmake/api/v1/reply/target-FileCompression-Huffman-Debug-11b262da5faac5a1e77a.json
+/out/build/x64-Debug (par défaut)/.cmake/api/v1/reply/index-2020-11-16T18-44-32-0316.json
+/out/build/x64-Debug (par défaut)/.cmake/api/v1/reply/codemodel-v2-4f61312a690cae66611f.json
+/out/build/x64-Debug (par défaut)/.cmake/api/v1/reply/cmakeFiles-v1-c19d8ff5f77e7b89f8e6.json
+/out/build/x64-Debug (par défaut)/.cmake/api/v1/reply/cache-v2-aab115ff57cf16716bbe.json
+/out/build/x64-Debug (par défaut)/.cmake/api/v1/query/client-MicrosoftVS/query.json

@@ -22,23 +22,22 @@
  * @param size Array size, number of bits used to represent the number
  * @return Binary* Pointer to allocated structure
  */
-Binary* createBinaryNumber(int size) {
-    Binary* x = NULL;
+Binary *createBinaryNumber(int size) {
+    Binary *x = NULL;
 
-    x = (Binary*) malloc(sizeof(Binary));
+    x = (Binary *) malloc(sizeof(Binary));
 
     // Allocation of an array of 8 integers
-    x->nb = (int*) malloc(size * sizeof(int));
+    x->nb = (int *) malloc(size * sizeof(int));
 
     // Reset boxes to char(0) = int(48)
     int i;
-    for(i = 0; i < size; i++) {
+    for (i = 0; i < size; i++) {
         x->nb[i] = ASCII_INIT_NUMBER;
     }
 
     return x;
 }
-
 
 
 /**
@@ -49,21 +48,20 @@ Binary* createBinaryNumber(int size) {
  * @param value Integer to convert
  * @return Binary* 1D array of size 8. Each box represents one byte.
  */
-Binary* convertIntToBinary(int value) {
-    Binary* x = createBinaryNumber(SIZE_BINARY);
+Binary *convertIntToBinary(int value) {
+    Binary *x = createBinaryNumber(SIZE_BINARY);
 
-    int i = SIZE_BINARY-1; // Size of array binary number
+    int i = SIZE_BINARY - 1; // Size of array binary number
 
     // Conversion with the Euclidean division method
-    while(value > 0) {
-        x->nb[i] = (value%2) + ASCII_INIT_NUMBER;
-        value = value/2;
+    while (value > 0) {
+        x->nb[i] = (value % 2) + ASCII_INIT_NUMBER;
+        value = value / 2;
         i--;
     }
 
     return x;
 }
-
 
 
 /**
@@ -73,22 +71,22 @@ Binary* convertIntToBinary(int value) {
  * 
  */
 void createBinaryFileOfFileToCompress(void) {
-    FILE* fileToCompress = NULL;
-    FILE* binaryFile = NULL;
+    FILE *fileToCompress = NULL;
+    FILE *binaryFile = NULL;
 
-    fileToCompress = fopen("TextFiles/FileToCompress.txt","r"); // Open read-only
-    binaryFile = fopen("TextFiles/BinaryFile.txt","w"); // Open read and write
+    fileToCompress = fopen("TextFiles/FileToCompress.txt", "r"); // Open read-only
+    binaryFile = fopen("TextFiles/BinaryFile.txt", "w"); // Open read and write
 
     // If the files are opened correctly
-    if((fileToCompress != NULL) && (binaryFile != NULL)) {
+    if ((fileToCompress != NULL) && (binaryFile != NULL)) {
         int chara = fgetc(fileToCompress); // Contains the item currently playing
         int i; // Counter
-        Binary* bin = NULL; // Array containing the content of the variable chara in binary form (0 and 1)
+        Binary *bin = NULL; // Array containing the content of the variable chara in binary form (0 and 1)
 
         // While the cursor is not at the end of the file
-        while(chara != EOF) {
+        while (chara != EOF) {
             bin = convertIntToBinary(chara);
-            for(i=0; i<SIZE_BINARY; i++) {
+            for (i = 0; i < SIZE_BINARY; i++) {
                 fputc(bin->nb[i], binaryFile);
             }
 
@@ -98,12 +96,11 @@ void createBinaryFileOfFileToCompress(void) {
         fclose(fileToCompress);
         fclose(binaryFile);
     }
-    // If the files are not opened correctly
+        // If the files are not opened correctly
     else {
         displayErrorMessageOpenFile();
     }
 }
-
 
 
 /**
@@ -112,17 +109,17 @@ void createBinaryFileOfFileToCompress(void) {
  * @param filePath Character string containing the path (from the main folder) to the file to be processed
  * @return int Number of characters in the file
  */
-int numberCharInFile(char* filePath) {
-    FILE* file = NULL;
+int numberCharInFile(char *filePath) {
+    FILE *file = NULL;
 
-    file = fopen(filePath,"r"); // Open read-only
-    
+    file = fopen(filePath, "r"); // Open read-only
+
     // If the file is opened correctly
-    if(file != NULL) {
+    if (file != NULL) {
         int nbChara = 0; // Initialization of the number of characters
 
         // While the cursor is not at the end of the file
-        while(fgetc(file) != EOF) {
+        while (fgetc(file) != EOF) {
             nbChara = nbChara + 1;
         }
 
