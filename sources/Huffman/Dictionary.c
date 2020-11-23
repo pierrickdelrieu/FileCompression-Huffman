@@ -184,15 +184,15 @@ void initDicoTree(DicoTree* avl, HuffmanTree tree, char *code, int sizecode) {
 
 void initDictionaryPrinting(DicoTree dicoTree) {
 
-    FILE* file = fopen("../TextFiles/HuffmanDictionary.txt", "w");
+    FILE* file = fopen("TextFiles/HuffmanDictionary.txt", "w+");
     printDictionaryFile(dicoTree, file);
     fclose(file);
 }
 
 void printDictionaryFile(DicoTree dicoTree, FILE* file) {
     if (dicoTree != NULL) {
-        printDictionaryFile(dicoTree->left);
-        printDictionaryFile(dicoTree->right);
+        printDictionaryFile(dicoTree->left, file);
+        printDictionaryFile(dicoTree->right, file);
         fprintf(file, "%c%s/", dicoTree->letter, dicoTree->code);
     }
 }

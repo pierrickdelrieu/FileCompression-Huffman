@@ -231,7 +231,7 @@ static void displayDicoTree(DicoTree tree){
 
 int test_dictionary() {
 
-    initFileToCompress("abccccdd");
+    initFileToCompress("faustin ma vie mon amour mon sang");
     Queue* occQueue = createSortOccQueue();
     printf("\nWe have the following Queue : ");
     displayQueue(occQueue);
