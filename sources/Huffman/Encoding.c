@@ -12,7 +12,7 @@ void EncodingFile(DicoTree* Tree)
     FILE* FileToCompress = NULL;
     FILE* HuffmanCompression = NULL;
 
-    char lettre,copie;
+    char lettre;
 
 
     FileToCompress = fopen("FileToCompress.txt","r");
