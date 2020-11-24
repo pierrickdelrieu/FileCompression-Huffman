@@ -1,3 +1,14 @@
+/**
+ * @file Dictionary.c
+ * @author Pierrick Delrieu - Faustin Dewas
+ * @brief Creation of a dictionary with each letter and its binary code compressed
+ * @version 0.1
+ * @date 23-11-2020
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -157,7 +168,13 @@ static void addNodeBST(DicoTree* tree, int letter, char* code){
         *tree = createDicoNode(letter, code);
     }
     else{
-        if (strlen((*tree)->code) > strlen(code)){
+        // if (strlen((*tree)->code) > strlen(code)){
+        //     addNodeBST(&((*tree)->left), letter, code);
+        // }
+        // else{
+        //     addNodeBST(&((*tree)->right), letter, code);
+        // }
+        if ((*tree)->letter > letter){
             addNodeBST(&((*tree)->left), letter, code);
         }
         else{
@@ -264,8 +281,8 @@ void initDictionaryPrinting(DicoTree dicoTree) {
  */
 void printDictionaryFile(DicoTree dicoTree, FILE* file) {
     if (dicoTree != NULL) {
-        printDictionaryFile(dicoTree->left, file);
         fprintf(file, "%c%s/", dicoTree->letter, dicoTree->code);
+        printDictionaryFile(dicoTree->left, file);
         printDictionaryFile(dicoTree->right, file);
     }
 }
