@@ -102,13 +102,3 @@ HuffmanNode *pullQueue(Queue **f) {
     return NULL;
 }
 
-void reverseQueue(Queue** q) {
-
-    if ((*q)->first != NULL && (*q)->last != NULL) {
-        HuffmanNode* data = pullQueue(q);
-
-        reverseQueue(q);
-
-        pushQueue(q, data);
-    }
-}

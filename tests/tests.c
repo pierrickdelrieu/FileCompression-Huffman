@@ -245,16 +245,6 @@ int test_dictionary() {
 }
 
 
-static int compareTree(HuffmanTree t1, HuffmanTree t2) {
-    if (t1 != NULL && t2 != NULL) {
-        if (t1->letter == t2->letter) {
-            return 1 && compareTree(t1->left, t2->left) && compareTree(t1->right, t2->right);
-        } else {
-            return 0;
-        }
-    }
-}
-
 int test_decoding() {
 
     decodeFile("TextFiles/HuffmanCompression.txt");
