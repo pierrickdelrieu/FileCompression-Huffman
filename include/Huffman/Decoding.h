@@ -3,7 +3,7 @@
 
 #include "../../include/Huffman/HuffmanTree.h"
 
-char*            decodeFile                  (FILE *file);
+void           decodeFile                  (char* path);
 HuffmanTree     buildFromDictionary         (FILE *file);
 HuffmanTree     buildTreeFromCode           (HuffmanTree tree, char integer);
 char*           buildString                 (FILE *file);

@@ -12,8 +12,9 @@ int main(void) {
     // printf("test linked list : %d\n", test_LinkedList());
     // printf("test queue : %d\n", test_Queue());
     // printf("test occ : %d\n", test_Occurrences());
-    printf("test hufftree : %d\n", test_HuffmanTree());
-    printf("Test dictionary : %d\n", test_dictionary());
+
+    //printf("Test dictionary : %d\n", test_dictionary());
+    printf("Test decoding : %d\n", test_decoding());
 
     return EXIT_SUCCESS;
 }

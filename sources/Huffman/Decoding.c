@@ -6,41 +6,51 @@
 #include "../../include/Huffman/Dictionary.h"
 
 char* buildString(FILE *file) {
-
-
-
     return NULL;
 }
 
-char* decodeFile(FILE *file) {
+static void displayTree(HuffmanTree tree) {
+    if (tree != NULL) {
+        printf("\n (%d | %d) ", tree->letter, tree->occ);
+        displayTree(tree->left);
+        displayTree(tree->right);
+    }
+}
 
-    int char_f = fgetc(file);
-    HuffmanTree huffmanTree = buildFromDictionary(file); // We recreate the HuffmanTree from the dictionary
-    HuffmanTree current = huffmanTree;
-    int numLetters = getSizeFile(file);
+void decodeFile(char* path) {
 
-    int count = 0;
+    FILE* dico = fopen("TextFiles/HuffmanDictionary.txt", "r");
+    HuffmanTree huffmanTree = buildFromDictionary(dico); // We recreate the HuffmanTree from the dictionary
+    fclose(dico);
 
-    char* decoded = (char*) malloc(numLetters * sizeof(char));
+    FILE* file = fopen(path, "r");
+    FILE* decoding = fopen("TextFiles/HuffmanDecompression.txt", "w+");
 
-    while (char_f != EOF) {
-            if (char_f == '0') {
-                current = current->left;
-            } else {
-                current = current->right;
-            }
-
-            if (current->letter != -1) { // it means we found a leaf ex : (a | 11)
-                decoded[count] = (char) current->letter;
-                current = huffmanTree; // we start from the beginning, again
-            }
-
-        char_f = fgetc(file);
-        count++;
+    if (file == NULL || decoding == NULL) {
+        displayErrorMessageOpenFile();
     }
 
+    int char_f = fgetc(file);
+    HuffmanTree current = huffmanTree;
+
+    while (char_f != EOF) {
+
+        if (char_f == '0') {
+            current = current->left;
+        } else {
+            current = current->right;
+        }
+
+        if (current->letter != -1) { // it means we found a leaf ex : (a | 11)
+            fputc((char) current->letter, decoding);
+            current = huffmanTree; // we start from the beginning, again
+        }
+
+        char_f = fgetc(file);
+    }
+
+    fclose(decoding);
     fclose(file);
-    return decoded;
 }
 
 HuffmanTree buildFromDictionary(FILE* file) {
@@ -48,8 +58,7 @@ HuffmanTree buildFromDictionary(FILE* file) {
 
     int currentLetter = 0;
     int sizeCodeMax = getCodeSizeMax(file);
-    printf("%d\n", sizeCodeMax);
-    char* currentCode = (char*) malloc(sizeCodeMax * sizeof(char));
+    char* currentCode = (char*) malloc((sizeCodeMax) * sizeof(char));
     int sizeCurrentCode = 0;
     int buildingCode = 0;
 
@@ -76,20 +85,20 @@ HuffmanTree buildFromDictionary(FILE* file) {
 
             buildFromCode(tree, currentLetter, currentCode, 0, sizeCurrentCode-1);
             sizeCurrentCode = 0;
-            free(currentCode);
-            currentCode = (char*) malloc(sizeCodeMax * sizeof(char));
         }
 
         char_f = fgetc(file);
     }
+
+    free(currentCode);
 
     return tree;
 }
 
 
 unsigned int getCodeSizeMax(FILE* file) {
-    int sizeCode = 0;
-    int max = 0;
+    unsigned int sizeCode = 0;
+    unsigned int max = 0;
     int buildingCode = 0;
     int char_f = fgetc(file);
 
@@ -121,7 +130,7 @@ unsigned int getCodeSizeMax(FILE* file) {
 }
 
 unsigned int getSizeFile(FILE* file) {
-    int sizeFile = 0;
+    unsigned int sizeFile = 0;
     int char_f = fgetc(file);
 
     while (char_f != EOF) {

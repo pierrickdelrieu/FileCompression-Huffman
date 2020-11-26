@@ -18,6 +18,7 @@
 #include "../include/Huffman/HuffmanTree.h"
 #include "../include/Huffman/Dictionary.h"
 #include "../include/Huffman/Decoding.h"
+#include "../include/Huffman/Encoding.h"
 
 /**
  * @brief Initialization of the contents of the file to compress in order to know the noramlement results obtained
@@ -48,13 +49,10 @@ static void initFileToCompress(char *txt) {
 int test_FileManagment(void) {
     int nbCaraFileToCompress = 103;
 
-    initFileToCompress(
-            "Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do");
-
     createBinaryFileOfFileToCompress();
 
-    if ((numberCharInFile("TextFiles/FileToCompress.txt") == nbCaraFileToCompress) ||
-        (numberCharInFile("TextFiles/BinaryFile.txt") == nbCaraFileToCompress * SIZE_BINARY)) {
+    if ((numberCharInFile("../TextFiles/FileToCompress.txt") == nbCaraFileToCompress) ||
+        (numberCharInFile("../TextFiles/BinaryFile.txt") == nbCaraFileToCompress * SIZE_BINARY)) {
         return 1;
     } else {
         return 0;
@@ -210,10 +208,8 @@ static void displayTree(HuffmanTree tree) {
 int test_HuffmanTree(void) {
     //initFileToCompress("je m'appelle aristote");
     Queue* occQueue = createSortOccQueue();
-
-
-    FILE* f = fopen("TextFiles/HuffmanCompression.txt", "r");
-    printf("\n%s", decodeFile(f));
+    HuffmanTree tree = createHuffmanTree(occQueue);
+    displayTree(tree);
 
     return 1;
 }
@@ -231,7 +227,6 @@ static void displayDicoTree(DicoTree tree){
 
 int test_dictionary() {
 
-    initFileToCompress("je m'appelle faustin je suis une grosse merde");
     Queue* occQueue = createSortOccQueue();
     //printf("\nWe have the following Queue : ");
     //displayQueue(occQueue);
@@ -244,6 +239,25 @@ int test_dictionary() {
     //printf("\n DicoTree : ");
     //displayDicoTree(dicoTree);
     initDictionaryPrinting(dicoTree);
+    encodingFile(dicoTree);
+
+    return 1;
+}
+
+
+static int compareTree(HuffmanTree t1, HuffmanTree t2) {
+    if (t1 != NULL && t2 != NULL) {
+        if (t1->letter == t2->letter) {
+            return 1 && compareTree(t1->left, t2->left) && compareTree(t1->right, t2->right);
+        } else {
+            return 0;
+        }
+    }
+}
+
+int test_decoding() {
+
+    decodeFile("TextFiles/HuffmanCompression.txt");
 
     return 1;
 }
