@@ -219,9 +219,17 @@ int test_HuffmanTree(void) {
 
 static void displayDicoTree(DicoTree tree){
     if (tree != NULL){
-        printf("(%c - %s)", tree->letter, tree->code);
+        int i = 0;
+        // printf("(%c - ", tree->letter);
+        // while(tree->code[i] != '\0') {
+        //     printf("%c", tree->code[i]);
+        //     i++;
+        // }
+        // printf(")");
+        // printf("(%c - %s)", tree->letter, tree->code);
         displayDicoTree(tree->left);
         displayDicoTree(tree->right);
+        printf("(%c - %s)", tree->letter, tree->code);
     }
 }
 
@@ -233,13 +241,15 @@ int test_dictionary() {
 
     HuffmanTree tree = createHuffmanTree(occQueue);
     //displayTree(tree);
+    printf("depth : %d\n",depthOfHuffmanTree(tree));
 
     DicoTree dicoTree = NULL;
     dicoTree = createDicoTree(tree);
-    //printf("\n DicoTree : ");
-    //displayDicoTree(dicoTree);
+
+    printf("\n DicoTree : ");
+    displayDicoTree(dicoTree);
     initDictionaryPrinting(dicoTree);
-    encodingFile(dicoTree);
+    // encodingFile(dicoTree);
 
     return 1;
 }

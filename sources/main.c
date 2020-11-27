@@ -14,7 +14,7 @@ int main(void) {
     // printf("test occ : %d\n", test_Occurrences());
 
     printf("Test dictionary : %d\n", test_dictionary());
-    printf("Test decoding : %d\n", test_decoding());
+    // printf("Test decoding : %d\n", test_decoding());
 
     return EXIT_SUCCESS;
 }
