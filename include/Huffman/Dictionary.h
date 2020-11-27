@@ -25,6 +25,8 @@ void 	leftRotation		(DicoTree* tree);
 void 	rightRotation		(DicoTree* tree);
 void 	balanceTree			(DicoTree* tree);
 void 	addNodeAVL			(DicoTree* tree, int letter, char* code);
+void 	freeDicoTree		(DicoTree tree);
+
 
 
 

@@ -287,25 +287,18 @@ void printDictionaryFile(DicoTree dicoTree, FILE* file) {
     }
 }
 
-
-// void printDictionaryInFile(HuffmanTree tree) {
-//     FILE *file = NULL;
-
-//     file = fopen("TextFiles/HuffmanDictionary.txt", "w");
-
-//     // If the file is opened correctly
-//     if (file != NULL) {
-
-//         printDictionary(file, tree, NULL, 0);
-
-//         fclose(file);
-
-//     }
-//     // If the file is not opened correctly
-//     else {
-//         displayErrorMessageOpenFile();
-//     }
-// }
+/**
+ * @brief Memory release
+ * 
+ * @param tree Tree has to free memory because dynamically allocated
+ */
+void freeDicoTree(DicoTree tree) {
+    if(tree != NULL) {
+        freeDicoTree(tree->left);
+        freeDicoTree(tree->right);
+        free (tree);
+    }
+}
 
 
 
@@ -314,95 +307,3 @@ void printDictionaryFile(DicoTree dicoTree, FILE* file) {
 
 
 
-
-
-
-
-// *********FOR DECOMPRSSION**************
-
-
-
-
-// int sizeOfLineFile(FILE *file) {
-//     int size = 0;
-//     int n = fgetc(file);
-//     while (n != EOF && n != '/') {
-//         size++;
-//         n = fgetc(file);
-//     }
-//     return size;
-// }
-
-
-// int countSlashFile(FILE* file)
-// {
-//     int n;
-//     int line = 0;
-//     while ((n = fgetc(file)) != EOF) {
-//         if (n == '/') {
-//             line++;
-//         }
-//     }
-//     fseek(file, 0, SEEK_SET);
-//     return line;
-// }
-
-
-
-// DicoNode *readDictionary(int **returnline) {
-//     FILE *filedico = fopen("../TextFiles/HuffmanDictionary.txt", "r");
-//     if (filedico != NULL) {
-
-//         int lines = countSlashFile(filedico);
-//         DicoNode *dico = (DicoNode *) malloc(lines * sizeof(DicoNode));
-//         int i;
-//         for (i = 0; i < lines; i++) {
-//             dico[i].sizecode = sizeOfLineFile(filedico) - 1;
-//         }
-
-//         fseek(filedico, 0, SEEK_SET);
-//         readCodeDictionary(filedico, dico);
-//         fclose(filedico);
-
-//         *returnline = &lines;
-//         printf("%d\n", **returnline);
-//         return dico;
-//     } else {
-//         displayErrorMessageOpenFile();
-//     }
-// }
-
-// void readCodeDictionary(FILE *filedico, DicoNode *dico) {
-//     int actual = fgetc(filedico);
-//     int i = 0;
-//     int j;
-//     while (actual != EOF) {
-//         dico[i].letter = actual;
-//         dico[i].code.nb = (int*) malloc(dico[i].sizecode * sizeof(int));
-//         j = 0;
-//         do{
-//             actual = fgetc(filedico);
-//             actual -= 48;
-//             dico[i].code.nb[j] = actual;
-//             printf("actual : %c\n", actual+48);
-//             j++;
-//         }while (actual+48 != 47);
-//         i++;
-//         actual = fgetc(filedico);
-//     }
-// }
-
-// void printDicoNode(DicoNode* dico, int lines) {
-//     int i = 0;
-//     int j;
-//     printf("Size = %d", lines);
-//     printf("DicoNode :\n");
-//     while (i != lines) {
-//         printf("%d : ", dico[i].letter);
-//         for (j = 0; j < dico[i].sizecode; j++) {
-//             printf("%d", dico[i].code.nb[j]);
-//         }
-//         printf("\n");
-//         i++;
-//     }
-// }
