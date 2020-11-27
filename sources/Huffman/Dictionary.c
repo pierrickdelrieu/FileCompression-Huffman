@@ -246,11 +246,9 @@ void initDicoTree(DicoTree* avl, HuffmanTree tree, char* code, int sizecode) {
             // If this is AVL's first node
             if(avl == NULL) {
                 *avl = createDicoNode(tree->letter, copyString(code));
-                printf("(%c - %s)", tree->letter, code);
             }
             else {
                 addNodeAVL(avl, tree->letter, copyString(code));
-                printf("(%c - %s)", tree->letter, code);
             }
         } 
 

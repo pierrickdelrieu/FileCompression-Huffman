@@ -220,15 +220,14 @@ int test_dictionary() {
 
     HuffmanTree tree = createHuffmanTree(occQueue);
     //displayTree(tree);
-    printf("depth : %d\n",depthOfHuffmanTree(tree));
 
     DicoTree dicoTree = NULL;
     dicoTree = createDicoTree(tree);
 
-    printf("\n DicoTree : ");
-    displayDicoTree(dicoTree);
+    // printf("\n DicoTree : ");
+    // displayDicoTree(dicoTree);
     initDictionaryPrinting(dicoTree);
-    // encodingFile(dicoTree);
+    encodingFile(dicoTree);
 
     return 1;
 }
