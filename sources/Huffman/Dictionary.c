@@ -25,13 +25,14 @@
 static char* copyString(char* string) {
     // Allocation
     char* cpy = NULL;
-    cpy = (char*) malloc(strlen(string) * sizeof(char));
+    cpy = (char*) malloc(strlen(string)+1 * sizeof(char));
 
     // Copy
     int i;
-    for(i=0; i<strlen(string) ; i++) {
+    for(i=0; i<strlen(string)+1 ; i++) {
         cpy[i] = string[i];
     }
+
 
     return cpy;
 }
@@ -213,7 +214,11 @@ DicoTree createDicoTree(HuffmanTree tree) {
         }
         else {
             char* code = NULL;
-            code = (char*) malloc(depthOfHuffmanTree(tree) * sizeof(char));
+            code = (char*) malloc(depthOfHuffmanTree(tree)+1 * sizeof(char));
+            int i;
+            for(i=0; i<depthOfHuffmanTree(tree); i++) {
+                code[i] = '0';
+            }
             initDicoTree(&avl, tree, code, 0);
             free(code);
         }
@@ -241,9 +246,11 @@ void initDicoTree(DicoTree* avl, HuffmanTree tree, char* code, int sizecode) {
             // If this is AVL's first node
             if(avl == NULL) {
                 *avl = createDicoNode(tree->letter, copyString(code));
+                printf("(%c - %s)", tree->letter, code);
             }
             else {
                 addNodeAVL(avl, tree->letter, copyString(code));
+                printf("(%c - %s)", tree->letter, code);
             }
         } 
 
