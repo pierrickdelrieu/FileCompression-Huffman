@@ -18,7 +18,7 @@
 #include "../../include/Huffman/Decoding.h"
 #include "../../include/IHMCompressor/Scan.h"
 #include "../../include/IHMCompressor/Show.h"
-#include "../../include/Huffman/HuffmanTree.h"
+// #include "../../include/Huffman/HuffmanTree.h"
 
 
 #define POURCENT 37
@@ -99,8 +99,8 @@ void compressFile(void) {
     time = (float)(t2-t1)/CLOCKS_PER_SEC;
     createBinaryFileOfFileToCompress();
     initDictionaryPrinting(dicoTree);
-    freeHuffmanTree(tree);
-    freeDicoTree(dicoTree);
+    // freeHuffmanTree(tree);
+    // freeDicoTree(dicoTree);
 
     do {
         cleanTerminal();

@@ -232,3 +232,51 @@ int test_dictionary() {
     return 1;
 }
 
+int compare() {
+
+    Queue* occQueue = createSortOccQueue();
+    //printf("\nWe have the following Queue : ");
+    //displayQueue(occQueue);
+
+    HuffmanTree tree = createHuffmanTree(occQueue);
+    //displayTree(tree);
+
+    DicoTree dicoTree = NULL;
+    dicoTree = createDicoTree(tree);
+    //printf("\n DicoTree : ");
+    //displayDicoTree(dicoTree);
+    initDictionaryPrinting(dicoTree);
+    encodingFile(dicoTree);
+    decodeFile();
+
+    FILE* compressed = fopen("TextFiles/FileToCompress.txt", "r");
+    FILE* decompressed = fopen("TextFiles/HuffmanDecompression.txt", "r");
+
+    int c1 = fgetc(compressed);
+    int c2 = fgetc(decompressed);
+
+    int line = 0;
+
+    while (1) {
+        if (c1 != c2) {
+            printf("\n not cool c1 : %c , c2 : %c", c1, c2);
+            fclose(compressed);
+            fclose(decompressed);
+
+            printf("\n%d", line);
+            return 0;
+        }
+
+        if (c1 == EOF || c2 == EOF) break;
+
+        if (c1 == '\n' && c2 == '\n') line++;
+
+        c1 = fgetc(compressed);
+        c2 = fgetc(decompressed);
+    }
+
+    fclose(compressed);
+    fclose(decompressed);
+
+    return 1;
+}
