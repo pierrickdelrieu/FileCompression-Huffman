@@ -131,8 +131,7 @@ void decompressFile(void) {
  
     t1 = clock();
  
-    // Programme
-    // ajouter la decompression avec le temps de compression
+    decodeFile();
      
     t2 = clock();
     time = (float)(t2-t1)/CLOCKS_PER_SEC;

@@ -223,10 +223,3 @@ int test_dictionary() {
     return 1;
 }
 
-
-int test_decoding() {
-
-    decodeFile("TextFiles/HuffmanCompression.txt");
-
-    return 1;
-}
