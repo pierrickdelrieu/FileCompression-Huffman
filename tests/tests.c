@@ -17,6 +17,7 @@
 #include "../include/DataStructures/Queue.h"
 #include "../include/Huffman/HuffmanTree.h"
 #include "../include/Huffman/Dictionary.h"
+#include "../include/Huffman/Decoding.h"
 #include "../include/Huffman/Encoding.h"
 
 /**
@@ -27,13 +28,10 @@
 int test_FileManagment(void) {
     int nbCaraFileToCompress = 103;
 
-    initFileToCompress(
-            "Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do");
-
     createBinaryFileOfFileToCompress();
 
-    if ((numberCharInFile("TextFiles/FileToCompress.txt") == nbCaraFileToCompress) ||
-        (numberCharInFile("TextFiles/BinaryFile.txt") == nbCaraFileToCompress * SIZE_BINARY)) {
+    if ((numberCharInFile("../TextFiles/FileToCompress.txt") == nbCaraFileToCompress) ||
+        (numberCharInFile("../TextFiles/BinaryFile.txt") == nbCaraFileToCompress * SIZE_BINARY)) {
         return 1;
     } else {
         return 0;
@@ -187,27 +185,8 @@ static void displayTree(HuffmanTree tree) {
  * @return int Returns 1 all the time if there is no error during execution
  */
 int test_HuffmanTree(void) {
-    // LinkedList head = createNode(createHuffmanNode((int) 'a', 5));
-    // addNode(&head, createNode(createHuffmanNode((int) 'z', 5)));
-    // addNode(&head, createNode(createHuffmanNode((int) 's', 5)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'e', 4)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'd', 3)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'r', 3)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'v', 3)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'c', 1)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'd', 1)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'm', 1)));
-
-
-    // Queue* occQueue = initQueue(); // Queue is sorted
-    // occQueue->last = head;
-    // occQueue->first = head->next->next->next->next->next->next->next->next->next;
-
-    initFileToCompress("ab\ncccc");
+    //initFileToCompress("je m'appelle aristote");
     Queue* occQueue = createSortOccQueue();
-    printf("\nWe have the following Queue : ");
-    displayQueue(occQueue);
-
     HuffmanTree tree = createHuffmanTree(occQueue);
     displayTree(tree);
 
@@ -225,25 +204,29 @@ static void displayDicoTree(DicoTree tree){
     }
 }
 
-
-
 int test_dictionary() {
 
-    initFileToCompress("abbbbccddd");
     Queue* occQueue = createSortOccQueue();
-    // printf("\nWe have the following Queue : ");
-    // displayQueue(occQueue);
+    //printf("\nWe have the following Queue : ");
+    //displayQueue(occQueue);
 
     HuffmanTree tree = createHuffmanTree(occQueue);
-    // displayTree(tree);
+    //displayTree(tree);
 
     DicoTree dicoTree = NULL;
     dicoTree = createDicoTree(tree);
-    // printf("\n DicoTree : ");
-    // displayDicoTree(dicoTree);
+    //printf("\n DicoTree : ");
+    //displayDicoTree(dicoTree);
     initDictionaryPrinting(dicoTree);
-
     encodingFile(dicoTree);
+
+    return 1;
+}
+
+
+int test_decoding() {
+
+    decodeFile("TextFiles/HuffmanCompression.txt");
 
     return 1;
 }

@@ -5,11 +5,12 @@
 
 typedef HuffmanNode* HuffmanTree;
 
-LinkedList occChar  (void);
+LinkedList      occChar                     (void);
 
-HuffmanTree createHuffmanTree(Queue* occQueue);
+HuffmanTree     createHuffmanTree           (Queue* occQueue);
 
-Queue*          createSortOccQueue      (void);
+Queue*          createSortOccQueue          (void);
+
 
 int depthOfHuffmanTree(HuffmanTree tree);
 

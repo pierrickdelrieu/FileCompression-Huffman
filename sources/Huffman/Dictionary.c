@@ -219,7 +219,6 @@ DicoTree createDicoTree(HuffmanTree tree) {
         }
     }
 
-    
     return avl;
 }
 
