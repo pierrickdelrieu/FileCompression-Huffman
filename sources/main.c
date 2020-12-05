@@ -31,10 +31,11 @@ int main(void) {
     // printf("test FileManagment: %d\n", test_FileManagment());
     // printf("test linked list : %d\n", test_LinkedList());
     // printf("test queue : %d\n", test_Queue());
+    // printf("test queue ordre : %d\n, test_Queue_Occ());
     // printf("test occ : %d\n", test_Occurrences());
-
     // printf("Test dictionary : %d\n", test_dictionary());
-    printf("Test decodage : %d\n", compare());
+    // printf("Test encoding : %d\n", test_encoding());
+    printf("Test decodage : %d\n", test_decompression());
 
     return EXIT_SUCCESS;
 }

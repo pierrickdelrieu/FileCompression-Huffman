@@ -99,9 +99,14 @@ void compressFile(void) {
     time = (float)(t2-t1)/CLOCKS_PER_SEC;
     createBinaryFileOfFileToCompress();
     initDictionaryPrinting(dicoTree);
-    // freeHuffmanTree(tree);
+    freeHuffmanTree(tree);
     // freeDicoTree(dicoTree);
-
+    /*
+    freeNode(occQueue->last);
+    free(occQueue);
+    freeHuffmanTree(tree);
+    freeDicoTree(dicoTree);
+    */
     do {
         cleanTerminal();
         printf("************************************************************************\n");

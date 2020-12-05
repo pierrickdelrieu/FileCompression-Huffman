@@ -187,3 +187,10 @@ Node* findMinOccLetter(Node* list) {
     }
 
 }
+
+void freeNode(LinkedList list) {
+    if (list != NULL) {
+        freeNode(list->next);
+        free(list);
+    }
+}
