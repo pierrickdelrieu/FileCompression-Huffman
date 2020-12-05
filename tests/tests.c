@@ -17,6 +17,7 @@
 #include "../include/DataStructures/Queue.h"
 #include "../include/Huffman/HuffmanTree.h"
 #include "../include/Huffman/Dictionary.h"
+#include "../include/Huffman/Decoding.h"
 #include "../include/Huffman/Encoding.h"
 
 /**
@@ -27,13 +28,10 @@
 int test_FileManagment(void) {
     int nbCaraFileToCompress = 103;
 
-    initFileToCompress(
-            "Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do");
-
     createBinaryFileOfFileToCompress();
 
-    if ((numberCharInFile("TextFiles/FileToCompress.txt") == nbCaraFileToCompress) ||
-        (numberCharInFile("TextFiles/BinaryFile.txt") == nbCaraFileToCompress * SIZE_BINARY)) {
+    if ((numberCharInFile("../TextFiles/FileToCompress.txt") == nbCaraFileToCompress) ||
+        (numberCharInFile("../TextFiles/BinaryFile.txt") == nbCaraFileToCompress * SIZE_BINARY)) {
         return 1;
     } else {
         return 0;
@@ -187,27 +185,8 @@ static void displayTree(HuffmanTree tree) {
  * @return int Returns 1 all the time if there is no error during execution
  */
 int test_HuffmanTree(void) {
-    // LinkedList head = createNode(createHuffmanNode((int) 'a', 5));
-    // addNode(&head, createNode(createHuffmanNode((int) 'z', 5)));
-    // addNode(&head, createNode(createHuffmanNode((int) 's', 5)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'e', 4)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'd', 3)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'r', 3)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'v', 3)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'c', 1)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'd', 1)));
-    // addNode(&head, createNode(createHuffmanNode((int) 'm', 1)));
-
-
-    // Queue* occQueue = initQueue(); // Queue is sorted
-    // occQueue->last = head;
-    // occQueue->first = head->next->next->next->next->next->next->next->next->next;
-
-    initFileToCompress("ab\ncccc");
+    //initFileToCompress("je m'appelle aristote");
     Queue* occQueue = createSortOccQueue();
-    printf("\nWe have the following Queue : ");
-    displayQueue(occQueue);
-
     HuffmanTree tree = createHuffmanTree(occQueue);
     displayTree(tree);
 
@@ -219,31 +198,85 @@ int test_HuffmanTree(void) {
 
 static void displayDicoTree(DicoTree tree){
     if (tree != NULL){
-        printf("(%c - %s)", tree->letter, tree->code);
+        int i = 0;
+        // printf("(%c - ", tree->letter);
+        // while(tree->code[i] != '\0') {
+        //     printf("%c", tree->code[i]);
+        //     i++;
+        // }
+        // printf(")");
+        // printf("(%c - %s)", tree->letter, tree->code);
         displayDicoTree(tree->left);
         displayDicoTree(tree->right);
+        printf("(%c - %s)", tree->letter, tree->code);
     }
 }
 
-
-
 int test_dictionary() {
 
-    initFileToCompress("abbbbccddd");
     Queue* occQueue = createSortOccQueue();
-    // printf("\nWe have the following Queue : ");
-    // displayQueue(occQueue);
+    //printf("\nWe have the following Queue : ");
+    //displayQueue(occQueue);
 
     HuffmanTree tree = createHuffmanTree(occQueue);
-    // displayTree(tree);
+    //displayTree(tree);
 
     DicoTree dicoTree = NULL;
     dicoTree = createDicoTree(tree);
+
     // printf("\n DicoTree : ");
     // displayDicoTree(dicoTree);
     initDictionaryPrinting(dicoTree);
-
     encodingFile(dicoTree);
+
+    return 1;
+}
+
+int compare() {
+
+    Queue* occQueue = createSortOccQueue();
+    //printf("\nWe have the following Queue : ");
+    //displayQueue(occQueue);
+
+    HuffmanTree tree = createHuffmanTree(occQueue);
+    //displayTree(tree);
+
+    DicoTree dicoTree = NULL;
+    dicoTree = createDicoTree(tree);
+    //printf("\n DicoTree : ");
+    //displayDicoTree(dicoTree);
+    initDictionaryPrinting(dicoTree);
+    encodingFile(dicoTree);
+    decodeFile();
+
+    FILE* compressed = fopen("TextFiles/FileToCompress.txt", "r");
+    FILE* decompressed = fopen("TextFiles/HuffmanDecompression.txt", "r");
+
+    int c1 = fgetc(compressed);
+    int c2 = fgetc(decompressed);
+
+    int line = 0;
+
+    while (1) {
+        if (c1 != c2) {
+            printf("\n not cool c1 : %c , c2 : %c", c1, c2);
+            fclose(compressed);
+            fclose(decompressed);
+
+            printf("\n%d", line);
+            return 0;
+        }
+
+        if (c1 == EOF || c2 == EOF) break;
+
+        if (c1 == '\n' && c2 == '\n') line++;
+
+        c1 = fgetc(compressed);
+        c2 = fgetc(decompressed);
+    }
+
+    fclose(compressed);
+    fclose(decompressed);
 
     return 1;
 }

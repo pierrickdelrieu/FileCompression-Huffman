@@ -41,7 +41,7 @@ int pushQueue(Queue **f, HuffmanNode *nx_elem) {
     if (f != NULL) {
         Node *x = createNode(nx_elem);
 
-        // If the Queue is not empty
+        // If the Queue is empty
         if (((*f)->last == NULL) && ((*f)->first == NULL)) {
             (*f)->last = x;
             (*f)->first = x;
@@ -71,7 +71,7 @@ int pushQueue(Queue **f, HuffmanNode *nx_elem) {
 HuffmanNode *pullQueue(Queue **f) {
     // If the Queue has been initialized
     if (f != NULL) {
-        if(((*f)->first != NULL) && ((*f)->last != NULL)) {
+        if (((*f)->first != NULL) && ((*f)->last != NULL)) {
             Node *temp = (*f)->last;
 
             // If the Queue contains one or zero HuffmanNode
@@ -101,3 +101,4 @@ HuffmanNode *pullQueue(Queue **f) {
     // If the Queue has not been initialized
     return NULL;
 }
+

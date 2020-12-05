@@ -216,3 +216,18 @@ int depthOfHuffmanTree(HuffmanTree tree) {
         }
     }
 }
+
+
+
+/**
+ * @brief Memory release
+ * 
+ * @param tree Tree has to free memory because dynamically allocated
+ */
+void freeHuffmanTree(HuffmanTree tree) {
+    if(tree != NULL) {
+        freeHuffmanTree(tree->left);
+        freeHuffmanTree(tree->right);
+        free (tree);
+    }
+}

@@ -8,6 +8,6 @@ int        test_Queue              (void);
 int		   test_Occurrences        (void);
 int        test_HuffmanTree        (void);
 int		   test_dictionary         (void);
-
+int        compare                 (void);
 
 #endif // !TESTS
