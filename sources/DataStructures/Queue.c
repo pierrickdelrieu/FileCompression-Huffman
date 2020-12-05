@@ -101,3 +101,4 @@ HuffmanNode *pullQueue(Queue **f) {
     // If the Queue has not been initialized
     return NULL;
 }
+

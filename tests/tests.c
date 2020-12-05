@@ -69,18 +69,6 @@ int test_LinkedList(void) {
     return 1;
 }
 
-int test_Queue_Occ(void) {
-    initFileToCompress("Ceci est un test unitaire visant à regarder si la queue est bien triée, c'est à dire dans l'ordre décroissant d'occ.");
-    Queue* queue = createSortOccQueue();
-    Node* temp = queue->last;
-    while (temp != queue->first)
-    {
-        if (temp->data->occ < temp->next->data->occ) return 0;
-        temp = temp->next;
-    }
-    return 1;
-}
-
 static void displayQueue(Queue *queue) {
     Node *head = queue->last;
     while (head != NULL) {
@@ -244,20 +232,21 @@ int test_dictionary() {
     return 1;
 }
 
-int test_decompression(void) {
+int compare() {
 
-    initFileToCompress("Ceci est un test fonctionnel visant à regarder si la décompression se passe bien, autrement dit, que les deux fichiers textes coïncident.");
     Queue* occQueue = createSortOccQueue();
+    //printf("\nWe have the following Queue : ");
+    //displayQueue(occQueue);
+
     HuffmanTree tree = createHuffmanTree(occQueue);
-    DicoTree dicoTree = createDicoTree(tree);
-    encodingFile(dicoTree);
+    //displayTree(tree);
+
+    DicoTree dicoTree = NULL;
+    dicoTree = createDicoTree(tree);
+    //printf("\n DicoTree : ");
+    //displayDicoTree(dicoTree);
     initDictionaryPrinting(dicoTree);
-
-    freeNode(occQueue->last);
-    free(occQueue);
-    freeHuffmanTree(tree);
-    freeDicoTree(dicoTree);
-
+    encodingFile(dicoTree);
     decodeFile();
 
     FILE* compressed = fopen("TextFiles/FileToCompress.txt", "r");
@@ -278,9 +267,7 @@ int test_decompression(void) {
             return 0;
         }
 
-        if (c1 == EOF && c2 == EOF) break;
-        else if (c1 == EOF) return 0;
-        else if (c2 == EOF) return 0;
+        if (c1 == EOF || c2 == EOF) break;
 
         if (c1 == '\n' && c2 == '\n') line++;
 
@@ -291,27 +278,5 @@ int test_decompression(void) {
     fclose(compressed);
     fclose(decompressed);
 
-    return 1;
-}
-
-int test_encoding(void) {
-    int sizetocompress = 121;
-    initFileToCompress("Ceci est un test fonctionnel visant à regarder si la compression se passe bien, si elle est acceptable (au delà de 20%).");
-    Queue* occQueue = createSortOccQueue();
-    HuffmanTree tree = createHuffmanTree(occQueue);
-    DicoTree dicoTree = createDicoTree(tree);
-    encodingFile(dicoTree);
-    initDictionaryPrinting(dicoTree);
-
-    freeNode(occQueue->last);
-    free(occQueue);
-    freeHuffmanTree(tree);
-    freeDicoTree(dicoTree);
-
-    int sizecompressed = numberCharInFile("../TextFiles/HuffmanCompression.txt");
-    float ratio = ratioCompression();
-    if (ratio < 20) {
-        return 0;
-    }
     return 1;
 }

@@ -37,8 +37,6 @@ int               getSize               (LinkedList list);
 
 Node*             findMinOccLetter      (LinkedList list);
 
-void              freeNode              (LinkedList list);
-
 
 
 #endif // !LINKED_LIST
