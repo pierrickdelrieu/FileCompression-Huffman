@@ -1,6 +1,6 @@
 /**
  * @file tests.c
- * @author Pierrick Delrieu - Benjamin Lesieux - Harold Molter
+ * @author Pierrick Delrieu - Benjamin Lesieux - Harold Molter - Faustin Dewas
  * @brief function test of project
  * @version 0.3
  * @date 07-11-2020
@@ -19,6 +19,42 @@
 #include "../include/Huffman/Dictionary.h"
 #include "../include/Huffman/Decoding.h"
 #include "../include/Huffman/Encoding.h"
+
+
+// static void displayDicoTree(DicoTree tree){
+//     if (tree != NULL){
+//         displayDicoTree(tree->left);
+//         displayDicoTree(tree->right);
+//         printf("(%c - %s)", tree->letter, tree->code);
+//     }
+// }
+
+
+// static void displayQueue(Queue *queue) {
+//     Node *head = queue->last;
+//     while (head != NULL) {
+//         printf("(%c | %d) -> ", head->data->letter, head->data->occ);
+//         head = head->next;
+//     }
+// }
+
+
+// static void displayLinkedList(LinkedList l) {
+//     Node *head = l;
+//     while (head != NULL) {
+//         printf("(%c | %d) -> ", head->data->letter, head->data->occ);
+//         head = head->next;
+//     }
+// }
+
+// static void displayTree(HuffmanTree tree) {
+//     if (tree != NULL) {
+//         printf("\n (%d | %d) ", tree->letter, tree->occ);
+//         displayTree(tree->left);
+//         displayTree(tree->right);
+//     }
+// }
+
 
 /**
  * @brief FileManagement function test (part 1 of project)
@@ -67,6 +103,24 @@ int test_LinkedList(void) {
     // size is supposed to be 2
     if (getSize(head) != 2) return 0;
 
+    return 1;
+}
+
+
+/**
+ * @brief OccQueue function test
+ * 
+ * @return int 1 if test ok and 0 else
+ */
+int test_Queue_Occ(void) {
+    initFileToCompress("Ceci est un test unitaire visant à regarder si la queue est bien triée, c'est à dire dans l'ordre décroissant d'occ.");
+    Queue* queue = createSortOccQueue();
+    Node* temp = queue->last;
+    while (temp != queue->first)
+    {
+        if (temp->data->occ < temp->next->data->occ) return 0;
+        temp = temp->next;
+    }
     return 1;
 }
 
@@ -131,47 +185,6 @@ int test_Queue(void) {
 }
 
 
-static void displayLinkedList(LinkedList l) {
-    Node *head = l;
-    while (head != NULL) {
-        printf("(%c | %d) -> ", head->data->letter, head->data->occ);
-        head = head->next;
-    }
-}
-
-/**
-* @brief Test function for analysing occurrence of characters in a file occChar()
- * @return int 1 if test ok and 0 else
-*/
-
-int test_Occurrences(void) {
-    
-    // initFileToCompress("");
-    // LinkedList list = occChar();
-    // if ((list == NULL) && (numberCharInFile("TextFiles/FileToCompress.txt") != 0)) return 0;
-    // if ((list != NULL) && (numberCharInFile("TextFiles/FileToCompress.txt") == 0)) return 0;
-    // if (getSize(list) != numberCharInFile("TextFiles/FileToCompress.txt")) return 0;
-    // // displayLinkedList(list);
-    
-   
-    // initFileToCompress("alice");
-    Queue* f = createSortOccQueue();
-    // printf("Queue : ");
-    // displayQueue(f);
-    // printf("\n");
-
-
-    return 1;
-}
-
-static void displayTree(HuffmanTree tree) {
-    if (tree != NULL) {
-        printf("\n (%d | %d) ", tree->letter, tree->occ);
-        displayTree(tree->left);
-        displayTree(tree->right);
-    }
-}
-
 /**
  * @brief Creating a Huffman tree with the two-queue process
  * @details Verification of the tree obtained using: https://csfieldguide.org.nz/en/interactives/huffman-tree/
@@ -179,24 +192,16 @@ static void displayTree(HuffmanTree tree) {
  * @return int Returns 1 all the time if there is no error during execution
  */
 int test_HuffmanTree(void) {
-    //initFileToCompress("je m'appelle aristote");
-    Queue* occQueue = createSortOccQueue();
-    HuffmanTree tree = createHuffmanTree(occQueue);
-    displayTree(tree);
+    initFileToCompress("je m'appelle aristote");
+    // Queue* occQueue = createSortOccQueue();
+    // HuffmanTree tree = createHuffmanTree(occQueue);
+    // displayTree(tree);
 
+    // a comparer avec le lien en documentation
     return 1;
 }
 
 
-
-
-static void displayDicoTree(DicoTree tree){
-    if (tree != NULL){
-        displayDicoTree(tree->left);
-        displayDicoTree(tree->right);
-        printf("(%c - %s)", tree->letter, tree->code);
-    }
-}
 
 int test_dictionary() {
 
@@ -209,23 +214,32 @@ int test_dictionary() {
 
     DicoTree dicoTree = NULL;
     dicoTree = createDicoTree(tree);
+    // displayDicoTree(dicoTree);
 
     initDictionaryPrinting(dicoTree);
-    encodingFile(dicoTree);
-
     return 1;
 }
 
-int compare() {
 
+/**
+ * @brief Compare FileToCompress.txt and HuffmanDecompression.txt
+ * 
+ * @return int 1 if test ok and 0 else
+ */
+int test_decompression(void) {
+
+    initFileToCompress("Ceci est un test fonctionnel visant à regarder si la décompression se passe bien, autrement dit, que les deux fichiers textes coïncident.");
     Queue* occQueue = createSortOccQueue();
-
     HuffmanTree tree = createHuffmanTree(occQueue);
-
-    DicoTree dicoTree = NULL;
-    dicoTree = createDicoTree(tree);
-    initDictionaryPrinting(dicoTree);
+    DicoTree dicoTree = createDicoTree(tree);
     encodingFile(dicoTree);
+    initDictionaryPrinting(dicoTree);
+
+    freeNode(occQueue->last);
+    free(occQueue);
+    freeHuffmanTree(tree);
+    freeDicoTree(dicoTree);
+
     decodeFile();
 
     FILE* compressed = fopen("TextFiles/FileToCompress.txt", "r");
@@ -246,7 +260,9 @@ int compare() {
             return 0;
         }
 
-        if (c1 == EOF || c2 == EOF) break;
+        if (c1 == EOF && c2 == EOF) break;
+        else if (c1 == EOF) return 0;
+        else if (c2 == EOF) return 0;
 
         if (c1 == '\n' && c2 == '\n') line++;
 
@@ -257,5 +273,31 @@ int compare() {
     fclose(compressed);
     fclose(decompressed);
 
+    return 1;
+}
+
+
+/**
+ * @brief Verif ratiocompression
+ * 
+ * @return int 1 if test ok and 0 else
+ */
+int test_encoding(void) {
+    initFileToCompress("Ceci est un test fonctionnel visant à regarder si la compression se passe bien, si elle est acceptable (au delà de 20 prcts).");
+    Queue* occQueue = createSortOccQueue();
+    HuffmanTree tree = createHuffmanTree(occQueue);
+    DicoTree dicoTree = createDicoTree(tree);
+    encodingFile(dicoTree);
+    initDictionaryPrinting(dicoTree);
+
+    freeNode(occQueue->last);
+    free(occQueue);
+    freeHuffmanTree(tree);
+    freeDicoTree(dicoTree);
+
+    float ratio = ratioCompression();
+    if (ratio < 20) {
+        return 0;
+    }
     return 1;
 }
