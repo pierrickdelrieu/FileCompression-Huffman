@@ -5,14 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>FileCompression-Huffman: /Users/pierrickdelrieu/OneDrive - Efrei/Perso/Projet/Prog c - FileCompression Huffman (2020)/sources/Huffman/Decoding.c Source File</title>
+<title>FileCompressor - Huffman: sources/Huffman/Decoding.c Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">FileCompression-Huffman
+   <div id="projectname">FileCompressor - Huffman
    </div>
   </td>
  </tr>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_decoding_8c_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,25 +59,183 @@ $(document).ready(function(){initNavTree('_decoding_8c_source.html',''); initRes
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_08d237fc27d4ecd563f71c5d52f2fecc.html">sources</a></li><li class="navelem"><a class="el" href="dir_b9ddfe6aed3fb98af5b5913b393e7bac.html">Huffman</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Decoding.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_decoding_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;../../include/IHMCompressor/Show.h&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;../../include/Huffman/Decoding.h&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;../../include/Huffman/Dictionary.h&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<a href="_decoding_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;../../include/IHMCompressor/Show.h&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;../../include/Huffman/Decoding.h&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;../../include/Huffman/Dictionary.h&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="_decoding_8c.html#a1d6efa44e33da7663b4f35edb0a2b0b8">   25</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_decoding_8c.html#a1d6efa44e33da7663b4f35edb0a2b0b8">decodeFile</a>() {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    FILE* dico = fopen(<span class="stringliteral">&quot;TextFiles/HuffmanDictionary.txt&quot;</span>, <span class="stringliteral">&quot;r&quot;</span>);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="struct_huffman_node.html">HuffmanTree</a> huffmanTree = <a class="code" href="_decoding_8c.html#a546862faf0cb4265a0b5daacbff5d564">buildFromDictionary</a>(dico); <span class="comment">// We recreate the HuffmanTree from the dictionary</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    fclose(dico);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">// We need to open the files so that we can both search in one file and write in the other file</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    FILE* file = fopen(<span class="stringliteral">&quot;TextFiles/HuffmanCompression.txt&quot;</span>, <span class="stringliteral">&quot;r&quot;</span>);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    FILE* decoding = fopen(<span class="stringliteral">&quot;TextFiles/HuffmanDecompression.txt&quot;</span>, <span class="stringliteral">&quot;w+&quot;</span>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">if</span> (file == NULL || decoding == NULL) {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="_show_8h.html#a99a41914b9988c6536334572c374d5d4">displayErrorMessageOpenFile</a>();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">int</span> char_f = fgetc(file);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="struct_huffman_node.html">HuffmanTree</a> current = huffmanTree;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">while</span> (char_f != EOF) {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="comment">// We are going through the tree until we find a leaf node containing a letter</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">if</span> (char_f == <span class="charliteral">&#39;0&#39;</span>) {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            current = current-&gt;<a class="code" href="struct_huffman_node.html#ab4f3024a3ac6aad7fb1757fc9e9f0a2b">left</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            current = current-&gt;<a class="code" href="struct_huffman_node.html#a7f728ee988b6a5c4c00a44b801420c81">right</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">if</span> (current == NULL) { <span class="comment">// Sometimes the tree can be NULL, even if we came from a parent, so we reset it</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            current = huffmanTree;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (current-&gt;<a class="code" href="struct_huffman_node.html#aafad9a83fdf5b43267da91d0f5aeb9ec">letter</a> != -1) { <span class="comment">// it means we found a leaf ex : (a | 11)</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            fputc((<span class="keywordtype">char</span>) current-&gt;<a class="code" href="struct_huffman_node.html#aafad9a83fdf5b43267da91d0f5aeb9ec">letter</a>, decoding);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            current = huffmanTree; <span class="comment">// we start from the beginning, again</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        char_f = fgetc(file);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    fclose(decoding);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    fclose(file);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="_decoding_8c.html#a546862faf0cb4265a0b5daacbff5d564">   69</a></span>&#160;<a class="code" href="struct_huffman_node.html">HuffmanTree</a> <a class="code" href="_decoding_8c.html#a546862faf0cb4265a0b5daacbff5d564">buildFromDictionary</a>(FILE* file) {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="struct_huffman_node.html">HuffmanTree</a> tree = <a class="code" href="_linked_list_8h.html#a144d8438142dc7c9e325b3ef32220d94">createHuffmanNode</a>(-1, 0); <span class="comment">// creating the parent node</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">int</span> currentLetter = 0;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">int</span> sizeCodeMax = <a class="code" href="_decoding_8c.html#a74c7efde9ab4eb9daf1a54046b8c402a">getCodeSizeMax</a>(file);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">char</span>* currentCode = (<span class="keywordtype">char</span>*) malloc((sizeCodeMax) * <span class="keyword">sizeof</span>(char));</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">int</span> sizeCurrentCode = 0;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">int</span> buildingCode = 0;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    fseek(file, 0, SEEK_SET); <span class="comment">// we set the pointer at the beginning of the file so that we don&#39;t miss anything</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">int</span> char_f = fgetc(file);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">while</span> (char_f != EOF) {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">if</span> (char_f != <span class="charliteral">&#39;/&#39;</span> &amp;&amp; char_f != <span class="charliteral">&#39;1&#39;</span> &amp;&amp; char_f != <span class="charliteral">&#39;0&#39;</span>) {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            currentLetter = char_f; <span class="comment">// it means we found a letter</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            buildingCode = 1;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="keywordflow">while</span> (buildingCode == 1) {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                char_f = fgetc(file); <span class="comment">// going to next character until we complete the code</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                currentCode[sizeCurrentCode] = (char) char_f;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                sizeCurrentCode++;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                <span class="keywordflow">if</span> (char_f == <span class="charliteral">&#39;/&#39;</span>) {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                    currentCode[sizeCurrentCode-1] = <span class="charliteral">&#39;\0&#39;</span>; <span class="comment">// it means we reached the end of the code</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                    buildingCode = 0;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <a class="code" href="_decoding_8c.html#a9989d27a19af773a33aea094d0540774">buildFromCode</a>(tree, currentLetter, currentCode, 0, sizeCurrentCode-1); <span class="comment">// we build the child node at the place the code would be</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            sizeCurrentCode = 0;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        char_f = fgetc(file);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    free(currentCode);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordflow">return</span> tree;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;}</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="_decoding_8c.html#a74c7efde9ab4eb9daf1a54046b8c402a">  116</a></span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="_decoding_8c.html#a74c7efde9ab4eb9daf1a54046b8c402a">getCodeSizeMax</a>(FILE* file) { <span class="comment">// the code is almost the same as the function above</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> sizeCode = 0;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> max = 0;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordtype">int</span> buildingCode = 0;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">int</span> char_f = fgetc(file);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">while</span> (char_f != EOF) {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">if</span> (char_f != <span class="charliteral">&#39;/&#39;</span> &amp;&amp; char_f != <span class="charliteral">&#39;1&#39;</span> &amp;&amp; char_f != <span class="charliteral">&#39;0&#39;</span>) {</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            buildingCode = 1;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            <span class="keywordflow">while</span> (buildingCode == 1) {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                char_f = fgetc(file);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                sizeCode++;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                <span class="keywordflow">if</span> (char_f == <span class="charliteral">&#39;/&#39;</span>) {</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                    buildingCode = 0;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                    <span class="keywordflow">if</span> (max &lt; sizeCode) {</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                        max = sizeCode;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                    }</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                }</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            }</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            sizeCode = 0;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        }</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        char_f = fgetc(file);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    }</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordflow">return</span> max;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;}</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="_decoding_8c.html#a9989d27a19af773a33aea094d0540774">  157</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_decoding_8c.html#a9989d27a19af773a33aea094d0540774">buildFromCode</a>(<a class="code" href="struct_huffman_node.html">HuffmanTree</a> tree, <span class="keywordtype">char</span> <a class="code" href="struct_dico_node.html#aafad9a83fdf5b43267da91d0f5aeb9ec">letter</a>, <span class="keywordtype">char</span>* <a class="code" href="struct_dico_node.html#a5b9e1322ebc26e12c192f03bccba2770">code</a>, <span class="keywordtype">int</span> index, <span class="keywordtype">int</span> sizeCode) {</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keywordflow">if</span> (tree != NULL &amp;&amp; index != sizeCode) {</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="struct_dico_node.html#a5b9e1322ebc26e12c192f03bccba2770">code</a>[index] == <span class="charliteral">&#39;1&#39;</span>) {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <span class="keywordflow">if</span> (tree-&gt;<a class="code" href="struct_huffman_node.html#a7f728ee988b6a5c4c00a44b801420c81">right</a> == NULL) {</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                <span class="keywordflow">if</span> (index == sizeCode-1) {</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                    tree-&gt;<a class="code" href="struct_huffman_node.html#a7f728ee988b6a5c4c00a44b801420c81">right</a> = <a class="code" href="_linked_list_8h.html#a144d8438142dc7c9e325b3ef32220d94">createHuffmanNode</a>((<span class="keywordtype">int</span>) <a class="code" href="struct_dico_node.html#aafad9a83fdf5b43267da91d0f5aeb9ec">letter</a>, 0); <span class="comment">// We build the leaf</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                    tree-&gt;<a class="code" href="struct_huffman_node.html#a7f728ee988b6a5c4c00a44b801420c81">right</a> = <a class="code" href="_linked_list_8h.html#a144d8438142dc7c9e325b3ef32220d94">createHuffmanNode</a>(-1, 0); <span class="comment">// We build a parent</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                }</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            }</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            <a class="code" href="_decoding_8c.html#a9989d27a19af773a33aea094d0540774">buildFromCode</a>(tree-&gt;<a class="code" href="struct_huffman_node.html#a7f728ee988b6a5c4c00a44b801420c81">right</a>, <a class="code" href="struct_dico_node.html#aafad9a83fdf5b43267da91d0f5aeb9ec">letter</a>, <a class="code" href="struct_dico_node.html#a5b9e1322ebc26e12c192f03bccba2770">code</a>, index + 1, sizeCode); <span class="comment">// We continue to travel</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            <span class="keywordflow">if</span> (tree-&gt;<a class="code" href="struct_huffman_node.html#ab4f3024a3ac6aad7fb1757fc9e9f0a2b">left</a> == NULL) {</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                <span class="keywordflow">if</span> (index == sizeCode-1) {</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                    tree-&gt;<a class="code" href="struct_huffman_node.html#ab4f3024a3ac6aad7fb1757fc9e9f0a2b">left</a> = <a class="code" href="_linked_list_8h.html#a144d8438142dc7c9e325b3ef32220d94">createHuffmanNode</a>((<span class="keywordtype">int</span>) <a class="code" href="struct_dico_node.html#aafad9a83fdf5b43267da91d0f5aeb9ec">letter</a>, 0); <span class="comment">// We build a leaf</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                    tree-&gt;<a class="code" href="struct_huffman_node.html#ab4f3024a3ac6aad7fb1757fc9e9f0a2b">left</a> = <a class="code" href="_linked_list_8h.html#a144d8438142dc7c9e325b3ef32220d94">createHuffmanNode</a>(-1, 0); <span class="comment">// We build a parent</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                }</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            }</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            <a class="code" href="_decoding_8c.html#a9989d27a19af773a33aea094d0540774">buildFromCode</a>(tree-&gt;<a class="code" href="struct_huffman_node.html#ab4f3024a3ac6aad7fb1757fc9e9f0a2b">left</a>, <a class="code" href="struct_dico_node.html#aafad9a83fdf5b43267da91d0f5aeb9ec">letter</a>, <a class="code" href="struct_dico_node.html#a5b9e1322ebc26e12c192f03bccba2770">code</a>, index + 1, sizeCode); <span class="comment">// We continue to travel</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        }</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    }</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;}</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
+<div class="ttc" id="astruct_huffman_node_html_ab4f3024a3ac6aad7fb1757fc9e9f0a2b"><div class="ttname"><a href="struct_huffman_node.html#ab4f3024a3ac6aad7fb1757fc9e9f0a2b">HuffmanNode::left</a></div><div class="ttdeci">struct HuffmanNode * left</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8h_source.html#l00015">LinkedList.h:15</a></div></div>
+<div class="ttc" id="astruct_huffman_node_html_a7f728ee988b6a5c4c00a44b801420c81"><div class="ttname"><a href="struct_huffman_node.html#a7f728ee988b6a5c4c00a44b801420c81">HuffmanNode::right</a></div><div class="ttdeci">struct HuffmanNode * right</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8h_source.html#l00014">LinkedList.h:14</a></div></div>
+<div class="ttc" id="a_decoding_8c_html_a9989d27a19af773a33aea094d0540774"><div class="ttname"><a href="_decoding_8c.html#a9989d27a19af773a33aea094d0540774">buildFromCode</a></div><div class="ttdeci">void buildFromCode(HuffmanTree tree, char letter, char *code, int index, int sizeCode)</div><div class="ttdoc">add a node to tree at the place showed by the code</div><div class="ttdef"><b>Definition:</b> <a href="_decoding_8c_source.html#l00157">Decoding.c:157</a></div></div>
+<div class="ttc" id="astruct_huffman_node_html_aafad9a83fdf5b43267da91d0f5aeb9ec"><div class="ttname"><a href="struct_huffman_node.html#aafad9a83fdf5b43267da91d0f5aeb9ec">HuffmanNode::letter</a></div><div class="ttdeci">int letter</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8h_source.html#l00012">LinkedList.h:12</a></div></div>
+<div class="ttc" id="astruct_dico_node_html_a5b9e1322ebc26e12c192f03bccba2770"><div class="ttname"><a href="struct_dico_node.html#a5b9e1322ebc26e12c192f03bccba2770">DicoNode::code</a></div><div class="ttdeci">char * code</div><div class="ttdef"><b>Definition:</b> <a href="_dictionary_8h_source.html#l00012">Dictionary.h:12</a></div></div>
+<div class="ttc" id="a_show_8h_html_a99a41914b9988c6536334572c374d5d4"><div class="ttname"><a href="_show_8h.html#a99a41914b9988c6536334572c374d5d4">displayErrorMessageOpenFile</a></div><div class="ttdeci">void displayErrorMessageOpenFile(void)</div><div class="ttdoc">Display of an error message and forced exit from the program when there is a problem opening a file.</div><div class="ttdef"><b>Definition:</b> <a href="_show_8c_source.html#l00023">Show.c:23</a></div></div>
+<div class="ttc" id="a_linked_list_8h_html_a144d8438142dc7c9e325b3ef32220d94"><div class="ttname"><a href="_linked_list_8h.html#a144d8438142dc7c9e325b3ef32220d94">createHuffmanNode</a></div><div class="ttdeci">HuffmanNode * createHuffmanNode(int letter, int occ)</div><div class="ttdoc">Creates an HuffmanNode.</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8c_source.html#l00027">LinkedList.c:27</a></div></div>
+<div class="ttc" id="a_decoding_8c_html_a74c7efde9ab4eb9daf1a54046b8c402a"><div class="ttname"><a href="_decoding_8c.html#a74c7efde9ab4eb9daf1a54046b8c402a">getCodeSizeMax</a></div><div class="ttdeci">unsigned int getCodeSizeMax(FILE *file)</div><div class="ttdoc">search and returns the size of the biggest code</div><div class="ttdef"><b>Definition:</b> <a href="_decoding_8c_source.html#l00116">Decoding.c:116</a></div></div>
+<div class="ttc" id="astruct_huffman_node_html"><div class="ttname"><a href="struct_huffman_node.html">HuffmanNode</a></div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8h_source.html#l00011">LinkedList.h:11</a></div></div>
+<div class="ttc" id="a_decoding_8c_html_a1d6efa44e33da7663b4f35edb0a2b0b8"><div class="ttname"><a href="_decoding_8c.html#a1d6efa44e33da7663b4f35edb0a2b0b8">decodeFile</a></div><div class="ttdeci">void decodeFile()</div><div class="ttdoc">decodes the encoded file into HuffmanDecompression.txt</div><div class="ttdef"><b>Definition:</b> <a href="_decoding_8c_source.html#l00025">Decoding.c:25</a></div></div>
+<div class="ttc" id="astruct_dico_node_html_aafad9a83fdf5b43267da91d0f5aeb9ec"><div class="ttname"><a href="struct_dico_node.html#aafad9a83fdf5b43267da91d0f5aeb9ec">DicoNode::letter</a></div><div class="ttdeci">int letter</div><div class="ttdef"><b>Definition:</b> <a href="_dictionary_8h_source.html#l00013">Dictionary.h:13</a></div></div>
+<div class="ttc" id="a_decoding_8c_html_a546862faf0cb4265a0b5daacbff5d564"><div class="ttname"><a href="_decoding_8c.html#a546862faf0cb4265a0b5daacbff5d564">buildFromDictionary</a></div><div class="ttdeci">HuffmanTree buildFromDictionary(FILE *file)</div><div class="ttdoc">builds an huffman tree from the dictionary file</div><div class="ttdef"><b>Definition:</b> <a href="_decoding_8c_source.html#l00069">Decoding.c:69</a></div></div>
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_08d237fc27d4ecd563f71c5d52f2fecc.html">sources</a></li><li class="navelem"><a class="el" href="dir_b9ddfe6aed3fb98af5b5913b393e7bac.html">Huffman</a></li><li class="navelem"><a class="el" href="_decoding_8c.html">Decoding.c</a></li>
-    <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
 </body>
 </html>

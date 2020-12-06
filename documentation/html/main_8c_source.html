@@ -5,14 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>FileCompression-Huffman: /Users/pierrickdelrieu/OneDrive - Efrei/Perso/Projet/Prog c - FileCompression Huffman (2020)/sources/main.c Source File</title>
+<title>FileCompressor - Huffman: sources/main.c Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">FileCompression-Huffman
+   <div id="projectname">FileCompressor - Huffman
    </div>
   </td>
  </tr>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('main_8c_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,6 +59,11 @@ $(document).ready(function(){initNavTree('main_8c_source.html',''); initResizabl
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_08d237fc27d4ecd563f71c5d52f2fecc.html">sources</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">main.c</div>  </div>
@@ -87,34 +71,58 @@ $(document).ready(function(){initNavTree('main_8c_source.html',''); initResizabl
 <div class="contents">
 <a href="main_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;../include/FileManagment.h&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;../include//Huffman/Encoding.h&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;../include//Huffman/Decoding.h&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">   10</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="_file_managment_8h.html#aa3bcf2f7795bbb8c60995b9e5d89156a">createBinaryFileOfFileToCompress</a>();</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    printf(<span class="stringliteral">&quot;nb 1 : %d\n&quot;</span>, <a class="code" href="_file_managment_8h.html#a71c52dcfba57a4fff5ba2bc9a66b00cb">numberCharInFile</a>(<span class="stringliteral">&quot;TextFiles/FileToCompress.txt&quot;</span>));</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    printf(<span class="stringliteral">&quot;nb 2 : %d\n&quot;</span>, <a class="code" href="_file_managment_8h.html#a71c52dcfba57a4fff5ba2bc9a66b00cb">numberCharInFile</a>(<span class="stringliteral">&quot;TextFiles/BinaryFile.txt&quot;</span>));</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;../tests/tests.h&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;../include/IHMCompressor/Menu.h&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="main_8c.html#a4159fc55ee63167f1273ce2fda1781c2">    6</a></span>&#160;<span class="preprocessor">#define ADDTEXT 1</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="main_8c.html#a4aa43acdab3102556482bdf21c12c674">    7</a></span>&#160;<span class="preprocessor">#define COMPRESS 2</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="main_8c.html#acb3405b0b506a48d56d9f38f50716ce6">    8</a></span>&#160;<span class="preprocessor">#define DECOMPRESS 3</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="main_8c.html#ad24e2b54375e12474e65ebf7175988fb">    9</a></span>&#160;<span class="preprocessor">#define QUIT 4</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">   11</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordtype">int</span> choice = <a class="code" href="main_8c.html#ad24e2b54375e12474e65ebf7175988fb">QUIT</a>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordflow">do</span> {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        choice = <a class="code" href="_menu_8h.html#a2d37b9d0c090695278816d125f463d13">displayMenu</a>();</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordflow">if</span>(choice == <a class="code" href="main_8c.html#a4159fc55ee63167f1273ce2fda1781c2">ADDTEXT</a>) {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <a class="code" href="_menu_8h.html#a8bd0584d54a591656a6797db89f3b85c">addText</a>();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        } </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="main_8c.html#a4aa43acdab3102556482bdf21c12c674">COMPRESS</a>) {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="_menu_8h.html#add63822dc191d0d7194a1862f8d96775">compressFile</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        }</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="main_8c.html#acb3405b0b506a48d56d9f38f50716ce6">DECOMPRESS</a>) {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <a class="code" href="_menu_8h.html#a1f90af419bc859fdae08c41f91ddfd70">decompressFile</a>();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        }</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    } <span class="keywordflow">while</span>(choice != <a class="code" href="main_8c.html#ad24e2b54375e12474e65ebf7175988fb">QUIT</a>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="comment">// FileManagement function test (part 1 of project)</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">// printf(&quot;test FileManagment: %d\n&quot;, test_FileManagment());</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">// printf(&quot;test linked list : %d\n&quot;, test_LinkedList());</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">// printf(&quot;test queue : %d\n&quot;, test_Queue());</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">// printf(&quot;test occ : %d\n&quot;, test_Occurrences());</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">// printf(&quot;Test dictionary : %d\n&quot;, test_dictionary());</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    printf(<span class="stringliteral">&quot;Test decodage : %d\n&quot;</span>, <a class="code" href="tests_8c.html#af3afec6f04e5fc42702a472afb15e744">compare</a>());</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
-<div class="ttc" id="a_file_managment_8h_html_aa3bcf2f7795bbb8c60995b9e5d89156a"><div class="ttname"><a href="_file_managment_8h.html#aa3bcf2f7795bbb8c60995b9e5d89156a">createBinaryFileOfFileToCompress</a></div><div class="ttdeci">void createBinaryFileOfFileToCompress(void)</div><div class="ttdoc">Creation of a binary number file 'BinaryFile.txt' containing the equivalent of the character file 'Fi...</div><div class="ttdef"><b>Definition:</b> <a href="_file_managment_8c_source.html#l00070">FileManagment.c:70</a></div></div>
-<div class="ttc" id="a_file_managment_8h_html_a71c52dcfba57a4fff5ba2bc9a66b00cb"><div class="ttname"><a href="_file_managment_8h.html#a71c52dcfba57a4fff5ba2bc9a66b00cb">numberCharInFile</a></div><div class="ttdeci">int numberCharInFile(char *filePath)</div><div class="ttdoc">Counting the number of characters in a file.</div><div class="ttdef"><b>Definition:</b> <a href="_file_managment_8c_source.html#l00110">FileManagment.c:110</a></div></div>
-<div class="ttc" id="amain_8c_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00010">main.c:10</a></div></div>
+<div class="ttc" id="amain_8c_html_ad24e2b54375e12474e65ebf7175988fb"><div class="ttname"><a href="main_8c.html#ad24e2b54375e12474e65ebf7175988fb">QUIT</a></div><div class="ttdeci">#define QUIT</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00009">main.c:9</a></div></div>
+<div class="ttc" id="a_menu_8h_html_a1f90af419bc859fdae08c41f91ddfd70"><div class="ttname"><a href="_menu_8h.html#a1f90af419bc859fdae08c41f91ddfd70">decompressFile</a></div><div class="ttdeci">void decompressFile(void)</div><div class="ttdoc">Functionality: decompression of the file &quot;FileToCompress.txt&quot; with calculation of the decompression t...</div><div class="ttdef"><b>Definition:</b> <a href="_menu_8c_source.html#l00129">Menu.c:129</a></div></div>
+<div class="ttc" id="atests_8c_html_af3afec6f04e5fc42702a472afb15e744"><div class="ttname"><a href="tests_8c.html#af3afec6f04e5fc42702a472afb15e744">compare</a></div><div class="ttdeci">int compare()</div><div class="ttdef"><b>Definition:</b> <a href="tests_8c_source.html#l00235">tests.c:235</a></div></div>
+<div class="ttc" id="a_menu_8h_html_a2d37b9d0c090695278816d125f463d13"><div class="ttname"><a href="_menu_8h.html#a2d37b9d0c090695278816d125f463d13">displayMenu</a></div><div class="ttdeci">int displayMenu(void)</div><div class="ttdoc">Display and user choice of software features.</div><div class="ttdef"><b>Definition:</b> <a href="_menu_8c_source.html#l00032">Menu.c:32</a></div></div>
+<div class="ttc" id="amain_8c_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00011">main.c:11</a></div></div>
+<div class="ttc" id="amain_8c_html_a4159fc55ee63167f1273ce2fda1781c2"><div class="ttname"><a href="main_8c.html#a4159fc55ee63167f1273ce2fda1781c2">ADDTEXT</a></div><div class="ttdeci">#define ADDTEXT</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00006">main.c:6</a></div></div>
+<div class="ttc" id="amain_8c_html_a4aa43acdab3102556482bdf21c12c674"><div class="ttname"><a href="main_8c.html#a4aa43acdab3102556482bdf21c12c674">COMPRESS</a></div><div class="ttdeci">#define COMPRESS</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00007">main.c:7</a></div></div>
+<div class="ttc" id="a_menu_8h_html_a8bd0584d54a591656a6797db89f3b85c"><div class="ttname"><a href="_menu_8h.html#a8bd0584d54a591656a6797db89f3b85c">addText</a></div><div class="ttdeci">void addText(void)</div><div class="ttdoc">Functionality: adding a text in the &quot;FileToCompress.txt&quot; file.</div><div class="ttdef"><b>Definition:</b> <a href="_menu_8c_source.html#l00060">Menu.c:60</a></div></div>
+<div class="ttc" id="a_menu_8h_html_add63822dc191d0d7194a1862f8d96775"><div class="ttname"><a href="_menu_8h.html#add63822dc191d0d7194a1862f8d96775">compressFile</a></div><div class="ttdeci">void compressFile(void)</div><div class="ttdoc">Functionality: compression of the &quot;FileToCompress.txt&quot; file with data calculation.</div><div class="ttdef"><b>Definition:</b> <a href="_menu_8c_source.html#l00084">Menu.c:84</a></div></div>
+<div class="ttc" id="amain_8c_html_acb3405b0b506a48d56d9f38f50716ce6"><div class="ttname"><a href="main_8c.html#acb3405b0b506a48d56d9f38f50716ce6">DECOMPRESS</a></div><div class="ttdeci">#define DECOMPRESS</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00008">main.c:8</a></div></div>
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_08d237fc27d4ecd563f71c5d52f2fecc.html">sources</a></li><li class="navelem"><a class="el" href="main_8c.html">main.c</a></li>
-    <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
 </body>
 </html>

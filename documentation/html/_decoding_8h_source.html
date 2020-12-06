@@ -5,14 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>FileCompression-Huffman: /Users/pierrickdelrieu/OneDrive - Efrei/Perso/Projet/Prog c - FileCompression Huffman (2020)/include/Huffman/Decoding.h Source File</title>
+<title>FileCompressor - Huffman: include/Huffman/Decoding.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">FileCompression-Huffman
+   <div id="projectname">FileCompressor - Huffman
    </div>
   </td>
  </tr>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_decoding_8h_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,6 +59,11 @@ $(document).ready(function(){initNavTree('_decoding_8h_source.html',''); initRes
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_725ccbaf62e769fe928c3a1cde6fa7ec.html">Huffman</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Decoding.h</div>  </div>
@@ -88,16 +72,29 @@ $(document).ready(function(){initNavTree('_decoding_8h_source.html',''); initRes
 <a href="_decoding_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef DECODING</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define DECODING</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#endif // !DECODING</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;../../include/Huffman/HuffmanTree.h&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_decoding_8h.html#a1d6efa44e33da7663b4f35edb0a2b0b8">decodeFile</a>();</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<a class="code" href="struct_huffman_node.html">HuffmanTree</a> <a class="code" href="_decoding_8h.html#a546862faf0cb4265a0b5daacbff5d564">buildFromDictionary</a>(FILE *file);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="_decoding_8h.html#a3d0a7d829df6c9259698c3a09e4a214f">   10</a></span>&#160;<a class="code" href="struct_huffman_node.html">HuffmanTree</a> <a class="code" href="_decoding_8h.html#a3d0a7d829df6c9259698c3a09e4a214f">buildTreeFromCode</a>(<a class="code" href="struct_huffman_node.html">HuffmanTree</a> tree, <span class="keywordtype">char</span> integer);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="_decoding_8h.html#a74c7efde9ab4eb9daf1a54046b8c402a">getCodeSizeMax</a>(FILE *file);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_decoding_8h.html#a9989d27a19af773a33aea094d0540774">buildFromCode</a>(<a class="code" href="struct_huffman_node.html">HuffmanTree</a> tree, <span class="keywordtype">char</span> letter, <span class="keywordtype">char</span> *code, <span class="keywordtype">int</span> index, <span class="keywordtype">int</span> sizeCode);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#endif // !DECODING</span></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
+<div class="ttc" id="a_decoding_8h_html_a546862faf0cb4265a0b5daacbff5d564"><div class="ttname"><a href="_decoding_8h.html#a546862faf0cb4265a0b5daacbff5d564">buildFromDictionary</a></div><div class="ttdeci">HuffmanTree buildFromDictionary(FILE *file)</div><div class="ttdoc">builds an huffman tree from the dictionary file</div><div class="ttdef"><b>Definition:</b> <a href="_decoding_8c_source.html#l00069">Decoding.c:69</a></div></div>
+<div class="ttc" id="a_decoding_8h_html_a3d0a7d829df6c9259698c3a09e4a214f"><div class="ttname"><a href="_decoding_8h.html#a3d0a7d829df6c9259698c3a09e4a214f">buildTreeFromCode</a></div><div class="ttdeci">HuffmanTree buildTreeFromCode(HuffmanTree tree, char integer)</div></div>
+<div class="ttc" id="a_decoding_8h_html_a74c7efde9ab4eb9daf1a54046b8c402a"><div class="ttname"><a href="_decoding_8h.html#a74c7efde9ab4eb9daf1a54046b8c402a">getCodeSizeMax</a></div><div class="ttdeci">unsigned int getCodeSizeMax(FILE *file)</div><div class="ttdoc">search and returns the size of the biggest code</div><div class="ttdef"><b>Definition:</b> <a href="_decoding_8c_source.html#l00116">Decoding.c:116</a></div></div>
+<div class="ttc" id="a_decoding_8h_html_a9989d27a19af773a33aea094d0540774"><div class="ttname"><a href="_decoding_8h.html#a9989d27a19af773a33aea094d0540774">buildFromCode</a></div><div class="ttdeci">void buildFromCode(HuffmanTree tree, char letter, char *code, int index, int sizeCode)</div><div class="ttdoc">add a node to tree at the place showed by the code</div><div class="ttdef"><b>Definition:</b> <a href="_decoding_8c_source.html#l00157">Decoding.c:157</a></div></div>
+<div class="ttc" id="astruct_huffman_node_html"><div class="ttname"><a href="struct_huffman_node.html">HuffmanNode</a></div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8h_source.html#l00011">LinkedList.h:11</a></div></div>
+<div class="ttc" id="a_decoding_8h_html_a1d6efa44e33da7663b4f35edb0a2b0b8"><div class="ttname"><a href="_decoding_8h.html#a1d6efa44e33da7663b4f35edb0a2b0b8">decodeFile</a></div><div class="ttdeci">void decodeFile()</div><div class="ttdoc">decodes the encoded file into HuffmanDecompression.txt</div><div class="ttdef"><b>Definition:</b> <a href="_decoding_8c_source.html#l00025">Decoding.c:25</a></div></div>
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_725ccbaf62e769fe928c3a1cde6fa7ec.html">Huffman</a></li><li class="navelem"><a class="el" href="_decoding_8h.html">Decoding.h</a></li>
-    <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
 </body>
 </html>

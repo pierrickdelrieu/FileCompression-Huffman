@@ -5,14 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>FileCompression-Huffman: /Users/pierrickdelrieu/OneDrive - Efrei/Perso/Projet/Prog c - FileCompression Huffman (2020)/include/FileManagment.h Source File</title>
+<title>FileCompressor - Huffman: include/FileManagment.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">FileCompression-Huffman
+   <div id="projectname">FileCompressor - Huffman
    </div>
   </td>
  </tr>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_file_managment_8h_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,6 +59,11 @@ $(document).ready(function(){initNavTree('_file_managment_8h_source.html',''); i
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">FileManagment.h</div>  </div>
@@ -102,31 +86,32 @@ $(document).ready(function(){initNavTree('_file_managment_8h_source.html',''); i
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<a class="code" href="struct_binary.html">Binary</a>* <a class="code" href="_file_managment_8h.html#a7fefedee2f251c18f314b5eacfab0ab6">createBinaryNumber</a>  (<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<a class="code" href="struct_binary.html">Binary</a>* <a class="code" href="_file_managment_8h.html#ab5b661f529a6a1735caadea6077591db">createBinaryNumber</a>  (<span class="keywordtype">int</span> size);</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<a class="code" href="struct_binary.html">Binary</a>* <a class="code" href="_file_managment_8h.html#a83db0f8a3016c3ddafbcff49e0a3866f">convertIntToBinary</a>  (<span class="keywordtype">int</span> value);</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">void</span>    <a class="code" href="_file_managment_8h.html#aa3bcf2f7795bbb8c60995b9e5d89156a">createBinaryFileOfFileToCompress</a>    (<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">int</span>     <a class="code" href="_file_managment_8h.html#a71c52dcfba57a4fff5ba2bc9a66b00cb">numberCharInFile</a>                    (<span class="keywordtype">char</span>* filePath);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span>    <a class="code" href="_file_managment_8h.html#a8c51e3b5e51c0a302191e8df01891612">initFileToCompress</a>                  (<span class="keywordtype">char</span> *txt);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif // !FILE_MANAGMENT</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">float</span>   <a class="code" href="_file_managment_8h.html#ad8cd0e359609a45640cefec3d08c5da6">ratioCompression</a>                    (<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif // !FILE_MANAGMENT</span></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
-<div class="ttc" id="a_file_managment_8h_html_aa3bcf2f7795bbb8c60995b9e5d89156a"><div class="ttname"><a href="_file_managment_8h.html#aa3bcf2f7795bbb8c60995b9e5d89156a">createBinaryFileOfFileToCompress</a></div><div class="ttdeci">void createBinaryFileOfFileToCompress(void)</div><div class="ttdoc">Creation of a binary number file 'BinaryFile.txt' containing the equivalent of the character file 'Fi...</div><div class="ttdef"><b>Definition:</b> <a href="_file_managment_8c_source.html#l00070">FileManagment.c:70</a></div></div>
+<div class="ttc" id="a_file_managment_8h_html_a8c51e3b5e51c0a302191e8df01891612"><div class="ttname"><a href="_file_managment_8h.html#a8c51e3b5e51c0a302191e8df01891612">initFileToCompress</a></div><div class="ttdeci">void initFileToCompress(char *txt)</div><div class="ttdoc">Initialization of the contents of the file to compress in order to know the noramlement results obtai...</div><div class="ttdef"><b>Definition:</b> <a href="_file_managment_8c_source.html#l00023">FileManagment.c:23</a></div></div>
+<div class="ttc" id="a_file_managment_8h_html_aa3bcf2f7795bbb8c60995b9e5d89156a"><div class="ttname"><a href="_file_managment_8h.html#aa3bcf2f7795bbb8c60995b9e5d89156a">createBinaryFileOfFileToCompress</a></div><div class="ttdeci">void createBinaryFileOfFileToCompress(void)</div><div class="ttdoc">Creation of a binary number file 'BinaryFile.txt' containing the equivalent of the character file 'Fi...</div><div class="ttdef"><b>Definition:</b> <a href="_file_managment_8c_source.html#l00094">FileManagment.c:94</a></div></div>
+<div class="ttc" id="a_file_managment_8h_html_ad8cd0e359609a45640cefec3d08c5da6"><div class="ttname"><a href="_file_managment_8h.html#ad8cd0e359609a45640cefec3d08c5da6">ratioCompression</a></div><div class="ttdeci">float ratioCompression(void)</div><div class="ttdef"><b>Definition:</b> <a href="_file_managment_8c_source.html#l00161">FileManagment.c:161</a></div></div>
 <div class="ttc" id="astruct_binary_html"><div class="ttname"><a href="struct_binary.html">Binary</a></div><div class="ttdoc">Array of integers to represent a number in binary.</div><div class="ttdef"><b>Definition:</b> <a href="_file_managment_8h_source.html#l00014">FileManagment.h:14</a></div></div>
 <div class="ttc" id="astruct_binary_html_a4a6137f4e0f4ea91781bdf04651b7e2e"><div class="ttname"><a href="struct_binary.html#a4a6137f4e0f4ea91781bdf04651b7e2e">Binary::nb</a></div><div class="ttdeci">int * nb</div><div class="ttdef"><b>Definition:</b> <a href="_file_managment_8h_source.html#l00015">FileManagment.h:15</a></div></div>
 <div class="ttc" id="a_file_managment_8h_html_ac6aac4a4ac5b5e6f0234fcefeca0f748"><div class="ttname"><a href="_file_managment_8h.html#ac6aac4a4ac5b5e6f0234fcefeca0f748">Binary</a></div><div class="ttdeci">struct Binary Binary</div><div class="ttdoc">Array of integers to represent a number in binary.</div></div>
-<div class="ttc" id="a_file_managment_8h_html_a71c52dcfba57a4fff5ba2bc9a66b00cb"><div class="ttname"><a href="_file_managment_8h.html#a71c52dcfba57a4fff5ba2bc9a66b00cb">numberCharInFile</a></div><div class="ttdeci">int numberCharInFile(char *filePath)</div><div class="ttdoc">Counting the number of characters in a file.</div><div class="ttdef"><b>Definition:</b> <a href="_file_managment_8c_source.html#l00110">FileManagment.c:110</a></div></div>
-<div class="ttc" id="a_file_managment_8h_html_a83db0f8a3016c3ddafbcff49e0a3866f"><div class="ttname"><a href="_file_managment_8h.html#a83db0f8a3016c3ddafbcff49e0a3866f">convertIntToBinary</a></div><div class="ttdeci">Binary * convertIntToBinary(int value)</div><div class="ttdoc">Converting integer to binary number (0 and 1)</div><div class="ttdef"><b>Definition:</b> <a href="_file_managment_8c_source.html#l00047">FileManagment.c:47</a></div></div>
-<div class="ttc" id="a_file_managment_8h_html_a7fefedee2f251c18f314b5eacfab0ab6"><div class="ttname"><a href="_file_managment_8h.html#a7fefedee2f251c18f314b5eacfab0ab6">createBinaryNumber</a></div><div class="ttdeci">Binary * createBinaryNumber(void)</div><div class="ttdoc">Memory allocation of the Binary structure and of the 1D array representing the bytes.</div><div class="ttdef"><b>Definition:</b> <a href="_file_managment_8c_source.html#l00026">FileManagment.c:26</a></div></div>
+<div class="ttc" id="a_file_managment_8h_html_a71c52dcfba57a4fff5ba2bc9a66b00cb"><div class="ttname"><a href="_file_managment_8h.html#a71c52dcfba57a4fff5ba2bc9a66b00cb">numberCharInFile</a></div><div class="ttdeci">int numberCharInFile(char *filePath)</div><div class="ttdoc">Counting the number of characters in a file.</div><div class="ttdef"><b>Definition:</b> <a href="_file_managment_8c_source.html#l00133">FileManagment.c:133</a></div></div>
+<div class="ttc" id="a_file_managment_8h_html_ab5b661f529a6a1735caadea6077591db"><div class="ttname"><a href="_file_managment_8h.html#ab5b661f529a6a1735caadea6077591db">createBinaryNumber</a></div><div class="ttdeci">Binary * createBinaryNumber(int size)</div><div class="ttdoc">Memory allocation of the Binary structure and of the 1D array representing the bytes.</div><div class="ttdef"><b>Definition:</b> <a href="_file_managment_8c_source.html#l00046">FileManagment.c:46</a></div></div>
+<div class="ttc" id="a_file_managment_8h_html_a83db0f8a3016c3ddafbcff49e0a3866f"><div class="ttname"><a href="_file_managment_8h.html#a83db0f8a3016c3ddafbcff49e0a3866f">convertIntToBinary</a></div><div class="ttdeci">Binary * convertIntToBinary(int value)</div><div class="ttdoc">Converting integer to binary number (0 and 1)</div><div class="ttdef"><b>Definition:</b> <a href="_file_managment_8c_source.html#l00072">FileManagment.c:72</a></div></div>
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="_file_managment_8h.html">FileManagment.h</a></li>
-    <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
 </body>
 </html>

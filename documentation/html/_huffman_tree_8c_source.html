@@ -5,14 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>FileCompression-Huffman: /Users/pierrickdelrieu/OneDrive - Efrei/Perso/Projet/Prog c - FileCompression Huffman (2020)/sources/Huffman/HuffmanTree.c Source File</title>
+<title>FileCompressor - Huffman: sources/Huffman/HuffmanTree.c Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">FileCompression-Huffman
+   <div id="projectname">FileCompressor - Huffman
    </div>
   </td>
  </tr>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_huffman_tree_8c_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,22 +59,237 @@ $(document).ready(function(){initNavTree('_huffman_tree_8c_source.html',''); ini
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_08d237fc27d4ecd563f71c5d52f2fecc.html">sources</a></li><li class="navelem"><a class="el" href="dir_b9ddfe6aed3fb98af5b5913b393e7bac.html">Huffman</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">HuffmanTree.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_huffman_tree_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;../../include/Huffman/HuffmanTree.h&quot;</span></div>
+<a href="_huffman_tree_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;../../include/Huffman/HuffmanTree.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;../../include/IHMCompressor/Show.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="_huffman_tree_8c.html#a603e40475d9e7ac6f351bc0af2192de8">   22</a></span>&#160;<a class="code" href="struct_node.html">LinkedList</a> <a class="code" href="_huffman_tree_8c.html#a603e40475d9e7ac6f351bc0af2192de8">occChar</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    FILE *file = NULL;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    file = fopen(<span class="stringliteral">&quot;TextFiles/FileToCompress.txt&quot;</span>, <span class="stringliteral">&quot;r&quot;</span>);    <span class="comment">// access path to verify...?</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="comment">// checking if file is open</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">if</span> (file != NULL) {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="struct_node.html">LinkedList</a> list = NULL;                                <span class="comment">// list to return</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="struct_node.html">LinkedList</a> temp = NULL;                                <span class="comment">// copy of list, to go through it</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">int</span> char_f = fgetc(file);                            <span class="comment">// char being read in file</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        list = <a class="code" href="_linked_list_8h.html#ab86e3b132413e630470d93326f6940de">createNode</a>(<a class="code" href="_linked_list_8h.html#a144d8438142dc7c9e325b3ef32220d94">createHuffmanNode</a>(char_f, 1));</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="comment">// go through whole file</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">while</span> (char_f != EOF) {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            char_f = fgetc(file);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            temp = <a class="code" href="_linked_list_8h.html#a80a64e11c1e9ed0e245fe2384bd87ba8">find</a>(list, char_f);                        <span class="comment">// check if char already in list</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="comment">// letter is in list</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordflow">if</span> (temp != NULL) {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                temp-&gt;<a class="code" href="struct_node.html#ace8a769c34969fb1751a8d901c41896c">data</a>-&gt;<a class="code" href="struct_huffman_node.html#af31c4cdd2ddb799512125a78038c283f">occ</a> = temp-&gt;<a class="code" href="struct_node.html#ace8a769c34969fb1751a8d901c41896c">data</a>-&gt;<a class="code" href="struct_huffman_node.html#af31c4cdd2ddb799512125a78038c283f">occ</a> + 1;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                <span class="comment">// letter not in list</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <a class="code" href="struct_node.html">LinkedList</a> newE = <a class="code" href="_linked_list_8h.html#ab86e3b132413e630470d93326f6940de">createNode</a>(<a class="code" href="_linked_list_8h.html#a144d8438142dc7c9e325b3ef32220d94">createHuffmanNode</a>(char_f, 1));</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                <a class="code" href="_linked_list_8h.html#ad7d622d2bed6d7eddb3ea061e96cc7ba">addNode</a>(&amp;list, newE);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        fclose(file);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="comment">// Remove char(EOF)</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="struct_huffman_node.html">HuffmanNode</a> *eof = <a class="code" href="_linked_list_8h.html#a80a64e11c1e9ed0e245fe2384bd87ba8">find</a>(list, EOF)-&gt;<a class="code" href="struct_node.html#ace8a769c34969fb1751a8d901c41896c">data</a>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <a class="code" href="_linked_list_8h.html#af2ba6fa878035502a2e36c8c90ae04f1">removeNode</a>(&amp;list, eof);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">return</span> list;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="_show_8h.html#a99a41914b9988c6536334572c374d5d4">displayErrorMessageOpenFile</a>();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> compareNodeQueue(<a class="code" href="struct_node.html">Node</a> *node1, <a class="code" href="struct_node.html">Node</a> *node2) {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">if</span> ((node1 == NULL) &amp;&amp; (node2 == NULL)) {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ((node1 == NULL) &amp;&amp; (node2 != NULL)) {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ((node1 != NULL) &amp;&amp; (node2 == NULL)) {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ((node1-&gt;<a class="code" href="struct_node.html#ace8a769c34969fb1751a8d901c41896c">data</a> == NULL) &amp;&amp; (node2-&gt;<a class="code" href="struct_node.html#ace8a769c34969fb1751a8d901c41896c">data</a> == NULL)) {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ((node1-&gt;<a class="code" href="struct_node.html#ace8a769c34969fb1751a8d901c41896c">data</a> == NULL) &amp;&amp; (node2-&gt;<a class="code" href="struct_node.html#ace8a769c34969fb1751a8d901c41896c">data</a> != NULL)) {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ((node1-&gt;<a class="code" href="struct_node.html#ace8a769c34969fb1751a8d901c41896c">data</a> != NULL) &amp;&amp; (node2-&gt;<a class="code" href="struct_node.html#ace8a769c34969fb1751a8d901c41896c">data</a> == NULL)) {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (node1-&gt;<a class="code" href="struct_node.html#ace8a769c34969fb1751a8d901c41896c">data</a>-&gt;<a class="code" href="struct_huffman_node.html#af31c4cdd2ddb799512125a78038c283f">occ</a> &gt; node2-&gt;<a class="code" href="struct_node.html#ace8a769c34969fb1751a8d901c41896c">data</a>-&gt;<a class="code" href="struct_huffman_node.html#af31c4cdd2ddb799512125a78038c283f">occ</a>) {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (node1-&gt;<a class="code" href="struct_node.html#ace8a769c34969fb1751a8d901c41896c">data</a>-&gt;<a class="code" href="struct_huffman_node.html#af31c4cdd2ddb799512125a78038c283f">occ</a> &lt; node2-&gt;<a class="code" href="struct_node.html#ace8a769c34969fb1751a8d901c41896c">data</a>-&gt;<a class="code" href="struct_huffman_node.html#af31c4cdd2ddb799512125a78038c283f">occ</a>) {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword">static</span> <a class="code" href="struct_huffman_node.html">HuffmanNode</a>* getMin(<a class="code" href="struct_queue.html">Queue</a>* occQueue, <a class="code" href="struct_queue.html">Queue</a>* nodeQueue) {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <a class="code" href="struct_huffman_node.html">HuffmanNode</a>* min = NULL;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="tests_8c.html#af3afec6f04e5fc42702a472afb15e744">compare</a> = compareNodeQueue(occQueue-&gt;<a class="code" href="struct_queue.html#a2addc5f5fab651284199528b83cd61c8">first</a>, nodeQueue-&gt;<a class="code" href="struct_queue.html#a2addc5f5fab651284199528b83cd61c8">first</a>);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="tests_8c.html#af3afec6f04e5fc42702a472afb15e744">compare</a> == 1) {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        min = <a class="code" href="_queue_8h.html#a9bb1f207f3695adce3bc18f286e5a89e">pullQueue</a>(&amp;nodeQueue);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="tests_8c.html#af3afec6f04e5fc42702a472afb15e744">compare</a> == -1) {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        min = <a class="code" href="_queue_8h.html#a9bb1f207f3695adce3bc18f286e5a89e">pullQueue</a>(&amp;occQueue);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        min = <a class="code" href="_queue_8h.html#a9bb1f207f3695adce3bc18f286e5a89e">pullQueue</a>(&amp;occQueue);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordflow">return</span> min;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;}</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="_huffman_tree_8c.html#ac088000daa36c78e807ffabd6e88318c">  123</a></span>&#160;<a class="code" href="struct_huffman_node.html">HuffmanTree</a> <a class="code" href="_huffman_tree_8c.html#ac088000daa36c78e807ffabd6e88318c">createHuffmanTree</a>(<a class="code" href="struct_queue.html">Queue</a>* occQueue) {</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <a class="code" href="struct_queue.html">Queue</a> *nodeQueue = <a class="code" href="_queue_8h.html#a625f063a00ca83e30f1a9d0ef4830978">initQueue</a>();</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="_linked_list_8h.html#a927d15cb707909c83985195dc2e14a3e">getSize</a>(occQueue-&gt;<a class="code" href="struct_queue.html#a16ac028724e4fd7016faa38928658477">last</a>) &lt;= 1) { <span class="comment">// Si la file initiale n&#39;a qu&#39;un HuffmanNode =&gt; rien à construire.</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="_queue_8h.html#a9bb1f207f3695adce3bc18f286e5a89e">pullQueue</a>(&amp;occQueue);    <span class="comment">// returns NULL if empty, the only node if not</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    }</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordflow">while</span> ((<a class="code" href="_linked_list_8h.html#a927d15cb707909c83985195dc2e14a3e">getSize</a>(occQueue-&gt;<a class="code" href="struct_queue.html#a16ac028724e4fd7016faa38928658477">last</a>) != 0) || (<a class="code" href="_linked_list_8h.html#a927d15cb707909c83985195dc2e14a3e">getSize</a>(nodeQueue-&gt;<a class="code" href="struct_queue.html#a16ac028724e4fd7016faa38928658477">last</a>) &gt;= 1)) {</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keywordtype">int</span> occQSize = <a class="code" href="_linked_list_8h.html#a927d15cb707909c83985195dc2e14a3e">getSize</a>(occQueue-&gt;<a class="code" href="struct_queue.html#a16ac028724e4fd7016faa38928658477">last</a>);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keywordtype">int</span> nodeQSize = <a class="code" href="_linked_list_8h.html#a927d15cb707909c83985195dc2e14a3e">getSize</a>(nodeQueue-&gt;<a class="code" href="struct_queue.html#a16ac028724e4fd7016faa38928658477">last</a>);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keywordflow">if</span> ((occQSize + nodeQSize) &lt; 2)  { <span class="comment">// occQSize forcément nul et nodeQSize forcément égal à 1</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="_queue_8h.html#a9bb1f207f3695adce3bc18f286e5a89e">pullQueue</a>(&amp;nodeQueue);  <span class="comment">// On retourne donc directement le parent final</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            <a class="code" href="struct_huffman_node.html">HuffmanNode</a>* min1 = getMin(occQueue, nodeQueue);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <a class="code" href="struct_huffman_node.html">HuffmanNode</a>* min2 = getMin(occQueue, nodeQueue);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            <a class="code" href="struct_huffman_node.html">HuffmanTree</a> parent = <a class="code" href="_linked_list_8h.html#a144d8438142dc7c9e325b3ef32220d94">createHuffmanNode</a>(-1, min1-&gt;<a class="code" href="struct_huffman_node.html#af31c4cdd2ddb799512125a78038c283f">occ</a> + min2-&gt;<a class="code" href="struct_huffman_node.html#af31c4cdd2ddb799512125a78038c283f">occ</a>);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            parent-&gt;<a class="code" href="struct_huffman_node.html#a7f728ee988b6a5c4c00a44b801420c81">right</a> = min1;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            parent-&gt;<a class="code" href="struct_huffman_node.html#ab4f3024a3ac6aad7fb1757fc9e9f0a2b">left</a> = min2;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            <a class="code" href="_queue_8h.html#a6b55c016ddde48ff60b3a922a9f9ca20">pushQueue</a>(&amp;nodeQueue, parent);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        }</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    }</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;  <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;}</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="_huffman_tree_8c.html#ad8813d7ab99f7b76ba0d35a01a62d07d">  161</a></span>&#160;<a class="code" href="struct_queue.html">Queue</a>* <a class="code" href="_huffman_tree_8c.html#ad8813d7ab99f7b76ba0d35a01a62d07d">createSortOccQueue</a>(<span class="keywordtype">void</span>) { </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <a class="code" href="struct_node.html">Node</a>* list = <a class="code" href="_huffman_tree_8c.html#a603e40475d9e7ac6f351bc0af2192de8">occChar</a>();</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="comment">// list not empty</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="keywordflow">if</span> (list != NULL) {</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <span class="keywordtype">int</span> nb = 1;                     <span class="comment">// security on pushQueue</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <a class="code" href="struct_node.html">Node</a>* min = NULL;               <span class="comment">// Node with least occurrences</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <a class="code" href="struct_node.html">Node</a>* prec = NULL;              <span class="comment">// Previous Node of min</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        <a class="code" href="struct_queue.html">Queue</a>* f = <a class="code" href="_queue_8h.html#a625f063a00ca83e30f1a9d0ef4830978">initQueue</a>();         <span class="comment">// Queue to return</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        <span class="comment">// Repeat process size times to go through whole list</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <span class="keywordflow">while</span>((list != NULL) &amp;&amp; (nb != 0)) {</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            <span class="comment">// prec always initialised to first node and min is being searched</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            prec = list;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            min = <a class="code" href="_linked_list_8h.html#a842b28c70c8dd96f52c7a24d9ec346a0">findMinOccLetter</a>(list);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            <span class="comment">// Node with least occurrences is the first one</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            <span class="keywordflow">if</span> (prec == min) {</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                list = list-&gt;<a class="code" href="struct_node.html#aa162dd1e0693188a22b1f13b9a2a0ef0">next</a>;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                nb = <a class="code" href="_queue_8h.html#a6b55c016ddde48ff60b3a922a9f9ca20">pushQueue</a>(&amp;f, min-&gt;<a class="code" href="struct_node.html#ace8a769c34969fb1751a8d901c41896c">data</a>);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            }</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            <span class="comment">// go through list to find previous Node of min</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                <span class="keywordflow">while</span> (prec-&gt;<a class="code" href="struct_node.html#aa162dd1e0693188a22b1f13b9a2a0ef0">next</a> != min) {</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                    prec = prec-&gt;<a class="code" href="struct_node.html#aa162dd1e0693188a22b1f13b9a2a0ef0">next</a>;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                }</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                <span class="comment">// connect previous Node to the one after min and enqueue min</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                prec-&gt;<a class="code" href="struct_node.html#aa162dd1e0693188a22b1f13b9a2a0ef0">next</a> = min-&gt;<a class="code" href="struct_node.html#aa162dd1e0693188a22b1f13b9a2a0ef0">next</a>;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                nb = <a class="code" href="_queue_8h.html#a6b55c016ddde48ff60b3a922a9f9ca20">pushQueue</a>(&amp;f, min-&gt;<a class="code" href="struct_node.html#ace8a769c34969fb1751a8d901c41896c">data</a>); <span class="comment">// don&#39;t know how to use it though</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            }</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        }</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <span class="keywordflow">return</span> f;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    }</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="comment">// list is empty</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;}</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
+<div class="line"><a name="l00204"></a><span class="lineno"><a class="line" href="_huffman_tree_8c.html#a5294f871d159fe79278fd9a8d857414a">  204</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="_huffman_tree_8c.html#a5294f871d159fe79278fd9a8d857414a">depthOfHuffmanTree</a>(<a class="code" href="struct_huffman_node.html">HuffmanTree</a> tree) {</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="keywordflow">if</span> (tree == NULL) {</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    } </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        <span class="keywordtype">int</span> leftDepth = <a class="code" href="_huffman_tree_8c.html#a5294f871d159fe79278fd9a8d857414a">depthOfHuffmanTree</a>(tree-&gt;<a class="code" href="struct_huffman_node.html#ab4f3024a3ac6aad7fb1757fc9e9f0a2b">left</a>);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        <span class="keywordtype">int</span> rightDepth = <a class="code" href="_huffman_tree_8c.html#a5294f871d159fe79278fd9a8d857414a">depthOfHuffmanTree</a>(tree-&gt;<a class="code" href="struct_huffman_node.html#a7f728ee988b6a5c4c00a44b801420c81">right</a>);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        <span class="keywordflow">if</span> (leftDepth &gt; rightDepth) {</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            <span class="keywordflow">return</span> 1 + leftDepth;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        }</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;            <span class="keywordflow">return</span> 1 +rightDepth;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        }</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    }</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;}</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160; </div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
+<div class="line"><a name="l00227"></a><span class="lineno"><a class="line" href="_huffman_tree_8c.html#aa6422d3beb68aa60c38d5c7e413858ca">  227</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_huffman_tree_8c.html#aa6422d3beb68aa60c38d5c7e413858ca">freeHuffmanTree</a>(<a class="code" href="struct_huffman_node.html">HuffmanTree</a> tree) {</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keywordflow">if</span>(tree != NULL) {</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        <a class="code" href="_huffman_tree_8c.html#aa6422d3beb68aa60c38d5c7e413858ca">freeHuffmanTree</a>(tree-&gt;<a class="code" href="struct_huffman_node.html#ab4f3024a3ac6aad7fb1757fc9e9f0a2b">left</a>);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <a class="code" href="_huffman_tree_8c.html#aa6422d3beb68aa60c38d5c7e413858ca">freeHuffmanTree</a>(tree-&gt;<a class="code" href="struct_huffman_node.html#a7f728ee988b6a5c4c00a44b801420c81">right</a>);</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        free (tree);</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    }</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
+<div class="ttc" id="astruct_huffman_node_html_ab4f3024a3ac6aad7fb1757fc9e9f0a2b"><div class="ttname"><a href="struct_huffman_node.html#ab4f3024a3ac6aad7fb1757fc9e9f0a2b">HuffmanNode::left</a></div><div class="ttdeci">struct HuffmanNode * left</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8h_source.html#l00015">LinkedList.h:15</a></div></div>
+<div class="ttc" id="a_huffman_tree_8c_html_ac088000daa36c78e807ffabd6e88318c"><div class="ttname"><a href="_huffman_tree_8c.html#ac088000daa36c78e807ffabd6e88318c">createHuffmanTree</a></div><div class="ttdeci">HuffmanTree createHuffmanTree(Queue *occQueue)</div><div class="ttdef"><b>Definition:</b> <a href="_huffman_tree_8c_source.html#l00123">HuffmanTree.c:123</a></div></div>
+<div class="ttc" id="a_linked_list_8h_html_a842b28c70c8dd96f52c7a24d9ec346a0"><div class="ttname"><a href="_linked_list_8h.html#a842b28c70c8dd96f52c7a24d9ec346a0">findMinOccLetter</a></div><div class="ttdeci">Node * findMinOccLetter(LinkedList list)</div></div>
+<div class="ttc" id="astruct_huffman_node_html_a7f728ee988b6a5c4c00a44b801420c81"><div class="ttname"><a href="struct_huffman_node.html#a7f728ee988b6a5c4c00a44b801420c81">HuffmanNode::right</a></div><div class="ttdeci">struct HuffmanNode * right</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8h_source.html#l00014">LinkedList.h:14</a></div></div>
+<div class="ttc" id="a_queue_8h_html_a6b55c016ddde48ff60b3a922a9f9ca20"><div class="ttname"><a href="_queue_8h.html#a6b55c016ddde48ff60b3a922a9f9ca20">pushQueue</a></div><div class="ttdeci">int pushQueue(Queue **f, HuffmanNode *nx_elem)</div><div class="ttdoc">Adding an HuffmanNode to the top of the list.</div><div class="ttdef"><b>Definition:</b> <a href="_queue_8c_source.html#l00038">Queue.c:38</a></div></div>
+<div class="ttc" id="astruct_node_html_ace8a769c34969fb1751a8d901c41896c"><div class="ttname"><a href="struct_node.html#ace8a769c34969fb1751a8d901c41896c">Node::data</a></div><div class="ttdeci">HuffmanNode * data</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8h_source.html#l00019">LinkedList.h:19</a></div></div>
+<div class="ttc" id="a_linked_list_8h_html_a80a64e11c1e9ed0e245fe2384bd87ba8"><div class="ttname"><a href="_linked_list_8h.html#a80a64e11c1e9ed0e245fe2384bd87ba8">find</a></div><div class="ttdeci">Node * find(LinkedList list, int letter)</div><div class="ttdoc">Search for a Node that contains the letter we are searching for.</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8c_source.html#l00131">LinkedList.c:131</a></div></div>
+<div class="ttc" id="astruct_node_html"><div class="ttname"><a href="struct_node.html">Node</a></div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8h_source.html#l00018">LinkedList.h:18</a></div></div>
+<div class="ttc" id="a_queue_8h_html_a9bb1f207f3695adce3bc18f286e5a89e"><div class="ttname"><a href="_queue_8h.html#a9bb1f207f3695adce3bc18f286e5a89e">pullQueue</a></div><div class="ttdeci">HuffmanNode * pullQueue(Queue **f)</div><div class="ttdoc">Remove and return the last element in the Queue.</div><div class="ttdef"><b>Definition:</b> <a href="_queue_8c_source.html#l00071">Queue.c:71</a></div></div>
+<div class="ttc" id="astruct_node_html_aa162dd1e0693188a22b1f13b9a2a0ef0"><div class="ttname"><a href="struct_node.html#aa162dd1e0693188a22b1f13b9a2a0ef0">Node::next</a></div><div class="ttdeci">struct Node * next</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8h_source.html#l00020">LinkedList.h:20</a></div></div>
+<div class="ttc" id="a_huffman_tree_8c_html_a603e40475d9e7ac6f351bc0af2192de8"><div class="ttname"><a href="_huffman_tree_8c.html#a603e40475d9e7ac6f351bc0af2192de8">occChar</a></div><div class="ttdeci">LinkedList occChar(void)</div><div class="ttdoc">function to determine the number of occurence of a character in a file</div><div class="ttdef"><b>Definition:</b> <a href="_huffman_tree_8c_source.html#l00022">HuffmanTree.c:22</a></div></div>
+<div class="ttc" id="a_linked_list_8h_html_af2ba6fa878035502a2e36c8c90ae04f1"><div class="ttname"><a href="_linked_list_8h.html#af2ba6fa878035502a2e36c8c90ae04f1">removeNode</a></div><div class="ttdeci">void removeNode(LinkedList *list, HuffmanNode *huffmanNode)</div><div class="ttdoc">Removes an HuffmanNode from a Linked List.</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8c_source.html#l00093">LinkedList.c:93</a></div></div>
+<div class="ttc" id="a_linked_list_8h_html_ab86e3b132413e630470d93326f6940de"><div class="ttname"><a href="_linked_list_8h.html#ab86e3b132413e630470d93326f6940de">createNode</a></div><div class="ttdeci">Node * createNode(HuffmanNode *data)</div><div class="ttdoc">Creates a node for a doubly linked list.</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8c_source.html#l00050">LinkedList.c:50</a></div></div>
+<div class="ttc" id="a_huffman_tree_8c_html_a5294f871d159fe79278fd9a8d857414a"><div class="ttname"><a href="_huffman_tree_8c.html#a5294f871d159fe79278fd9a8d857414a">depthOfHuffmanTree</a></div><div class="ttdeci">int depthOfHuffmanTree(HuffmanTree tree)</div><div class="ttdef"><b>Definition:</b> <a href="_huffman_tree_8c_source.html#l00204">HuffmanTree.c:204</a></div></div>
+<div class="ttc" id="a_show_8h_html_a99a41914b9988c6536334572c374d5d4"><div class="ttname"><a href="_show_8h.html#a99a41914b9988c6536334572c374d5d4">displayErrorMessageOpenFile</a></div><div class="ttdeci">void displayErrorMessageOpenFile(void)</div><div class="ttdoc">Display of an error message and forced exit from the program when there is a problem opening a file.</div><div class="ttdef"><b>Definition:</b> <a href="_show_8c_source.html#l00023">Show.c:23</a></div></div>
+<div class="ttc" id="a_linked_list_8h_html_a144d8438142dc7c9e325b3ef32220d94"><div class="ttname"><a href="_linked_list_8h.html#a144d8438142dc7c9e325b3ef32220d94">createHuffmanNode</a></div><div class="ttdeci">HuffmanNode * createHuffmanNode(int letter, int occ)</div><div class="ttdoc">Creates an HuffmanNode.</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8c_source.html#l00027">LinkedList.c:27</a></div></div>
+<div class="ttc" id="astruct_huffman_node_html"><div class="ttname"><a href="struct_huffman_node.html">HuffmanNode</a></div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8h_source.html#l00011">LinkedList.h:11</a></div></div>
+<div class="ttc" id="atests_8c_html_af3afec6f04e5fc42702a472afb15e744"><div class="ttname"><a href="tests_8c.html#af3afec6f04e5fc42702a472afb15e744">compare</a></div><div class="ttdeci">int compare()</div><div class="ttdef"><b>Definition:</b> <a href="tests_8c_source.html#l00235">tests.c:235</a></div></div>
+<div class="ttc" id="astruct_queue_html_a2addc5f5fab651284199528b83cd61c8"><div class="ttname"><a href="struct_queue.html#a2addc5f5fab651284199528b83cd61c8">Queue::first</a></div><div class="ttdeci">Node * first</div><div class="ttdef"><b>Definition:</b> <a href="_queue_8h_source.html#l00012">Queue.h:12</a></div></div>
+<div class="ttc" id="astruct_huffman_node_html_af31c4cdd2ddb799512125a78038c283f"><div class="ttname"><a href="struct_huffman_node.html#af31c4cdd2ddb799512125a78038c283f">HuffmanNode::occ</a></div><div class="ttdeci">int occ</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8h_source.html#l00013">LinkedList.h:13</a></div></div>
+<div class="ttc" id="a_huffman_tree_8c_html_ad8813d7ab99f7b76ba0d35a01a62d07d"><div class="ttname"><a href="_huffman_tree_8c.html#ad8813d7ab99f7b76ba0d35a01a62d07d">createSortOccQueue</a></div><div class="ttdeci">Queue * createSortOccQueue(void)</div><div class="ttdoc">Create a Sort Queue From Occ List object.</div><div class="ttdef"><b>Definition:</b> <a href="_huffman_tree_8c_source.html#l00161">HuffmanTree.c:161</a></div></div>
+<div class="ttc" id="astruct_queue_html_a16ac028724e4fd7016faa38928658477"><div class="ttname"><a href="struct_queue.html#a16ac028724e4fd7016faa38928658477">Queue::last</a></div><div class="ttdeci">Node * last</div><div class="ttdef"><b>Definition:</b> <a href="_queue_8h_source.html#l00013">Queue.h:13</a></div></div>
+<div class="ttc" id="a_linked_list_8h_html_ad7d622d2bed6d7eddb3ea061e96cc7ba"><div class="ttname"><a href="_linked_list_8h.html#ad7d622d2bed6d7eddb3ea061e96cc7ba">addNode</a></div><div class="ttdeci">void addNode(LinkedList *list, Node *node)</div><div class="ttdoc">Adds a Node to a Doubly Linked List.</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8c_source.html#l00071">LinkedList.c:71</a></div></div>
+<div class="ttc" id="a_linked_list_8h_html_a927d15cb707909c83985195dc2e14a3e"><div class="ttname"><a href="_linked_list_8h.html#a927d15cb707909c83985195dc2e14a3e">getSize</a></div><div class="ttdeci">int getSize(LinkedList list)</div><div class="ttdoc">Calculates the size of the linked list.</div><div class="ttdef"><b>Definition:</b> <a href="_linked_list_8c_source.html#l00158">LinkedList.c:158</a></div></div>
+<div class="ttc" id="a_queue_8h_html_a625f063a00ca83e30f1a9d0ef4830978"><div class="ttname"><a href="_queue_8h.html#a625f063a00ca83e30f1a9d0ef4830978">initQueue</a></div><div class="ttdeci">Queue * initQueue(void)</div><div class="ttdoc">Initialization of the last and first fields of the fiel and memory allocation.</div><div class="ttdef"><b>Definition:</b> <a href="_queue_8c_source.html#l00022">Queue.c:22</a></div></div>
+<div class="ttc" id="a_huffman_tree_8c_html_aa6422d3beb68aa60c38d5c7e413858ca"><div class="ttname"><a href="_huffman_tree_8c.html#aa6422d3beb68aa60c38d5c7e413858ca">freeHuffmanTree</a></div><div class="ttdeci">void freeHuffmanTree(HuffmanTree tree)</div><div class="ttdoc">Memory release.</div><div class="ttdef"><b>Definition:</b> <a href="_huffman_tree_8c_source.html#l00227">HuffmanTree.c:227</a></div></div>
+<div class="ttc" id="astruct_queue_html"><div class="ttname"><a href="struct_queue.html">Queue</a></div><div class="ttdoc">Structure containing the first and last node of the list. Queue allows you to manage items like a que...</div><div class="ttdef"><b>Definition:</b> <a href="_queue_8h_source.html#l00011">Queue.h:11</a></div></div>
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_08d237fc27d4ecd563f71c5d52f2fecc.html">sources</a></li><li class="navelem"><a class="el" href="dir_b9ddfe6aed3fb98af5b5913b393e7bac.html">Huffman</a></li><li class="navelem"><a class="el" href="_huffman_tree_8c.html">HuffmanTree.c</a></li>
-    <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
 </body>
 </html>
