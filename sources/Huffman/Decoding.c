@@ -48,9 +48,7 @@ void decodeFile() {
             current = current->right;
         }
 
-        if (current == NULL) { // Sometimes the tree can be NULL, even if we came from a parent, so we reset it
-            current = huffmanTree;
-        } else if (current->letter != -1) { // it means we found a leaf ex : (a | 11)
+        if (current->letter != -1) { // it means we found a leaf ex : (a | 11)
             fputc((char) current->letter, decoding);
             current = huffmanTree; // we start from the beginning, again
         }
