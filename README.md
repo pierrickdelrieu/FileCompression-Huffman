@@ -3,17 +3,6 @@
 Pierrick Delrieu (pierrick.delrieu@efrei.net) - Benjamin Lesieux (benjamin.lesieux@efrei.net) - Harold Molter (harold.molter@efrei.net) - Raphaël Cadillat (raphael.cadillat@efrei.net) - Fausitin Dewas (faustion.dewas@efrei.net)
 ___
 
-
-## Report
-* **SDD**  
-Report link : https://drive.google.com/file/d/164lcNJLVYbbxRFtwHZts1sa1AWOAvThS/view?usp=sharing
-
-* **Software engineering**  
-Report Link : https://drive.google.com/file/d/1czgHGVR_zsu40g_WC0GIt4h0sbos9Upk/view?usp=sharing  
-Gantt chart link : https://drive.google.com/file/d/1s0v7TAfPCe6KzmdlCBOk_EUze7tyrOMK/view?usp=sharing
-___
-
-
 ## Framing note
 * **SDD**  
 link : https://drive.google.com/file/d/1wRvJ3A4U12p9wmkSDsbOk08SnBIH3UmZ/view?usp=sharing

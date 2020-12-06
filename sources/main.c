@@ -8,6 +8,7 @@
 #define DECOMPRESS 3
 #define QUIT 4
 
+
 int main(void) {
     int choice = QUIT;
     do {
