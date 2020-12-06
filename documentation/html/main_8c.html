@@ -5,14 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>FileCompression-Huffman: /Users/pierrickdelrieu/OneDrive - Efrei/Perso/Projet/Prog c - FileCompression Huffman (2020)/sources/main.c File Reference</title>
+<title>FileCompressor - Huffman: sources/main.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">FileCompression-Huffman
+   <div id="projectname">FileCompressor - Huffman
    </div>
   </td>
  </tr>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('main_8c.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,8 +59,14 @@ $(document).ready(function(){initNavTree('main_8c.html',''); initResizable(); })
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_08d237fc27d4ecd563f71c5d52f2fecc.html">sources</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">main.c File Reference</div>  </div>
@@ -89,17 +74,92 @@ $(document).ready(function(){initNavTree('main_8c.html',''); initResizable(); })
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="_file_managment_8h_source.html">../include/FileManagment.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_encoding_8h_source.html">../include//Huffman/Encoding.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_decoding_8h_source.html">../include//Huffman/Decoding.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="tests_8h_source.html">../tests/tests.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_menu_8h_source.html">../include/IHMCompressor/Menu.h</a>&quot;</code><br />
 </div>
 <p><a href="main_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a4159fc55ee63167f1273ce2fda1781c2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a4159fc55ee63167f1273ce2fda1781c2">ADDTEXT</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a4159fc55ee63167f1273ce2fda1781c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4aa43acdab3102556482bdf21c12c674"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a4aa43acdab3102556482bdf21c12c674">COMPRESS</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:a4aa43acdab3102556482bdf21c12c674"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb3405b0b506a48d56d9f38f50716ce6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#acb3405b0b506a48d56d9f38f50716ce6">DECOMPRESS</a>&#160;&#160;&#160;3</td></tr>
+<tr class="separator:acb3405b0b506a48d56d9f38f50716ce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad24e2b54375e12474e65ebf7175988fb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ad24e2b54375e12474e65ebf7175988fb">QUIT</a>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:ad24e2b54375e12474e65ebf7175988fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
 <tr class="separator:a840291bc02cba5474a4cb46a9b9566fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a4159fc55ee63167f1273ce2fda1781c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4159fc55ee63167f1273ce2fda1781c2">&#9670;&nbsp;</a></span>ADDTEXT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ADDTEXT&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00006">6</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a4aa43acdab3102556482bdf21c12c674"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4aa43acdab3102556482bdf21c12c674">&#9670;&nbsp;</a></span>COMPRESS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define COMPRESS&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00007">7</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="acb3405b0b506a48d56d9f38f50716ce6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb3405b0b506a48d56d9f38f50716ce6">&#9670;&nbsp;</a></span>DECOMPRESS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DECOMPRESS&#160;&#160;&#160;3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00008">8</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="ad24e2b54375e12474e65ebf7175988fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad24e2b54375e12474e65ebf7175988fb">&#9670;&nbsp;</a></span>QUIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define QUIT&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00009">9</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a840291bc02cba5474a4cb46a9b9566fe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a840291bc02cba5474a4cb46a9b9566fe">&#9670;&nbsp;</a></span>main()</h2>
@@ -117,18 +177,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00010">10</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00011">11</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_08d237fc27d4ecd563f71c5d52f2fecc.html">sources</a></li><li class="navelem"><a class="el" href="main_8c.html">main.c</a></li>
-    <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
 </body>
 </html>

@@ -169,12 +169,7 @@ static void addNodeBST(DicoTree* tree, int letter, char* code){
         *tree = createDicoNode(letter, code);
     }
     else{
-        // if (strlen((*tree)->code) > strlen(code)){
-        //     addNodeBST(&((*tree)->left), letter, code);
-        // }
-        // else{
-        //     addNodeBST(&((*tree)->right), letter, code);
-        // }
+        
         if ((*tree)->letter > letter){
             addNodeBST(&((*tree)->left), letter, code);
         }

@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['huffmancompression_2etxt_18',['HuffmanCompression.txt',['../_huffman_compression_8txt.html',1,'']]],
-  ['huffmandecompression_2etxt_19',['HuffmanDecompression.txt',['../_huffman_decompression_8txt.html',1,'']]],
-  ['huffmandictionary_2etxt_20',['HuffmanDictionary.txt',['../_huffman_dictionary_8txt.html',1,'']]],
-  ['huffmantree_2ec_21',['HuffmanTree.c',['../_huffman_tree_8c.html',1,'']]],
-  ['huffmantree_2eh_22',['HuffmanTree.h',['../_huffman_tree_8h.html',1,'']]]
+  ['getbalancefactor_51',['getBalanceFactor',['../_dictionary_8h.html#ad804a88a0317a0736443744fadaf596f',1,'getBalanceFactor(DicoTree tree):&#160;Dictionary.h'],['../_dictionary_8c.html#a5f0e0fc620e9d359e2b8883297b8efbb',1,'getBalanceFactor(DicoNode *tree):&#160;Dictionary.c']]],
+  ['getcodeletter_52',['getCodeLetter',['../_encoding_8h.html#a248793ae1bac07d30e1282bf2e45e77c',1,'getCodeLetter(DicoTree tree, char letter):&#160;Encoding.c'],['../_encoding_8c.html#a248793ae1bac07d30e1282bf2e45e77c',1,'getCodeLetter(DicoTree tree, char letter):&#160;Encoding.c']]],
+  ['getcodesizemax_53',['getCodeSizeMax',['../_decoding_8h.html#a74c7efde9ab4eb9daf1a54046b8c402a',1,'getCodeSizeMax(FILE *file):&#160;Decoding.c'],['../_decoding_8c.html#a74c7efde9ab4eb9daf1a54046b8c402a',1,'getCodeSizeMax(FILE *file):&#160;Decoding.c']]],
+  ['getsize_54',['getSize',['../_linked_list_8h.html#a927d15cb707909c83985195dc2e14a3e',1,'getSize(LinkedList list):&#160;LinkedList.c'],['../_linked_list_8c.html#a927d15cb707909c83985195dc2e14a3e',1,'getSize(LinkedList list):&#160;LinkedList.c']]]
 ];

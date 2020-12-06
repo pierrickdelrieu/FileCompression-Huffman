@@ -34,7 +34,7 @@ int main(void) {
     // printf("test occ : %d\n", test_Occurrences());
 
     // printf("Test dictionary : %d\n", test_dictionary());
-    printf("Test decodage : %d\n", compare());
+    // printf("Test decodage : %d\n", compare());
 
     return EXIT_SUCCESS;
 }

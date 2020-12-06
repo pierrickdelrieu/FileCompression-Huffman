@@ -28,6 +28,8 @@
 int test_FileManagment(void) {
     int nbCaraFileToCompress = 103;
 
+    initFileToCompress("Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do");
+
     createBinaryFileOfFileToCompress();
 
     if ((numberCharInFile("../TextFiles/FileToCompress.txt") == nbCaraFileToCompress) ||
@@ -47,7 +49,6 @@ int test_LinkedList(void) {
     LinkedList head = createNode(createHuffmanNode((int) 'b', 4));
     addNode(&head, createNode(createHuffmanNode((int) 'e', 2)));
     addNode(&head, createNode(createHuffmanNode((int) 'n', 8)));
-
 
     // size is supposed to be 3
     if (getSize(head) != 3) return 0;
@@ -69,13 +70,6 @@ int test_LinkedList(void) {
     return 1;
 }
 
-static void displayQueue(Queue *queue) {
-    Node *head = queue->last;
-    while (head != NULL) {
-        printf("(%c | %d) -> ", head->data->letter, head->data->occ);
-        head = head->next;
-    }
-}
 
 /**
  * @brief Queue function test (part 2 of project)
@@ -198,14 +192,6 @@ int test_HuffmanTree(void) {
 
 static void displayDicoTree(DicoTree tree){
     if (tree != NULL){
-        int i = 0;
-        // printf("(%c - ", tree->letter);
-        // while(tree->code[i] != '\0') {
-        //     printf("%c", tree->code[i]);
-        //     i++;
-        // }
-        // printf(")");
-        // printf("(%c - %s)", tree->letter, tree->code);
         displayDicoTree(tree->left);
         displayDicoTree(tree->right);
         printf("(%c - %s)", tree->letter, tree->code);
@@ -224,8 +210,6 @@ int test_dictionary() {
     DicoTree dicoTree = NULL;
     dicoTree = createDicoTree(tree);
 
-    // printf("\n DicoTree : ");
-    // displayDicoTree(dicoTree);
     initDictionaryPrinting(dicoTree);
     encodingFile(dicoTree);
 
@@ -235,16 +219,11 @@ int test_dictionary() {
 int compare() {
 
     Queue* occQueue = createSortOccQueue();
-    //printf("\nWe have the following Queue : ");
-    //displayQueue(occQueue);
 
     HuffmanTree tree = createHuffmanTree(occQueue);
-    //displayTree(tree);
 
     DicoTree dicoTree = NULL;
     dicoTree = createDicoTree(tree);
-    //printf("\n DicoTree : ");
-    //displayDicoTree(dicoTree);
     initDictionaryPrinting(dicoTree);
     encodingFile(dicoTree);
     decodeFile();
@@ -257,7 +236,7 @@ int compare() {
 
     int line = 0;
 
-    while (1) {
+    while (c1 != EOF) {
         if (c1 != c2) {
             printf("\n not cool c1 : %c , c2 : %c", c1, c2);
             fclose(compressed);
