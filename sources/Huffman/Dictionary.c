@@ -1,13 +1,4 @@
-/**
- * @file Dictionary.c
- * @author Pierrick Delrieu - Faustin Dewas
- * @brief Creation of a dictionary with each letter and its binary code compressed
- * @version 0.1
- * @date 23-11-2020
- * 
- * @copyright Copyright (c) 2020
- * 
- */
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -38,13 +29,7 @@ static char* copyString(char* string) {
 }
 
 
-/**
- * @brief Create a DicoNode 
- * 
- * @param letter Node field
- * @param code Node field
- * @return DicoNode* Address of the created node
- */
+
 DicoNode* createDicoNode(int letter, char* code) {
     // Allocation
     DicoNode* x = NULL;
@@ -60,12 +45,7 @@ DicoNode* createDicoNode(int letter, char* code) {
 }
 
 
-/**
- * @brief Depth of DicoTree
- * 
- * @param tree Tree whose depth is to be found
- * @return int Depth of Tree
- */
+
 int depthOfDicoTree(DicoTree tree) {
     if (tree == NULL) {
         return 0;
@@ -83,12 +63,7 @@ int depthOfDicoTree(DicoTree tree) {
 }
 
 
-/**
- * @brief Get the Balance Factor of DicoNode
- * 
- * @param tree 
- * @return int 
- */
+
 int getBalanceFactor(DicoNode*  tree) {
     if(tree == NULL) {
         return 0;
@@ -99,11 +74,7 @@ int getBalanceFactor(DicoNode*  tree) {
 }
 
 
-/**
- * @brief RightRotation of Node
- * 
- * @param tree Node at the origin of the rotation
- */
+
 void rightRotation(DicoNode** tree){
     if (*tree != NULL){
         DicoNode* temp = (*tree)->left;
@@ -114,11 +85,7 @@ void rightRotation(DicoNode** tree){
 }
 
 
-/**
- * @brief LeftRotation of Node
- * 
- * @param tree Node at the origin of the rotation
- */
+
 void leftRotation(DicoTree* tree){
     if (*tree != NULL){
         DicoNode* temp = (*tree)->right;
@@ -129,11 +96,7 @@ void leftRotation(DicoTree* tree){
 }
 
 
-/**
- * @brief Tree balance
- * 
- * @param tree Tree Balanced
- */
+
 void balanceTree(DicoTree* tree){
     if (*tree != NULL){
         balanceTree(&((*tree)->left));
@@ -179,25 +142,13 @@ static void addNodeBST(DicoTree* tree, int letter, char* code){
     }
 }
 
-/**
- * @brief Adding a node to a balanced binary search tree
- * @details Binary trees sort by code size
- * 
- * @param tree 
- * @param letter 
- * @param code 
- */
+
 void addNodeAVL(DicoTree* tree, int letter, char* code){
     addNodeBST(tree, letter, code);
     balanceTree(tree);
 }
 
-/**
- * @brief Create a Dico Tree object
- * 
- * @param tree Huffman tree to retrieve the codes
- * @return DicoTree Balanced binary search tree containing these letters with its code
- */
+
 DicoTree createDicoTree(HuffmanTree tree) {
     DicoTree avl = NULL;
 
@@ -223,14 +174,7 @@ DicoTree createDicoTree(HuffmanTree tree) {
 }
 
 
-/**
- * @brief Recursive function which initializes the tree containing each letter and its code
- * 
- * @param avl Avl to create
- * @param tree Huffman tree from which the AVL is created
- * @param code Initialized when calling the function
- * @param sizecode Initialized when calling the function at 0
- */
+
 void initDicoTree(DicoTree* avl, HuffmanTree tree, char* code, int sizecode) {
     if (tree != NULL) {
 
@@ -261,11 +205,7 @@ void initDicoTree(DicoTree* avl, HuffmanTree tree, char* code, int sizecode) {
 }
 
 
-/**
- * @brief Function that opens and calls the recursive function to create the dictionary file
- * 
- * @param dicoTree AVL containing letters and codes
- */
+
 void initDictionaryPrinting(DicoTree dicoTree) {
     FILE* file = fopen("TextFiles/HuffmanDictionary.txt", "w+");
     printDictionaryFile(dicoTree, file);
@@ -273,12 +213,7 @@ void initDictionaryPrinting(DicoTree dicoTree) {
 }
 
 
-/**
- * @brief Recursive function which writes the code of each letter in the text file
- * 
- * @param dicoTree AVL containing letters and codes
- * @param file File to write to (previously opened)
- */
+
 void printDictionaryFile(DicoTree dicoTree, FILE* file) {
     if (dicoTree != NULL) {
         fprintf(file, "%c%s/", dicoTree->letter, dicoTree->code);
@@ -287,11 +222,7 @@ void printDictionaryFile(DicoTree dicoTree, FILE* file) {
     }
 }
 
-/**
- * @brief Memory release
- * 
- * @param tree Tree has to free memory because dynamically allocated
- */
+
 void freeDicoTree(DicoTree tree) {
     if(tree != NULL) {
         freeDicoTree(tree->left);

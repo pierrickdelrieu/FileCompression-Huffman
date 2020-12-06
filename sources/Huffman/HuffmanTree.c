@@ -1,24 +1,11 @@
-/**
- * @file HuffmanTree.c
- * @author Pierrick Delrieu - Benjamins Lesieux - Harold Molter
- * @brief 
- * @version 0.1
- * @date 08-11-2020
- * 
- * @copyright Copyright (c) 2020
- * 
- */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../include/Huffman/HuffmanTree.h"
 #include "../../include/IHMCompressor/Show.h"
 
 
-/**
-* @brief function to determine the number of occurence of a character in a file
-* 
-* @return list of char with their respective occurrence
-*/
+
 LinkedList occChar(void) {
 
     FILE *file = NULL;
@@ -64,7 +51,7 @@ LinkedList occChar(void) {
 
 /**
  * @brief Compare huffman nodes according to their occurrence
- * 
+ *
  * @param node1 Node to compare
  * @param node2 Node to compare
  * @return int 1 if occ(node1) > occ(node2)
@@ -152,12 +139,7 @@ HuffmanTree createHuffmanTree(Queue* occQueue) {
 
 
 
-/**
- * @brief Create a Sort Queue From Occ List object
- * 
- * @param list 
- * @return Queue* 
- */
+
 Queue* createSortOccQueue(void) { 
 
     Node* list = occChar();
@@ -219,11 +201,7 @@ int depthOfHuffmanTree(HuffmanTree tree) {
 
 
 
-/**
- * @brief Memory release
- * 
- * @param tree Tree has to free memory because dynamically allocated
- */
+
 void freeHuffmanTree(HuffmanTree tree) {
     if(tree != NULL) {
         freeHuffmanTree(tree->left);
