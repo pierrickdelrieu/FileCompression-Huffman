@@ -1,10 +1,11 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "../../include/IHMCompressor/Show.h"
 #include "../../include/Huffman/Decoding.h"
 #include "../../include/Huffman/Dictionary.h"
+#include "../../include/Huffman/HuffmanTree.h"
+
 
 
 
@@ -44,6 +45,7 @@ void decodeFile() {
 
     fclose(decoding);
     fclose(file);
+    freeHuffmanTree(huffmanTree);
 }
 
 
@@ -61,25 +63,24 @@ HuffmanTree buildFromDictionary(FILE* file) {
     int char_f = fgetc(file);
 
     while (char_f != EOF) {
-        if (char_f != '/' && char_f != '1' && char_f != '0') {
-            currentLetter = char_f; // it means we found a letter
-            buildingCode = 1;
+        currentLetter = char_f; // it means we found a letter
+        buildingCode = 1;
 
-            while (buildingCode == 1) {
-                char_f = fgetc(file); // going to next character until we complete the code
+        while (buildingCode == 1) {
+            char_f = fgetc(file); // going to next character until we complete the code
 
-                currentCode[sizeCurrentCode] = (char) char_f;
-                sizeCurrentCode++;
+            currentCode[sizeCurrentCode] = (char) char_f;
+            sizeCurrentCode++;
 
-                if (char_f == '/') {
-                    currentCode[sizeCurrentCode-1] = '\0'; // it means we reached the end of the code
-                    buildingCode = 0;
-                }
+            if (char_f == '/') {
+                currentCode[sizeCurrentCode-1] = '\0'; // it means we reached the end of the code
+                buildingCode = 0;
             }
-
-            buildFromCode(tree, currentLetter, currentCode, 0, sizeCurrentCode-1); // we build the child node at the place the code would be
-            sizeCurrentCode = 0;
         }
+
+        buildFromCode(tree, currentLetter, currentCode, 0, sizeCurrentCode-1); // we build the child node at the place the code would be
+        sizeCurrentCode = 0;
+        
 
         char_f = fgetc(file);
     }

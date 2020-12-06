@@ -228,7 +228,7 @@ int test_dictionary() {
  */
 int test_decompression(void) {
 
-    initFileToCompress("Ceci est un test fonctionnel visant à regarder si la décompression se passe bien, autrement dit, que les deux fichiers textes coïncident.");
+    initFileToCompress("Ceci est un test fonctionnel visant a regarder si la decompression se passe bien, autrement dit, que les deux fichiers textes coincident.");
     Queue* occQueue = createSortOccQueue();
     HuffmanTree tree = createHuffmanTree(occQueue);
     DicoTree dicoTree = createDicoTree(tree);

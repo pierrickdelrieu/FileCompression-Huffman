@@ -91,8 +91,9 @@ int               getSize               (LinkedList list);
 *
 * @return Node*
 **/
-
 Node*             findMinOccLetter      (LinkedList list);
+
+
 
 void              freeNode              (LinkedList list);
 

@@ -34,6 +34,8 @@ $(OBJECTS)IHMCompressor/Menu.o : $(INCLUDE)IHMCompressor/Menu.h  \
 								 $(INCLUDE)FileManagment.h \
 								 $(INCLUDE)Huffman/Encoding.h  \
 								 $(INCLUDE)Huffman/Decoding.h  \
+								 $(INCLUDE)DataStructures/LinkedList.h  \
+								 $(INCLUDE)Huffman/HuffmanTree.h  \
 								 $(INCLUDE)FileManagment.h  \
 								$(SOURCES)IHMCompressor/Menu.c
 	$(COMPILER) -c -g -Wall $(SOURCES)IHMCompressor/Menu.c -o $(OBJECTS)IHMCompressor/Menu.o
