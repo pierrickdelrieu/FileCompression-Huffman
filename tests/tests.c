@@ -201,34 +201,6 @@ int test_HuffmanTree(void) {
     return 1;
 }
 
-
-
-int test_dictionary() {
-
-    Queue* occQueue = createSortOccQueue();
-
-    HuffmanTree tree = createHuffmanTree(occQueue);
-    freeNode(occQueue->last);
-    free(occQueue);
-
-    DicoTree dicoTree = NULL;
-    dicoTree = createDicoTree(tree);
-    freeHuffmanTree(tree);
-    
-    int i = test_avl_dico(dicoTree);        
-    
-    if (i == 0) {
-        freeDicoTree(dicoTree);
-        return 0;
-    }
-    else {
-        i = test_code_dico(dicoTree);
-    }
-
-    freeDicoTree(dicoTree);
-    return i;
-}
-
 /**
  * @brief looking if the ASCII in the left node to is lighter than the actual node. Same for the right node, but look if it is bigger.
  * 
@@ -260,6 +232,35 @@ static int test_code_dico(DicoTree dicoNode) {
     }
     else return 1;
 }
+
+
+int test_dictionary() {
+
+    Queue* occQueue = createSortOccQueue();
+
+    HuffmanTree tree = createHuffmanTree(occQueue);
+    freeNode(occQueue->last);
+    free(occQueue);
+
+    DicoTree dicoTree = NULL;
+    dicoTree = createDicoTree(tree);
+    freeHuffmanTree(tree);
+    
+    int i = test_avl_dico(dicoTree);        
+    
+    if (i == 0) {
+        freeDicoTree(dicoTree);
+        return 0;
+    }
+    else {
+        i = test_code_dico(dicoTree);
+    }
+
+    freeDicoTree(dicoTree);
+    return i;
+}
+
+
 
 
 /**
