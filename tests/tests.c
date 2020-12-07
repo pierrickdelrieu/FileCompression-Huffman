@@ -206,18 +206,59 @@ int test_HuffmanTree(void) {
 int test_dictionary() {
 
     Queue* occQueue = createSortOccQueue();
-    //printf("\nWe have the following Queue : ");
-    //displayQueue(occQueue);
 
     HuffmanTree tree = createHuffmanTree(occQueue);
-    //displayTree(tree);
+    freeNode(occQueue->last);
+    free(occQueue);
 
     DicoTree dicoTree = NULL;
     dicoTree = createDicoTree(tree);
-    // displayDicoTree(dicoTree);
+    freeHuffmanTree(tree);
+    
+    int i = test_avl_dico(dicoTree);        
+    
+    if (i == 0) {
+        freeDicoTree(dicoTree);
+        return 0;
+    }
+    else {
+        i = test_code_dico(dicoTree);
+    }
 
-    initDictionaryPrinting(dicoTree);
-    return 1;
+    freeDicoTree(dicoTree);
+    return i;
+}
+
+/**
+ * @brief looking if the ASCII in the left node to is lighter than the actual node. Same for the right node, but look if it is bigger.
+ * 
+ * return 1 if yes, 0 if not.
+ */
+static int test_avl_dico(DicoTree dicoNode) {
+    if (dicoNode != NULL) {
+        if (dicoNode->left != NULL && dicoNode->left->letter > dicoNode->letter) return 0;
+        else if (dicoNode->right != NULL && dicoNode->right->letter < dicoNode->letter) return 0;
+        return test_avl_dico(dicoNode->left) && test_avl_dico(dicoNode->right);
+    }
+    else return 1;
+}
+
+/**
+ * @brief look if the code of the ASCII is only composed by 0 and 1.
+ * 
+ * return 1 if yes, 0 if no.
+ */
+static int test_code_dico(DicoTree dicoNode) {
+    if (dicoNode != NULL) {
+        int i = 0;
+        while (dicoNode->code[i] != '\0')
+        {
+            if (dicoNode->code[i] != '0' || dicoNode->code[i] != '1') return 0;
+            i++;
+        }
+        return 1 && (test_code_dico(dicoNode->left) && test_code_dico(dicoNode->right));
+    }
+    else return 1;
 }
 
 
