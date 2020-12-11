@@ -14,11 +14,7 @@
 #define LINKED_LIST
 
 /***
- * @brief Defines the node of a doubly linked list
- * @details as this structure will be used as the Node of an HuffmanTree,
- * the pointers right and left are named after the property the list will
- * have in the future. When used as a doubly linked list, right means 'next'
- * and left means 'previous'
+ * @brief Node of an HuffmanTree
  */
 typedef struct HuffmanNode {
     int letter;
@@ -27,12 +23,15 @@ typedef struct HuffmanNode {
     struct HuffmanNode* left;
 } HuffmanNode;
 
+/**
+* @brief Node of a singly linked list
+*/
 typedef struct Node {
     HuffmanNode* data;
     struct Node* next;
 } Node;
 
-///@brief Defines the pointer of a doubly linked list
+///@brief Defines the pointer of a linked list
 typedef Node* LinkedList;
 
 /**
@@ -45,7 +44,7 @@ typedef Node* LinkedList;
 HuffmanNode*      createHuffmanNode     (int letter, int occ);
 
 /**
- * @brief Creates a node for a doubly linked list
+ * @brief Creates a node for a linked list
  *
  * @param huffmanNode the data of the Node
  * @return Node* A pointer to a Node
@@ -53,7 +52,7 @@ HuffmanNode*      createHuffmanNode     (int letter, int occ);
 Node*             createNode            (HuffmanNode* data);
 
 /**
- * @brief Adds a Node to a Doubly Linked List
+ * @brief Adds a Node to a Linked List
  * @param list The head of the list (Node*)
  * @param node A pointer to the Node we want to add
  *
